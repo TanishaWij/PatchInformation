@@ -1,0 +1,9 @@
+# Directories
+.idea
+target
+
+# Files
+
+*.iml
+*.xml
+config.properties

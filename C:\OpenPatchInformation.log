@@ -1,0 +1,16 @@
+2018-05-14 19:37:42 INFO  Main:66 - Executing: Internal Jira issues and corresponding patch Information
+2018-05-14 19:38:03 INFO  Main:61 - Executing: Customer's Jira issues and corresponding patch Information
+2018-05-14 19:38:26 INFO  Main:66 - Executing: Internal Jira issues and corresponding patch Information
+2018-05-14 19:38:34 INFO  Main:61 - Executing: Customer Jira issues and corresponding patch Information
+2018-05-14 20:14:40 INFO  Main:67 - Executing: Internal Jira issues and corresponding patch Information
+2018-05-14 20:15:23 INFO  Main:61 - Executing: Customer Jira issues and corresponding patch Information
+2018-05-15 09:28:46 INFO  Main:73 - Executing: Internal Jira issues and corresponding patch Information.
+2018-05-15 09:28:52 INFO  AccessPMT:43 - Getting Jira issues recorded in both the PmtDb and Jira
+2018-05-15 09:28:52 INFO  AccessPMT:67 - Jira issues recorded in both the PmtDb and Jira extracted successfully
+2018-05-15 09:28:52 INFO  AccessPMT:77 - Getting Patch information associated with the Jira issues
+2018-05-15 09:28:53 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
+2018-05-15 09:29:03 INFO  Main:68 - Executing: Customer Jira issues and corresponding patch Information.
+2018-05-15 09:29:08 INFO  AccessPMT:43 - Getting Jira issues recorded in both the PmtDb and Jira
+2018-05-15 09:29:08 INFO  AccessPMT:67 - Jira issues recorded in both the PmtDb and Jira extracted successfully
+2018-05-15 09:29:08 INFO  AccessPMT:77 - Getting Patch information associated with the Jira issues
+2018-05-15 09:29:09 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
