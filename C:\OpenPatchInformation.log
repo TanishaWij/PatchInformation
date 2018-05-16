@@ -14,3 +14,7 @@
 2018-05-15 09:29:08 INFO  AccessPMT:67 - Jira issues recorded in both the PmtDb and Jira extracted successfully
 2018-05-15 09:29:08 INFO  AccessPMT:77 - Getting Patch information associated with the Jira issues
 2018-05-15 09:29:09 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
+2018-05-16 10:25:44 INFO  Main:77 - Executing - Sending of mail containing Internal Jira issues and corresponding patch Information.
+2018-05-16 10:25:53 INFO  AccessPMT:98 - Patch information associated with the Jira issues extracted successfully.
+2018-05-16 10:26:01 INFO  Main:72 - Executing - Sending of mail containing Customer Jira issues and corresponding patch Information.
+2018-05-16 10:26:07 INFO  AccessPMT:98 - Patch information associated with the Jira issues extracted successfully.

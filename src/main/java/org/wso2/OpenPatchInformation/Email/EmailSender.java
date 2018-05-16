@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation.Email;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,8 +15,6 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-
-package org.wso2.OpenPatchInformation.Email;
 
 import org.wso2.OpenPatchInformation.Exceptions.EmailExceptions.EmailException;
 import org.wso2.OpenPatchInformation.Exceptions.EmailExceptions.MessageSendingException;
@@ -62,11 +60,11 @@ public class EmailSender {
         prop.put(PROTOCOL, EMAIL_PROTOCOL);
         Session session = Session.getDefaultInstance(prop, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-
                 return new PasswordAuthentication(getValueOf("emailUser"),
                         getValueOf("emailPassword"));
             }
         });
+
         MimeMessage message = new MimeMessage(session);
         try {
             message.setFrom(new InternetAddress(getValueOf("emailUser")));
@@ -82,7 +80,6 @@ public class EmailSender {
                 message.addRecipient(Message.RecipientType.CC,
                         new InternetAddress(aCcList));
             }
-
         } catch (MessagingException e) {
             throw new MessageSetupException("Check email Addresses in Properties file", e);
         }

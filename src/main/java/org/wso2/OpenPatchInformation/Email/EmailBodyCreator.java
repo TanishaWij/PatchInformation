@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation.Email;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,7 +15,6 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-package org.wso2.OpenPatchInformation.Email;
 
 import org.wso2.OpenPatchInformation.Constants.Constants;
 import org.wso2.OpenPatchInformation.Constants.EmailConstants;
@@ -43,19 +42,21 @@ import static org.wso2.OpenPatchInformation.Constants.EmailConstants.TABLE_HEADE
  */
 public class EmailBodyCreator {
 
-    private ArrayList<Patch> patchesInQueue = new ArrayList<>();
-    private ArrayList<Patch> patchesInDevelopment = new ArrayList<>();
-    private ArrayList<Patch> patchesInSigning = new ArrayList<>();
-    private ArrayList<Patch> patchesReleased = new ArrayList<>();
+    private static ArrayList<Patch> patchesInQueue = new ArrayList<>();
+    private static ArrayList<Patch> patchesInDevelopment = new ArrayList<>();
+    private static ArrayList<Patch> patchesInSigning = new ArrayList<>();
+    private static ArrayList<Patch> patchesReleased = new ArrayList<>();
 
     /**
      * Returns the body of the email.
-     * @param patches all patches to be assigned to states and their details to be recorded in the email.
-     * @param jiraIssues all jira issues containing details to be recorded in the email.
+     *
+     * @param patches     all patches to be assigned to states and their details to be recorded in the email.
+     * @param jiraIssues  all jira issues containing details to be recorded in the email.
      * @param emailHeader email header dependent on if its the internal or customer related email.
      * @return the email body.
      */
-    public String getEmailBody(ArrayList<Patch> patches, ArrayList<JiraIssue> jiraIssues, String emailHeader) {
+    public static String getEmailBody(ArrayList<Patch> patches, ArrayList<JiraIssue> jiraIssues, String emailHeader) {
+
         String emailBody = emailHeader;
         emailBody += getSummeryHtmlTable(jiraIssues);
         assignPatchesToStates(patches);
@@ -70,9 +71,10 @@ public class EmailBodyCreator {
 
     /**
      * Add the patches to an arraylist dependent on which state it is in.
+     *
      * @param patches arraylist of all patches to be recorded.
      */
-    private void assignPatchesToStates(ArrayList<Patch> patches) {
+    private static void assignPatchesToStates(ArrayList<Patch> patches) {
 
         for (Patch patch : patches) {
             switch (patch.getState()) {
@@ -95,46 +97,23 @@ public class EmailBodyCreator {
         }
     }
 
-
     /**
      * Builds the html string corresponding to the Summary table which holds information on all unique Jira issues.
-     * @param jiraIssues
-     @return the html code for the table
+     *
+     * @param jiraIssues arraylist of all Jira issues
+     * @return the html code for the table
      */
-    private String getSummeryHtmlTable(ArrayList<JiraIssue> jiraIssues) {
+    private static String getSummeryHtmlTable(ArrayList<JiraIssue> jiraIssues) {
 
         String summaryTable = SUMMARY_SECTION_HEADER;
         summaryTable += TABLE_HEADER_SUMMARY;
-        summaryTable += getSummaryTableRows(jiraIssues);
+        ArrayList<HtmlTableRow> jirasToHtml = new ArrayList<>(jiraIssues);
+        summaryTable += getTableRows(jirasToHtml);
         summaryTable += "</table>";
         return summaryTable;
     }
 
-    /**
-     * Builds the table body where each row corresponds to a unique Jira
-     *
-     * @return html code for row vaues of table
-     */
-    private String getSummaryTableRows(ArrayList<JiraIssue> jiraIssues) {
-
-        StringBuilder rows = new StringBuilder();
-        boolean toggleFlag = true;
-        String backgroundColor;
-        //set background colour
-        for (JiraIssue jiraIssue : jiraIssues) {
-            if (toggleFlag) {
-                backgroundColor = Constants.BACKGROUND_COLOR_WHITE;
-                toggleFlag = false;
-            } else {
-                backgroundColor = Constants.BACKGROUND_COLOR_GRAY;
-                toggleFlag = true;
-            }
-            rows.append(jiraIssue.objectToHtml(backgroundColor));
-        }
-        return rows.toString();
-    }
-
-    private String getStateHtmlTable(String stateHeader, String dateColumnName, ArrayList<Patch> patchesInState) {
+    private static String getStateHtmlTable(String stateHeader, String dateColumnName, ArrayList<Patch> patchesInState) {
 
         String table = stateHeader;
         if (IN_DEVELOPMENT_SECTION_HEADER.equals(stateHeader)) {
@@ -144,25 +123,25 @@ public class EmailBodyCreator {
         }
         table += dateColumnName + STATE_TABLE_COLUMNS_END;
         patchesInState.sort(new PatchChainedComparator(new ProductNameComparator(), new StateNameComparator()));
-        table += getStateHtmlTableRows(patchesInState);
+        ArrayList<HtmlTableRow> patchesToHtml = new ArrayList<>(patchesInState);
+        table += getTableRows(patchesToHtml);
         table += "</table>";
         return table;
     }
 
     /**
-     * Builds the table body where ach row in the table body corresponds to information on a Patch object
+     * Builds the table body where each row corresponds to a unique Jira
      *
-     * @return Returns the table body.
+     * @param rows Arraylist of all issues or patches
+     * @return html code for row vaues of table
      */
-    private String getStateHtmlTableRows(ArrayList<Patch> patchesInState) {
+    private static String getTableRows(ArrayList<HtmlTableRow> rows) {
 
+        StringBuilder htmlRows = new StringBuilder();
         boolean toggleFlag = true;
         String backgroundColor;
-        //sort patches
-        patchesInState.sort(new PatchChainedComparator(new ProductNameComparator(),
-                new StateNameComparator()));
-        StringBuilder rows = new StringBuilder();
-        for (Patch patch : patchesInState) {
+        //set background colour
+        for (HtmlTableRow row : rows) {
             if (toggleFlag) {
                 backgroundColor = Constants.BACKGROUND_COLOR_WHITE;
                 toggleFlag = false;
@@ -170,9 +149,9 @@ public class EmailBodyCreator {
                 backgroundColor = Constants.BACKGROUND_COLOR_GRAY;
                 toggleFlag = true;
             }
-            rows.append(patch.objectToHtml(backgroundColor));
+            htmlRows.append(row.objectToHtml(backgroundColor));
         }
-        return rows.toString();
+        return htmlRows.toString();
     }
 
 }

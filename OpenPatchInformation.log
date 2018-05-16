@@ -1,0 +1,16 @@
+2018-05-15 14:20:14 INFO  Main:75 - Executing - Sending of mail containing Internal Jira issues and corresponding patch Information.
+2018-05-15 14:20:22 INFO  AccessPMT:105 - Patch information associated with the Jira issues extracted successfully.
+2018-05-15 14:20:30 INFO  Main:70 - Executing - Sending of mail containing Customer Jira issues and corresponding patch Information.
+2018-05-15 14:20:36 INFO  AccessPMT:105 - Patch information associated with the Jira issues extracted successfully.
+2018-05-15 14:27:18 INFO  Main:75 - Executing - Sending of mail containing Internal Jira issues and corresponding patch Information.
+2018-05-15 14:27:24 INFO  AccessPMT:105 - Patch information associated with the Jira issues extracted successfully.
+2018-05-15 14:27:32 INFO  Main:70 - Executing - Sending of mail containing Customer Jira issues and corresponding patch Information.
+2018-05-15 14:27:36 INFO  AccessPMT:105 - Patch information associated with the Jira issues extracted successfully.
+2018-05-16 09:32:55 INFO  Main:76 - Executing - Sending of mail containing Internal Jira issues and corresponding patch Information.
+2018-05-16 09:33:06 INFO  AccessPMT:96 - Patch information associated with the Jira issues extracted successfully.
+2018-05-16 09:33:21 INFO  Main:71 - Executing - Sending of mail containing Customer Jira issues and corresponding patch Information.
+2018-05-16 09:33:28 INFO  AccessPMT:96 - Patch information associated with the Jira issues extracted successfully.
+2018-05-16 09:40:46 INFO  Main:76 - Executing - Sending of mail containing Internal Jira issues and corresponding patch Information.
+2018-05-16 09:40:55 INFO  AccessPMT:96 - Patch information associated with the Jira issues extracted successfully.
+2018-05-16 09:41:05 INFO  Main:71 - Executing - Sending of mail containing Customer Jira issues and corresponding patch Information.
+2018-05-16 09:41:13 INFO  AccessPMT:96 - Patch information associated with the Jira issues extracted successfully.

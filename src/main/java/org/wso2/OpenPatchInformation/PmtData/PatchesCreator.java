@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation.PmtData;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,10 +15,9 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-package org.wso2.OpenPatchInformation.PmtData;
 
-import org.wso2.OpenPatchInformation.Constants.Constants;
 import org.wso2.OpenPatchInformation.JiraData.JiraIssue;
+import org.wso2.OpenPatchInformation.PmtData.DevPatch;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,19 +26,32 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
-import static org.wso2.OpenPatchInformation.Constants.Constants.*;
 
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_DEVELOPMENT;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_FAILED_QA;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_ONHOLD;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_PREQA;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_READY_FOR_QA;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_RELEASED;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_RELEASED_NOT_AUTOMATED;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_STAGING;
+import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_TESTING;
+import static org.wso2.OpenPatchInformation.Constants.Constants.NOT_SET;
+import static org.wso2.OpenPatchInformation.Constants.Constants.NOT_SPECIFIED;
+import static org.wso2.OpenPatchInformation.Constants.Constants.STILL_IN_QUEUE;
+import static org.wso2.OpenPatchInformation.Constants.Constants.State;
+import static org.wso2.OpenPatchInformation.Constants.Constants.TAKEN_OFF_QUEUE;
 
 class PatchesCreator {
 
     static Collection<Patch> getPatchesIn(ResultSet result, JiraIssue jiraIssue) throws SQLException {
-
-        String oldestPatchReportDate = Constants.NOT_SET;
-        //iterate through SQl response
+        String oldestPatchReportDate = NOT_SET;
         String curReportDate;
+        //iterate through SQl response
         while (result.next()) {
             curReportDate = result.getString("REPORT_DATE");
-            if (Constants.NOT_SET.equals(oldestPatchReportDate)) {
+            if (NOT_SET.equals(oldestPatchReportDate)) {
                 oldestPatchReportDate = curReportDate;
             } else {
                 oldestPatchReportDate = dateCompare(oldestPatchReportDate, curReportDate);
@@ -47,7 +59,6 @@ class PatchesCreator {
             jiraIssue.setPatchReportDate(oldestPatchReportDate);
             String jiraLink = result.getString("SUPPORT_JIRA");
             jiraIssue.setJiraLink(jiraLink);
-
             String active = result.getString("ACTIVE");
             String productName = result.getString("PRODUCT_NAME");
             String daysSincePatchWasReported = result.getString("DAYS_SINCE_REPORT");
@@ -61,7 +72,8 @@ class PatchesCreator {
                 if (((LC_STATE_STAGING.equals(lcState)) && (signRequestSentOn != null) ||
                         (LC_STATE_TESTING.equals(lcState)) && (signRequestSentOn != null))) {
                     String daysInSigning = result.getString("DAYS_IN_SIGNING");
-                    jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.IN_SIGNING, "InSigning", daysInSigning));
+                    jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.IN_SIGNING,
+                            "InSigning", daysInSigning));
                     //check if patch is in development
                 } else if (LC_STATE_STAGING.equals(lcState) || LC_STATE_DEVELOPMENT.equals(lcState) ||
                         LC_STATE_ONHOLD.equals(lcState) || LC_STATE_TESTING.equals(lcState) ||
@@ -71,42 +83,33 @@ class PatchesCreator {
                             daysSincePatchWasReported));
                     //if patch has been released
                 } else if (LC_STATE_RELEASED.equals(lcState)) {
-                    String dateAndTime = result.getString("RELEASED_ON");
-                    if (dateAndTime == null) {
-                        jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState, NOT_SPECIFIED));
-                    } else {
-                        String[] dateSplit = dateAndTime.split(" ");
-                        jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState,
-                                dateSplit[0]));
-                    }
+                    jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState, getDate(result.getString("RELEASED_ON"))));
+
                 } else if (LC_STATE_RELEASED_NOT_AUTOMATED.equals(lcState)) {
-                    String dateAndTime = result.getString("RELEASED_NOT_AUTOMATED_ON");
-                    if (dateAndTime == null) {
-                        jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState,
-                                NOT_SPECIFIED));
-                    } else {
-                        String[] dateSplit = dateAndTime.split(" ");
-                        jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState,
-                                dateSplit[0]));
-                    }
+                    jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState,
+                            getDate(result.getString("RELEASED_NOT_AUTOMATED_ON"))));
+
                 } else if (LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN.equals(lcState)) {
-                    String dateAndTime = result.getString("RELEASED_NOT_IN_PUBLIC_SVN_ON");
-                    if (dateAndTime == null) {
-                        jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState,
-                                NOT_SPECIFIED));
-                    } else {
-                        String[] dateSplit = dateAndTime.split(" ");
-                        jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState,
-                                dateSplit[0]));
-                    }
-                }  //logger.error("A patch was not assigned-check AddPatchToState logic");
-                // patches still in Queue
+
+                    jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED, lcState,
+                            getDate(result.getString("RELEASED_NOT_IN_PUBLIC_SVN_ON"))));
+
+                }
             } else if (STILL_IN_QUEUE.equals(active)) {
                 jiraIssue.addPatchToJira(new Patch(jiraLink, "Patch not created yet", productName,
                         assignee, State.IN_PATCH_QUEUE, "InQueue", daysSincePatchWasReported));
             }
         }
         return jiraIssue.getPatchesInJira();
+    }
+
+    private static String getDate(String dateAndTime) {
+        if (dateAndTime == null || !(dateAndTime.contains(" "))) {
+            return NOT_SPECIFIED;
+        } else {
+            String[] dateSplit = dateAndTime.split(" ");
+            return dateSplit[0];
+        }
     }
 
     /**
@@ -130,6 +133,5 @@ class PatchesCreator {
         } catch (ParseException e) {
             return currentDateStr;
         }
-
     }
 }

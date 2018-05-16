@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation.PmtData;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -16,14 +16,13 @@
 // under the License.
 //
 
-package org.wso2.OpenPatchInformation.PmtData;
-
 import org.wso2.OpenPatchInformation.Constants.Constants;
+import org.wso2.OpenPatchInformation.Email.HtmlTableRow;
 
 /**
  * Represents a PMT Patch.
  */
-public class Patch {
+public class Patch implements HtmlTableRow {
 
     private String url;
     private String name;
@@ -44,7 +43,7 @@ public class Patch {
         this.daysInState = daysInState;
     }
 
-    public String getName() {
+    String getName() {
 
         return name;
     }
@@ -59,7 +58,7 @@ public class Patch {
         return this.patchLCState;
     }
 
-    public String getUrl() {
+    String getUrl() {
 
         return url;
     }
@@ -69,18 +68,17 @@ public class Patch {
         return productName;
     }
 
-    public String getAssignee() {
+    String getAssignee() {
 
         return assignee;
     }
 
-    public String getDaysInState() {
+    String getDaysInState() {
 
         return daysInState;
     }
 
     public String objectToHtml(String backgroundColor) {
-
         return "<tr><td width=\"" + "30%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px;" +
                 " font-weight: 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +

@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation.JiraData;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,15 +15,14 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-package org.wso2.OpenPatchInformation.JiraData;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.wso2.OpenPatchInformation.ConfiguredProperties;
 import org.wso2.OpenPatchInformation.Constants.Constants;
+import org.wso2.OpenPatchInformation.JiraData.JiraIssue;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,7 +45,7 @@ public class AccessJira {
      * @param url of the JiraIssue filter
      * @throws Exception
      */
-    public ArrayList<JiraIssue> getJirasReturnedBy(String url) throws Exception {
+    public static ArrayList<JiraIssue> getJirasReturnedBy(String url) throws Exception {
         //gets response from JiraIssue filter and parse it into a Json object
         String responseFromFilter = sendJiraGETRequest(new URL(url));
         JSONParser parser = new JSONParser();
@@ -89,22 +88,18 @@ public class AccessJira {
 
     /**
      * sends JiraIssue get request
-     *
      * @param url to send get request to
      * @return The response from the get request as a String
      * @throws Exception
      */
-    private String sendJiraGETRequest(URL url) throws Exception {
+    private static String sendJiraGETRequest(URL url) throws Exception {
 
         HttpURLConnection connection = null;
         BufferedReader dataInputStream = null;
         try {
             //open and set connection values
             connection = (HttpsURLConnection) url.openConnection();
-            String userCredentials = ConfiguredProperties.getValueOf("jiraUser") + ":" + ConfiguredProperties.getValueOf("jiraPassword");
-            String basicAuth = Constants.AUTH_TYPE +
-                    Base64.encode(userCredentials.getBytes());
-            connection.setRequestProperty(Constants.AUTH, basicAuth);
+            connection.setRequestProperty(Constants.AUTH, ConfiguredProperties.getValueOf("jiraBasicAuth"));
             connection.setRequestProperty(Constants.CONTENT, Constants.CONTENT_TYPE);
             connection.setRequestMethod(Constants.REQUEST_METHOD);
             if (connection.getResponseCode() == 200) {

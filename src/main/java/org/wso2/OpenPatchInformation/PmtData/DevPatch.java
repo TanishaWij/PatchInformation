@@ -17,13 +17,14 @@
 //
 
 package org.wso2.OpenPatchInformation.PmtData;
-
 import org.wso2.OpenPatchInformation.Constants.Constants;
+import org.wso2.OpenPatchInformation.Email.HtmlTableRow;
+
 
 /**
  * Extended from the more general Patch class. Same functionality, more class attributes.
  */
-public class DevPatch extends Patch {
+public class DevPatch extends Patch implements HtmlTableRow {
 
     private String reportDate;
 
@@ -31,7 +32,6 @@ public class DevPatch extends Patch {
                     String reportDate, String daysInState) {
 
         super(url, Name, productName, assignee, state, patchLCState, daysInState);
-        this.reportDate = reportDate;
     }
 
     /**

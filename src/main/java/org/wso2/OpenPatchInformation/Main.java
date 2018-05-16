@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,16 +15,17 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-package org.wso2.OpenPatchInformation;
 //import org.wso2.OpenPatchInformation.PmtData.AccessPmt;
 
 import org.apache.log4j.Logger;
+import org.wso2.OpenPatchInformation.ConfiguredProperties;
 import org.wso2.OpenPatchInformation.Email.EmailBodyCreator;
 import org.wso2.OpenPatchInformation.Email.EmailSender;
-import org.wso2.OpenPatchInformation.JiraData.AccessJira;
 import org.wso2.OpenPatchInformation.JiraData.JiraIssue;
+import org.wso2.OpenPatchInformation.JiraData.AccessJira;
 import org.wso2.OpenPatchInformation.PmtData.AccessPMT;
 import org.wso2.OpenPatchInformation.PmtData.Patch;
+
 
 import java.util.ArrayList;
 
@@ -34,19 +35,18 @@ import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_SUBJE
 import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_SUBJECT_INTERNAL;
 
 public class Main {
-    final static Logger logger = Logger.getLogger(Main.class);
-    public static void main(String[] args)  {
-        //TODO: ask what to do with final exception
+
+    private final static Logger logger = Logger.getLogger(Main.class);
+
+    public static void main(String[] args) {
 
         try {
             executeProcess(false);
-            logger.info("Execution complete");
         } catch (Exception e) {
             logger.error("Mail on internal Jira issues not sent successfully", e);
         }
         try {
             executeProcess(true);
-            logger.info("Execution complete");
         } catch (Exception e) {
             logger.error("mail on customer Jira issues not sent successfully", e);
         }
@@ -60,9 +60,11 @@ public class Main {
      * @throws Exception the process has not completed in full
      */
     private static void executeProcess(boolean isMailOnCustomerReportedIssues) throws Exception {
+
         String urlToJiraIssues;
         String emailSubject;
         String emailHeader;
+
         if (isMailOnCustomerReportedIssues) {
             urlToJiraIssues = ConfiguredProperties.getValueOf("UrlToCustomerIssues");
             emailSubject = EMAIL_SUBJECT_CUSTOMER;
@@ -75,18 +77,13 @@ public class Main {
             logger.info("Executing - Sending of mail containing Internal Jira issues and corresponding patch Information.");
         }
 
-        //Get arraylist of jira tickets from Jira filter
-        ArrayList<JiraIssue> jiraIssues = new ArrayList<>(new AccessJira().getJirasReturnedBy(urlToJiraIssues));
+        ArrayList<JiraIssue> jiraIssues = new ArrayList<>(AccessJira.getJirasReturnedBy(urlToJiraIssues));
 
-        //get arraylist of Jira tickets that have a corresponding entry in the pmt
-        ArrayList<JiraIssue> jiraTicketsInPmtAndJira = new ArrayList<>(new AccessPMT().getJiraIssuesInBothPMTAndJira(jiraIssues));
-        //Get an arraylist of all patches associated with the jira tickets
-        ArrayList<Patch> patches = new ArrayList<>(new AccessPMT().getPatchesAssociatedWith(jiraTicketsInPmtAndJira));
+        ArrayList<JiraIssue> jiraTicketsInPmtAndJira = new ArrayList<>(AccessPMT.getJiraIssuesInBothPMTAndJira(jiraIssues));
+        ArrayList<Patch> patches = new ArrayList<Patch>(AccessPMT.getPatchesAssociatedWith(jiraTicketsInPmtAndJira));
 
-        //get email body
-        String emailBody = new EmailBodyCreator().getEmailBody(patches, jiraTicketsInPmtAndJira, emailHeader);
-        //Send email
-       new EmailSender().sendEmail(emailBody, emailSubject);
+        String emailBody = EmailBodyCreator.getEmailBody(patches, jiraTicketsInPmtAndJira, emailHeader);
+        new EmailSender().sendEmail(emailBody, emailSubject);
 
     }
 

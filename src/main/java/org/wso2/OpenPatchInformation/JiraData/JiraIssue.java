@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation.JiraData;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -16,8 +16,7 @@
 // under the License.
 //
 
-package org.wso2.OpenPatchInformation.JiraData;
-
+import org.wso2.OpenPatchInformation.Email.HtmlTableRow;
 import org.wso2.OpenPatchInformation.PmtData.Patch;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import java.util.ArrayList;
 /**
  * Represents each of the unique Jiras returned by the JiraIssue Filter.
  */
-public class JiraIssue {
+public class JiraIssue implements HtmlTableRow {
 
     private String name;
     private String assigneeName;

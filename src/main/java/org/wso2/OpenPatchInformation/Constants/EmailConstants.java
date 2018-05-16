@@ -1,4 +1,4 @@
-//
+package org.wso2.OpenPatchInformation.Constants;//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,7 +15,6 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-package org.wso2.OpenPatchInformation.Constants;
 
 public final class EmailConstants {
 
@@ -113,7 +112,8 @@ public final class EmailConstants {
     public static final String HOST = "mail.smtp.host";
     public static final String PROTOCOL = "protocol";
 
-    public static final String STATE_TABLE_COLUMNS_START = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"95%\">" +
+    public static final String STATE_TABLE_COLUMNS_START = "<table align=\"center\" cellspacing=\"0\" " +
+            "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
             "<tr>" +
             " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
             " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
