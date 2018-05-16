@@ -1,4 +1,4 @@
-package org.wso2.OpenPatchInformation.Email;//
+//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,9 +15,9 @@ package org.wso2.OpenPatchInformation.Email;//
 // specific language governing permissions and limitations
 // under the License.
 //
+package org.wso2.OpenPatchInformation.Email;
 
 import org.wso2.OpenPatchInformation.Constants.Constants;
-import org.wso2.OpenPatchInformation.Constants.EmailConstants;
 import org.wso2.OpenPatchInformation.JiraData.JiraIssue;
 import org.wso2.OpenPatchInformation.PmtData.Comparators.PatchChainedComparator;
 import org.wso2.OpenPatchInformation.PmtData.Comparators.ProductNameComparator;
@@ -26,15 +26,16 @@ import org.wso2.OpenPatchInformation.PmtData.Patch;
 
 import java.util.ArrayList;
 
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.DEV_STATE_TABLE_COLUMNS_START;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.IN_DEVELOPMENT_SECTION_HEADER;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.IN_QUEUE_SECTION_HEADER;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.IN_SIGNING_SECTION_HEADER;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.RELEASED_SECTION_HEADER;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.STATE_TABLE_COLUMNS_END;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.STATE_TABLE_COLUMNS_START;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.SUMMARY_SECTION_HEADER;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.TABLE_HEADER_SUMMARY;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.DEV_STATE_TABLE_COLUMNS_START;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_FOOTER;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.IN_DEVELOPMENT_SECTION_HEADER;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.IN_QUEUE_SECTION_HEADER;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.IN_SIGNING_SECTION_HEADER;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.RELEASED_SECTION_HEADER;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.STATE_TABLE_COLUMNS_END;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.STATE_TABLE_COLUMNS_START;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.SUMMARY_SECTION_HEADER;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.TABLE_HEADER_SUMMARY;
 
 /**
  * Creates and returns the body of the email. The body is broken up into a summary table, and a table for each of
@@ -65,7 +66,7 @@ public class EmailBodyCreator {
         emailBody += getStateHtmlTable(IN_DEVELOPMENT_SECTION_HEADER, "WORK DAYS IN DEV", patchesInDevelopment);
         emailBody += getStateHtmlTable(IN_SIGNING_SECTION_HEADER, "WORK DAYS IN SIGNING", patchesInSigning);
         emailBody += getStateHtmlTable(RELEASED_SECTION_HEADER, "DATE RELEASED", patchesReleased);
-        emailBody += EmailConstants.EMAIL_FOOTER;
+        emailBody += EMAIL_FOOTER;
         return emailBody;
     }
 

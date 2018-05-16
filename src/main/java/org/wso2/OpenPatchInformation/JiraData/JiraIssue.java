@@ -1,4 +1,4 @@
-package org.wso2.OpenPatchInformation.JiraData;//
+//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,6 +15,7 @@ package org.wso2.OpenPatchInformation.JiraData;//
 // specific language governing permissions and limitations
 // under the License.
 //
+package org.wso2.OpenPatchInformation.JiraData;
 
 import org.wso2.OpenPatchInformation.Email.HtmlTableRow;
 import org.wso2.OpenPatchInformation.PmtData.Patch;

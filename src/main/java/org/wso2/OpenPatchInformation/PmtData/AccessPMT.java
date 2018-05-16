@@ -1,4 +1,4 @@
-package org.wso2.OpenPatchInformation.PmtData;//
+//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,7 +15,7 @@ package org.wso2.OpenPatchInformation.PmtData;//
 // specific language governing permissions and limitations
 // under the License.
 //
-
+package org.wso2.OpenPatchInformation.PmtData;
 import org.apache.log4j.Logger;
 import org.wso2.OpenPatchInformation.Exceptions.PmtExceptions.AccessingPmtException;
 import org.wso2.OpenPatchInformation.Exceptions.PmtExceptions.ExtractingFromResultsetException;
@@ -30,7 +30,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.wso2.OpenPatchInformation.ConfiguredProperties.getValueOf;
-import static org.wso2.OpenPatchInformation.Constants.Constants.*;
 import static org.wso2.OpenPatchInformation.Constants.Constants.QUERY_PER_PATCH;
 import static org.wso2.OpenPatchInformation.Constants.Constants.SELECT_SUPPORT_JIRAS;
 import static org.wso2.OpenPatchInformation.Constants.Constants.SUPPORT_JIRA_URL;

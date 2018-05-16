@@ -1,4 +1,4 @@
-package org.wso2.OpenPatchInformation.Email;//
+//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,7 +15,7 @@ package org.wso2.OpenPatchInformation.Email;//
 // specific language governing permissions and limitations
 // under the License.
 //
-
+package org.wso2.OpenPatchInformation.Email;
 import org.wso2.OpenPatchInformation.Exceptions.EmailExceptions.EmailException;
 import org.wso2.OpenPatchInformation.Exceptions.EmailExceptions.MessageSendingException;
 import org.wso2.OpenPatchInformation.Exceptions.EmailExceptions.MessageSetupException;
@@ -32,13 +32,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import static org.wso2.OpenPatchInformation.ConfiguredProperties.getValueOf;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_HOST;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_PORT;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_PROTOCOL;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_TYPE;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.HOST;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.PORT;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.PROTOCOL;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_HOST;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_PORT;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_PROTOCOL;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_TYPE;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.HOST;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.PORT;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.PROTOCOL;
 
 /**
  * Sends a smtp email

@@ -1,4 +1,5 @@
-package org.wso2.OpenPatchInformation.Constants;//
+
+//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,8 +16,8 @@ package org.wso2.OpenPatchInformation.Constants;//
 // specific language governing permissions and limitations
 // under the License.
 //
-
-public final class EmailConstants {
+package org.wso2.OpenPatchInformation.Constants;
+public final class MailConstants {
 
     public static final String EMAIL_HEADER_INTERNAL = "<!DOCTYPE html>\n" +
             "<html>\n" +
@@ -34,7 +35,7 @@ public final class EmailConstants {
             "         </td>\n" +
             "      </tr>\n" +
             "      </table>";
-    public static final String EMAIL_HEADER_EXTERNAL = "<!DOCTYPE html>\n" +
+    public static final String EMAIL_HEADER_CUSTOMER_RELATED = "<!DOCTYPE html>\n" +
             "<html>\n" +
             "   <head>\n" +
             "      <title></title>\n" +
@@ -92,7 +93,7 @@ public final class EmailConstants {
             "</td>" +
             "</tr>";
     public static final String EMAIL_SUBJECT_INTERNAL = "Information on internal Jira tickets and patches";
-    public static final String EMAIL_SUBJECT_CUSTOMER = "Information on customer Jira tickets and patches";
+    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "Information on customer Jira tickets and patches";
     public static final String IN_QUEUE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">Patches In The Patch Queue</p>";
     public static final String IN_DEVELOPMENT_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
@@ -170,8 +171,7 @@ public final class EmailConstants {
             "Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: " +
             "20px; padding: 10px;\">";
 
-    private EmailConstants() {
-
+    private MailConstants() {
     }
 
 }

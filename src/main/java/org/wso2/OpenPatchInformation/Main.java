@@ -1,4 +1,4 @@
-package org.wso2.OpenPatchInformation;//
+//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,24 +15,22 @@ package org.wso2.OpenPatchInformation;//
 // specific language governing permissions and limitations
 // under the License.
 //
-//import org.wso2.OpenPatchInformation.PmtData.AccessPmt;
+package org.wso2.OpenPatchInformation;
 
 import org.apache.log4j.Logger;
-import org.wso2.OpenPatchInformation.ConfiguredProperties;
 import org.wso2.OpenPatchInformation.Email.EmailBodyCreator;
 import org.wso2.OpenPatchInformation.Email.EmailSender;
-import org.wso2.OpenPatchInformation.JiraData.JiraIssue;
 import org.wso2.OpenPatchInformation.JiraData.AccessJira;
+import org.wso2.OpenPatchInformation.JiraData.JiraIssue;
 import org.wso2.OpenPatchInformation.PmtData.AccessPMT;
 import org.wso2.OpenPatchInformation.PmtData.Patch;
 
-
 import java.util.ArrayList;
 
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_HEADER_EXTERNAL;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_HEADER_INTERNAL;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_SUBJECT_CUSTOMER;
-import static org.wso2.OpenPatchInformation.Constants.EmailConstants.EMAIL_SUBJECT_INTERNAL;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_HEADER_CUSTOMER_RELATED;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_HEADER_INTERNAL;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_SUBJECT_CUSTOMER_RELATED;
+import static org.wso2.OpenPatchInformation.Constants.MailConstants.EMAIL_SUBJECT_INTERNAL;
 
 public class Main {
 
@@ -43,21 +41,21 @@ public class Main {
         try {
             executeProcess(false);
         } catch (Exception e) {
-            logger.error("Mail on internal Jira issues not sent successfully", e);
+            logger.error("Mail on internal Jira issues not sent successfully\n");
         }
         try {
             executeProcess(true);
         } catch (Exception e) {
-            logger.error("mail on customer Jira issues not sent successfully", e);
+            logger.error("Mail on customer related Jira issues not sent successfully\n");
         }
     }
 
     /**
-     * Gets the Jira tickets returned by a Jira filter and sends an email containing information about those Jira
-     * ticket and the associated patches
+     * Gets internal Jira issues or customer related jira issues, and sends an email containing information on them
+     * and their associated patches.
      *
-     * @param isMailOnCustomerReportedIssues boolean to determine whether its the internal or external mail been sent
-     * @throws Exception the process has not completed in full
+     * @param isMailOnCustomerReportedIssues boolean to determine whether its the internal or customer related mail being sent.
+     * @throws Exception process execution has halted.
      */
     private static void executeProcess(boolean isMailOnCustomerReportedIssues) throws Exception {
 
@@ -67,14 +65,14 @@ public class Main {
 
         if (isMailOnCustomerReportedIssues) {
             urlToJiraIssues = ConfiguredProperties.getValueOf("UrlToCustomerIssues");
-            emailSubject = EMAIL_SUBJECT_CUSTOMER;
-            emailHeader = EMAIL_HEADER_EXTERNAL;
-            logger.info("Executing - Sending of mail containing Customer Jira issues and corresponding patch Information.");
+            emailSubject = EMAIL_SUBJECT_CUSTOMER_RELATED;
+            emailHeader = EMAIL_HEADER_CUSTOMER_RELATED;
+            logger.info("Executing process for Customer related Jira issues.");
         } else {
             urlToJiraIssues = ConfiguredProperties.getValueOf("UrlToInternalIssues");
             emailSubject = EMAIL_SUBJECT_INTERNAL;
             emailHeader = EMAIL_HEADER_INTERNAL;
-            logger.info("Executing - Sending of mail containing Internal Jira issues and corresponding patch Information.");
+            logger.info("Executing process for Internal Jira issues.");
         }
 
         ArrayList<JiraIssue> jiraIssues = new ArrayList<>(AccessJira.getJirasReturnedBy(urlToJiraIssues));

@@ -1,4 +1,4 @@
-package org.wso2.OpenPatchInformation.PmtData;//
+//
 // Copyright (c) 2018, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
@@ -15,9 +15,8 @@ package org.wso2.OpenPatchInformation.PmtData;//
 // specific language governing permissions and limitations
 // under the License.
 //
-
+package org.wso2.OpenPatchInformation.PmtData;
 import org.wso2.OpenPatchInformation.JiraData.JiraIssue;
-import org.wso2.OpenPatchInformation.PmtData.DevPatch;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
-
 
 import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_DEVELOPMENT;
 import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_FAILED_QA;
