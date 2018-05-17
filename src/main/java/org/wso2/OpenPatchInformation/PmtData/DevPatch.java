@@ -30,8 +30,8 @@ public class DevPatch extends Patch implements HtmlTableRow {
 
     public DevPatch(String url, String Name, String productName, String assignee, Constants.State state, String patchLCState,
                     String reportDate, String daysInState) {
-
         super(url, Name, productName, assignee, state, patchLCState, daysInState);
+        this.reportDate = reportDate;
     }
 
     /**
@@ -61,7 +61,7 @@ public class DevPatch extends Patch implements HtmlTableRow {
                 getState() + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; " +
                 "line-height: 20px; padding: 15px 10px 5px 10px;\">" +
-                reportDate + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
+                this.reportDate + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; " +
                 "line-height: 20px;  padding: 15px 10px 5px 10px;\">" +
                 getDaysInState();

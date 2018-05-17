@@ -44,6 +44,7 @@ import static org.wso2.OpenPatchInformation.Constants.Constants.TAKEN_OFF_QUEUE;
 class PatchesCreator {
 
     static Collection<Patch> getPatchesIn(ResultSet result, JiraIssue jiraIssue) throws SQLException {
+
         String oldestPatchReportDate = NOT_SET;
         String curReportDate;
         //iterate through SQl response
@@ -77,6 +78,7 @@ class PatchesCreator {
                         LC_STATE_ONHOLD.equals(lcState) || LC_STATE_TESTING.equals(lcState) ||
                         LC_STATE_PREQA.equals(lcState) || LC_STATE_FAILED_QA.equals(lcState) ||
                         LC_STATE_READY_FOR_QA.equals(lcState)) {
+
                     jiraIssue.addPatchToJira(new DevPatch(jiraLink, patchName, productName, assignee, State.IN_DEV, lcState, curReportDate,
                             daysSincePatchWasReported));
                     //if patch has been released
