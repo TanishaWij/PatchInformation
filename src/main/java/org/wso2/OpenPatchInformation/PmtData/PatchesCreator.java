@@ -22,7 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.wso2.OpenPatchInformation.Constants.Constants.LC_STATE_DEVELOPMENT;
@@ -43,7 +43,14 @@ import static org.wso2.OpenPatchInformation.Constants.Constants.TAKEN_OFF_QUEUE;
 
 class PatchesCreator {
 
-    static Collection<Patch> getPatchesIn(ResultSet result, JiraIssue jiraIssue) throws SQLException {
+    /**
+     * Creates and returns the patches associated with a particular Jira issue
+     * @param result from querying the pmtdb
+     * @param jiraIssue associated with the pmt query
+     * @return An arrylist of patches
+     * @throws SQLException
+     */
+    static ArrayList<Patch> getPatchesIn(ResultSet result, JiraIssue jiraIssue) throws SQLException {
 
         String oldestPatchReportDate = NOT_SET;
         String curReportDate;
@@ -68,7 +75,9 @@ class PatchesCreator {
                 String patchName = result.getString("PATCH_NAME");
                 String signRequestSentOn = result.getString("SIGN_REQUEST_SENT_ON");
                 //check if patch is in signing
-                if (((LC_STATE_STAGING.equals(lcState)) && (signRequestSentOn != null) ||
+                if (LC_STATE_ONHOLD.equals(lcState)){
+                    //ignore
+                } else if (((LC_STATE_STAGING.equals(lcState)) && (signRequestSentOn != null) ||
                         (LC_STATE_TESTING.equals(lcState)) && (signRequestSentOn != null))) {
                     String daysInSigning = result.getString("DAYS_IN_SIGNING");
                     jiraIssue.addPatchToJira(new Patch(jiraLink, patchName, productName, assignee, State.IN_SIGNING,

@@ -16,6 +16,7 @@
 // under the License.
 //
 package org.wso2.OpenPatchInformation.PmtData;
+
 import org.apache.log4j.Logger;
 import org.wso2.OpenPatchInformation.Exceptions.PmtExceptions.AccessingPmtException;
 import org.wso2.OpenPatchInformation.Exceptions.PmtExceptions.ExtractingFromResultsetException;
@@ -34,6 +35,9 @@ import static org.wso2.OpenPatchInformation.Constants.Constants.QUERY_PER_PATCH;
 import static org.wso2.OpenPatchInformation.Constants.Constants.SELECT_SUPPORT_JIRAS;
 import static org.wso2.OpenPatchInformation.Constants.Constants.SUPPORT_JIRA_URL;
 
+/**
+ * Accesses the
+ */
 public class AccessPMT {
 
     private static final Logger logger = Logger.getLogger(AccessPMT.class);
@@ -41,8 +45,8 @@ public class AccessPMT {
     private static String user = getValueOf("dbUser");
     private static String password = getValueOf("dbPassword");
 
-
     public static ArrayList<JiraIssue> getJiraIssuesInBothPMTAndJira(ArrayList<JiraIssue> jiraIssues) throws PmtException {
+
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(SELECT_SUPPORT_JIRAS);
              ResultSet result = pst.executeQuery()) {
@@ -76,13 +80,12 @@ public class AccessPMT {
     }
 
     public static ArrayList<Patch> getPatchesAssociatedWith(ArrayList<JiraIssue> jiraIssuesInPmtAndJira) throws PmtException {
-        try(Connection con = DriverManager.getConnection(url, user, password)){
+
+        try (Connection con = DriverManager.getConnection(url, user, password)) {
             ArrayList<Patch> allPatches = new ArrayList<>();
             for (JiraIssue jiraIssue : jiraIssuesInPmtAndJira) {
                 String query = QUERY_PER_PATCH + jiraIssue.getName() + "';";
-                try (
-                        PreparedStatement pst = con.prepareStatement(query);
-                        ResultSet result = pst.executeQuery()) {
+                try (PreparedStatement pst = con.prepareStatement(query); ResultSet result = pst.executeQuery()) {
                     try {
                         allPatches.addAll(PatchesCreator.getPatchesIn(result, jiraIssue));
                     } catch (SQLException e) {

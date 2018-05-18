@@ -78,7 +78,8 @@ public class Main {
         ArrayList<JiraIssue> jiraIssues = new ArrayList<>(AccessJira.getJirasReturnedBy(urlToJiraIssues));
 
         ArrayList<JiraIssue> jiraTicketsInPmtAndJira = new ArrayList<>(AccessPMT.getJiraIssuesInBothPMTAndJira(jiraIssues));
-        ArrayList<Patch> patches = new ArrayList<Patch>(AccessPMT.getPatchesAssociatedWith(jiraTicketsInPmtAndJira));
+
+        ArrayList<Patch> patches = new ArrayList<>(AccessPMT.getPatchesAssociatedWith(jiraTicketsInPmtAndJira));
 
         String emailBody = EmailBodyCreator.getEmailBody(patches, jiraTicketsInPmtAndJira, emailHeader);
         new EmailSender().sendEmail(emailBody, emailSubject);

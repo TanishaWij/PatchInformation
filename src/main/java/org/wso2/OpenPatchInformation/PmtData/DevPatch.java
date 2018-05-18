@@ -58,7 +58,7 @@ public class DevPatch extends Patch implements HtmlTableRow {
                 getAssignee() + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; " +
                 "line-height: 20px; padding: 15px 10px 5px 10px;\">" +
-                getState() + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
+                getPatchLCState() + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; " +
                 "line-height: 20px; padding: 15px 10px 5px 10px;\">" +
                 this.reportDate + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +

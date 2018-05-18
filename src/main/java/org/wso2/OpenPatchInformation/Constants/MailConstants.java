@@ -93,7 +93,7 @@ public final class MailConstants {
             "</td>" +
             "</tr>";
     public static final String EMAIL_SUBJECT_INTERNAL = "Information on internal Jira tickets and patches";
-    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "Information on customer Jira tickets and patches";
+    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "Information on Customer related Jira tickets and patches";
     public static final String IN_QUEUE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">Patches In The Patch Queue</p>";
     public static final String IN_DEVELOPMENT_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +

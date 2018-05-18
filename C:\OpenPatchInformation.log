@@ -1239,3 +1239,50 @@ Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 2018-05-17 15:59:24 INFO  Main:70 - Executing process for Customer related Jira issues.
 2018-05-17 15:59:29 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
 2018-05-17 15:59:29 INFO  AccessPMT:97 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:10:05 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-18 11:10:11 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:10:12 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:10:21 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 11:10:26 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:10:26 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:24:05 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-18 11:24:10 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:24:11 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:24:19 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 11:24:23 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:24:24 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:46:28 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-18 11:46:33 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:46:35 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:46:43 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 11:46:48 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:46:49 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:54:22 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-18 11:54:28 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:54:29 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:54:37 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 11:54:41 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:54:42 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:56:41 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-18 11:56:46 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:56:47 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 11:56:55 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 11:57:00 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 11:57:00 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 12:00:20 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-18 12:00:26 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 12:00:26 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 12:00:33 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 12:00:38 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 12:00:38 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 12:02:14 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 12:02:20 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 12:02:21 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 12:02:50 ERROR Main:49 - Mail on customer related Jira issues not sent successfully
+
+2018-05-18 14:25:11 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-18 14:25:17 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 14:25:18 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.
+2018-05-18 14:25:27 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-18 14:25:32 INFO  AccessJira:122 - Jira issues successfully extracted from Jira.
+2018-05-18 14:25:33 INFO  AccessPMT:100 - Patch information associated with the Jira issues extracted successfully.

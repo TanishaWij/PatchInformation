@@ -17,22 +17,28 @@
 //
 package org.wso2.OpenPatchInformation;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * For a given property key, returns the property value
+ */
 public class ConfiguredProperties {
+
+    private final static Logger logger = Logger.getLogger(Main.class);
 
     public static String getValueOf(String key) {
 
-        InputStream s = Main.class.getResourceAsStream("/config.properties");
+        InputStream propertyFile = Main.class.getResourceAsStream("/config.properties");
         Properties prop = new Properties();
         try {
-            prop.load(s);
+            prop.load(propertyFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warn("Property file could not be read");
         }
         return prop.getProperty(key);
     }
-
 }
