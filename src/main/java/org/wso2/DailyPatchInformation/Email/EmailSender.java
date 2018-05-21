@@ -54,6 +54,9 @@ import javax.mail.internet.MimeMessage;
 import static org.wso2.DailyPatchInformation.Constants.EmailConstants.EMAIL_TYPE;
 import static org.wso2.DailyPatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 
+/**
+ * sends an email with the Jira issues and associated patch information
+ */
 public class EmailSender {
 
     private final static Logger logger = Logger.getLogger(EmailSender.class);
