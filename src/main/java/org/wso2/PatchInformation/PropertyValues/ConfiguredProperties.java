@@ -15,9 +15,10 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-package org.wso2.PatchInformation;
+package org.wso2.PatchInformation.PropertyValues;
 
 import org.apache.log4j.Logger;
+import org.wso2.PatchInformation.Main;
 
 import java.io.IOException;
 import java.io.InputStream;

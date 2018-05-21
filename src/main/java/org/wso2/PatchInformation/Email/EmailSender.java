@@ -51,7 +51,7 @@ import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import static org.wso2.PatchInformation.ConfiguredProperties.getValueOf;
+import static org.wso2.PatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 import static org.wso2.PatchInformation.Constants.EmailConstants.EMAIL_TYPE;
 
 public class EmailSender {

@@ -30,7 +30,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static org.wso2.PatchInformation.ConfiguredProperties.getValueOf;
+import static org.wso2.PatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 import static org.wso2.PatchInformation.Constants.Constants.JIRA_URL_PREFIX_LENGTH;
 import static org.wso2.PatchInformation.Constants.Constants.QUERY_PER_PATCH;
 import static org.wso2.PatchInformation.Constants.Constants.SELECT_SUPPORT_JIRAS;

@@ -28,6 +28,7 @@ import org.wso2.PatchInformation.JiraData.AccessJira;
 import org.wso2.PatchInformation.JiraData.JiraIssue;
 import org.wso2.PatchInformation.PmtData.AccessPMT;
 import org.wso2.PatchInformation.PmtData.Patch;
+import org.wso2.PatchInformation.PropertyValues.ConfiguredProperties;
 
 import java.util.ArrayList;
 

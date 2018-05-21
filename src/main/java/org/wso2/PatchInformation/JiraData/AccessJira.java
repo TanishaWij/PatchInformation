@@ -22,7 +22,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.wso2.PatchInformation.ConfiguredProperties;
+import org.wso2.PatchInformation.PropertyValues.ConfiguredProperties;
 import org.wso2.PatchInformation.Constants.Constants;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.AccessJiraException;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.ExtractingFromResponseStreamException;
