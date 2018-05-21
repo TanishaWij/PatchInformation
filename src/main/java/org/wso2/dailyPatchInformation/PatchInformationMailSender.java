@@ -100,15 +100,16 @@ public class PatchInformationMailSender {
         }
 
         String emailBody;
+        String pmtConnection = propertyValues.getPmtConnection();
+        String pmtUserName = propertyValues.getDbUser();
+        String pmtUserPassword = propertyValues.getDbPassword();
+        PmtAccessor pmtAccessor = PmtAccessor.getPmtAccessor();
         try {
-            String pmtConnection = propertyValues.getPmtConnection();
-            String pmtUserName = propertyValues.getDbUser();
-            String pmtUserPassword = propertyValues.getDbPassword();
-            PmtAccessor pmtAccessor = PmtAccessor.getPmtAccessor();
+
             ArrayList<JIRAIssue> JIRATicketsInPmtAndJIRA = new ArrayList<>(pmtAccessor.filterJIRAIssues(JIRAIssues, pmtConnection, pmtUserName, pmtUserPassword));
             ArrayList<Patch> patches = new ArrayList<>(pmtAccessor.getPatchInformation(JIRATicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword));
             logger.info("Successfully extracted patch information from the pmt.");
-            emailBody = EmailBodyCreator.getEmailBody(patches, JIRATicketsInPmtAndJIRA, htmlEmailHeader);
+            emailBody = EmailBodyCreator.getEmailBodyCreator().getEmailBody(patches, JIRATicketsInPmtAndJIRA, htmlEmailHeader);
         } catch (PmtException e) {
             String errorMessage = "Failed to extract Patch information from the pmt.";
             logger.error(errorMessage, e);

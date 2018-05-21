@@ -26,7 +26,6 @@ import java.util.List;
 
 public final class EmailConstants {
 
-
     public static final String APPLICATION_NAME = "Gmail API Java Quickstart";
     public static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     public static final String CREDENTIALS_FOLDER = "src/main/resources/gmailCredentials";

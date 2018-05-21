@@ -17,8 +17,8 @@
 //
 package org.wso2.dailyPatchInformation.email;
 
-import org.wso2.dailyPatchInformation.constants.Constants;
 import org.wso2.dailyPatchInformation.JIRAData.JIRAIssue;
+import org.wso2.dailyPatchInformation.constants.Constants;
 import org.wso2.dailyPatchInformation.pmtData.Comparators.PatchChainedComparator;
 import org.wso2.dailyPatchInformation.pmtData.Comparators.ProductNameComparator;
 import org.wso2.dailyPatchInformation.pmtData.Comparators.StateNameComparator;
@@ -26,7 +26,16 @@ import org.wso2.dailyPatchInformation.pmtData.Patch;
 
 import java.util.ArrayList;
 
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.*;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.DEV_STATE_TABLE_COLUMNS_START;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_FOOTER;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.IN_DEVELOPMENT_SECTION_HEADER;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.IN_QUEUE_SECTION_HEADER;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.IN_SIGNING_SECTION_HEADER;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.RELEASED_SECTION_HEADER;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.STATE_TABLE_COLUMNS_END;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.STATE_TABLE_COLUMNS_START;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.SUMMARY_SECTION_HEADER;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.TABLE_HEADER_SUMMARY;
 
 /**
  * Creates and returns the body of the email. The body is broken up into a summary table, and a table for each of
@@ -34,10 +43,16 @@ import static org.wso2.dailyPatchInformation.constants.EmailConstants.*;
  */
 public class EmailBodyCreator {
 
-    private static ArrayList<Patch> patchesInQueue = new ArrayList<>();
-    private static ArrayList<Patch> patchesInDevelopment = new ArrayList<>();
-    private static ArrayList<Patch> patchesInSigning = new ArrayList<>();
-    private static ArrayList<Patch> patchesReleased = new ArrayList<>();
+    private static EmailBodyCreator EMAIL_BODY_CREATOR;
+    private EmailBodyCreator() {
+    }
+
+    public static EmailBodyCreator getEmailBodyCreator() {
+        if (EMAIL_BODY_CREATOR == null){
+            EMAIL_BODY_CREATOR = new EmailBodyCreator();
+        }
+        return EMAIL_BODY_CREATOR;
+    }
 
     /**
      * Returns the body of the email.
@@ -47,11 +62,15 @@ public class EmailBodyCreator {
      * @param emailHeader email header dependent on if its the internal or customer related email.
      * @return the email body.
      */
-    public static String getEmailBody(ArrayList<Patch> patches, ArrayList<JIRAIssue> JIRAIssues, String emailHeader) {
+    public String getEmailBody(ArrayList<Patch> patches, ArrayList<JIRAIssue> JIRAIssues, String emailHeader) {
 
+        ArrayList<Patch> patchesInQueue = new ArrayList<>();
+        ArrayList<Patch> patchesInDevelopment = new ArrayList<>();
+        ArrayList<Patch> patchesInSigning = new ArrayList<>();
+        ArrayList<Patch> patchesReleased = new ArrayList<>();
         String emailBody = emailHeader;
         emailBody += getSummeryHtmlTable(JIRAIssues);
-        assignPatchesToStates(patches);
+        assignPatchesToStates(patches, patchesInQueue, patchesInSigning, patchesInDevelopment, patchesReleased);
         //get patch queue table
         emailBody += getStateHtmlTable(IN_QUEUE_SECTION_HEADER, "WORK DAYS IN QUEUE", patchesInQueue);
         emailBody += getStateHtmlTable(IN_DEVELOPMENT_SECTION_HEADER, "WORK DAYS IN DEV", patchesInDevelopment);
@@ -66,7 +85,9 @@ public class EmailBodyCreator {
      *
      * @param patches arraylist of all patches to be recorded.
      */
-    private static void assignPatchesToStates(ArrayList<Patch> patches) {
+    private void assignPatchesToStates(ArrayList<Patch> patches, ArrayList<Patch> patchesInQueue,
+                                              ArrayList<Patch> patchesInSigning, ArrayList<Patch> patchesInDevelopment,
+                                              ArrayList<Patch> patchesReleased) {
         for (Patch patch : patches) {
             switch (patch.getState()) {
                 case IN_DEV:
@@ -94,7 +115,7 @@ public class EmailBodyCreator {
      * @param JIRAIssues arraylist of all JIRA issues
      * @return the html code for the table
      */
-    private static String getSummeryHtmlTable(ArrayList<JIRAIssue> JIRAIssues) {
+    private String getSummeryHtmlTable(ArrayList<JIRAIssue> JIRAIssues) {
 
         String summaryTable = SUMMARY_SECTION_HEADER;
         summaryTable += TABLE_HEADER_SUMMARY;
@@ -104,7 +125,7 @@ public class EmailBodyCreator {
         return summaryTable;
     }
 
-    private static String getStateHtmlTable(String stateHeader, String dateColumnName, ArrayList<Patch> patchesInState) {
+    private String getStateHtmlTable(String stateHeader, String dateColumnName, ArrayList<Patch> patchesInState) {
 
         String table = stateHeader;
         if (IN_DEVELOPMENT_SECTION_HEADER.equals(stateHeader)) {
@@ -126,7 +147,7 @@ public class EmailBodyCreator {
      * @param rows Arraylist of all issues or patches
      * @return html code for row vaues of table
      */
-    private static String getTableRows(ArrayList<HtmlTableRow> rows) {
+    private String getTableRows(ArrayList<HtmlTableRow> rows) {
 
         StringBuilder htmlRows = new StringBuilder();
         boolean toggleFlag = true;

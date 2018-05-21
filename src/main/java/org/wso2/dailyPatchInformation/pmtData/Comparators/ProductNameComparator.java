@@ -20,16 +20,19 @@ package org.wso2.dailyPatchInformation.pmtData.Comparators;
 
 import org.wso2.dailyPatchInformation.pmtData.Patch;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Implements the Comparator class to order objects of the Patch class by it's "productName" attribute.
  */
-public class ProductNameComparator implements Comparator<Patch> {
+public class ProductNameComparator implements Comparator<Patch>, Serializable {
 
     public int compare(Patch p1, Patch p2) {
 
         return p1.getProductName().compareTo(p2.getProductName());
     }
+
+
 
 }

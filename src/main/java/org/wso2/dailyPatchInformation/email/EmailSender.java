@@ -39,6 +39,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
 import javax.mail.MessagingException;
@@ -82,7 +83,7 @@ public class EmailSender {
         InputStream in = PatchInformationMailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
         GoogleClientSecrets clientSecrets;
         try {
-            clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+            clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in, Charset.defaultCharset()));
         } catch (IOException e) {
             String errorMessage = "Failed to read clientSecret.json file in resources folder";
             LOGGER.error(errorMessage, e);

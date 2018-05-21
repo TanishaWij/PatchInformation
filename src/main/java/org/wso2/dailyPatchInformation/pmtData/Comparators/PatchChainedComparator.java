@@ -20,6 +20,7 @@ package org.wso2.dailyPatchInformation.pmtData.Comparators;
 
 import org.wso2.dailyPatchInformation.pmtData.Patch;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -27,7 +28,7 @@ import java.util.List;
 /**
  * Implements the Comparator class to order objects of the Patch class by more than one  attribute.
  */
-public class PatchChainedComparator implements Comparator<Patch> {
+public class PatchChainedComparator implements Comparator<Patch>, Serializable {
 
     private List<Comparator<Patch>> listComparators;
 

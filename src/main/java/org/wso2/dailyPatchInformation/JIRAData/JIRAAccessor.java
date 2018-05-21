@@ -34,6 +34,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
@@ -158,7 +159,7 @@ public class JIRAAccessor {
             }
 
             if (connection.getResponseCode() == 200) { //TODO - check if already defined
-                try (BufferedReader dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+                try (BufferedReader dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream(), Charset.defaultCharset()))) {
                     //dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuilder response = new StringBuilder();
                     String inputLine;
