@@ -23,10 +23,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.wso2.dailyPatchInformation.constants.Constants;
-import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException;
-import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ExtractingFromResponseStreamException;
+import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException;
+import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAContentException;
 import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAException;
-import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -37,6 +36,9 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
+
+import static org.wso2.dailyPatchInformation.constants.Constants.OK;
+import static org.wso2.dailyPatchInformation.constants.Constants.RESULTS_PER_PAGE;
 
 /**
  * connects to JIRAIssue and extracts the data returned from the filter
@@ -61,30 +63,30 @@ public class JIRAAccessor {
     /**
      * Returns an Arraylist of JIRAIssue objects containing the data returned after applying the JIRA filter
      *
-     * @param JIRAFilter of the JIRAIssue filter
+     * @param JIRAFilter url to JIRA filter results
      * @return Arraylist of JIRA Issues
-     * @throws Exception JIRAs not extracted successfully
+     * @throws JIRAException JIRAs not extracted successfully
      */
-    public ArrayList<JIRAIssue> getJIRAs(String JIRAFilter, String authorizationValue) throws JIRAException {
+    public ArrayList<JIRAIssue> getJIRAIssues(String JIRAFilter, String authorizationValue) throws JIRAException {
         //gets response from JIRAIssue filter and parse it into a Json object
         try {
-            String JIRAResponse = sendJIRAGETRequest(new URL(JIRAFilter), authorizationValue);
+            String JIRAResponse = sendJIRARequest(new URL(JIRAFilter), authorizationValue);
             JSONParser jsonParser = new JSONParser();
             JSONObject JIRAResponseInJson = (JSONObject) jsonParser.parse(JIRAResponse);
             //get results from search URL and parse into Json
             String urlToFilterResults = JIRAResponseInJson.get(Constants.SEARCH_URL).toString();
-            String responseFromSearchUrl = sendJIRAGETRequest(new URL(urlToFilterResults), authorizationValue);
+            String responseFromSearchUrl = sendJIRARequest(new URL(urlToFilterResults), authorizationValue);
             JSONObject responseFromSearchUrlInJson = (JSONObject) jsonParser.parse(responseFromSearchUrl);
             int totalJIRAs = Integer.parseInt(responseFromSearchUrlInJson.get(Constants.TOTAL).toString());
-            return getJIRAsIssuesIn(urlToFilterResults, totalJIRAs, authorizationValue);
+            return getJIRAsIssuesFromFilter(urlToFilterResults, totalJIRAs, authorizationValue);
         } catch (MalformedURLException e) {
             String errorMessage = "Url defined to access JIRA is malformed";
-            LOGGER.error(errorMessage, e);
-            throw new AccessJIRAException(errorMessage, e);
+            LOGGER.error(errorMessage);
+            throw new JIRAConnectionException(errorMessage, e);
         } catch (ParseException e) {
             String errorMessage = "Failed to parse JIRA response String to Json";
-            LOGGER.error(errorMessage, e);
-            throw new ParsingToJsonException(errorMessage, e);
+            LOGGER.error(errorMessage,e);
+            throw new JIRAContentException(errorMessage, e);
         }
     }
 
@@ -96,14 +98,15 @@ public class JIRAAccessor {
      * @return Araaylist of JIRAIssues
      * @throws JIRAException JIRA data not extracted successfully
      */
-    private ArrayList<JIRAIssue> getJIRAsIssuesIn(String urlToFilterResults, int totalJIRAs, String authorizationValue) throws JIRAException {
-        //paging the JIRAIssue response
-        ArrayList<org.wso2.dailyPatchInformation.JIRAData.JIRAIssue> JIRAIssues = new ArrayList<>();
-        for (int i = 0; i <= totalJIRAs / Constants.PAGE_SIZE; i++) {
+    private ArrayList<JIRAIssue> getJIRAsIssuesFromFilter(String urlToFilterResults, int totalJIRAs,
+                                                          String authorizationValue) throws JIRAException {
+
+        ArrayList<JIRAIssue> JIRAIssues = new ArrayList<>();
+        for (int i = 0; i <= totalJIRAs / RESULTS_PER_PAGE; i++) { //paging the JIRAIssue response
             try {
-                String responseFromSplitSearchUrl = sendJIRAGETRequest(new URL(urlToFilterResults +
-                        "&startAt=" + (i * Constants.PAGE_SIZE) + "&maxResults=" +
-                        (i + 1) * Constants.PAGE_SIZE + "&fields=key,assignee"), authorizationValue);
+                String responseFromSplitSearchUrl = sendJIRARequest(new URL(urlToFilterResults +
+                        "&startAt=" + (i * RESULTS_PER_PAGE) + "&maxResults=" +
+                        (i + 1) * RESULTS_PER_PAGE + "&fields=key,assignee"), authorizationValue);
                 JSONParser jsonParser = new JSONParser();
                 JSONObject jsonObjectFromSplitSearchURL = (JSONObject) jsonParser.parse(responseFromSplitSearchUrl);
                 JSONArray issues = (JSONArray) jsonObjectFromSplitSearchURL.get(Constants.ISSUE);
@@ -118,17 +121,17 @@ public class JIRAAccessor {
                     } catch (NullPointerException e) {
                         String errorMessage = "Failed to extract JIRA issue's field data";
                         LOGGER.error(errorMessage, e);
-                        throw new ExtractingFromResponseStreamException(errorMessage, e);
+                        throw new JIRAContentException(errorMessage, e);
                     }
                 }
             } catch (MalformedURLException e) {
                 String errorMessage = "Url defined to access JIRA is malformed";
                 LOGGER.error(errorMessage, e);
-                throw new AccessJIRAException(errorMessage, e);
+                throw new JIRAConnectionException(errorMessage, e);
             } catch (ParseException e) {
-                String errorMessage = "Failed to parse jsonObjectFromSplitSearchURL String to Json";
+                String errorMessage = "Failed to parse jira response string to Json";
                 LOGGER.error(errorMessage, e);
-                throw new ParsingToJsonException(errorMessage, e);
+                throw new JIRAContentException(errorMessage, e);
             }
         }
         return JIRAIssues;
@@ -141,29 +144,20 @@ public class JIRAAccessor {
      * @return http response as a String
      * @throws JIRAException Failed to connect to JIRA and return the http response as a String
      */
-    private String sendJIRAGETRequest(URL url, String authorizationValue) throws JIRAException {
+    private String sendJIRARequest(URL url, String authorizationValue) throws JIRAException {
 
         HttpURLConnection connection = null;
-
         try {
-            //open and set connection values
-            try {
-                connection = (HttpsURLConnection) url.openConnection();
-                connection.setRequestProperty(Constants.AUTH, authorizationValue);
-                connection.setRequestProperty(Constants.CONTENT, Constants.CONTENT_TYPE); //TODO
-                connection.setRequestMethod(Constants.GET);
-            } catch (IOException e) {
-                String errorMessage = "Failed to open and set up Http Connection successfully";
-                LOGGER.error(errorMessage, e);
-                throw new JIRAException(errorMessage, e);
-            }
+            connection = (HttpsURLConnection) url.openConnection();
+            connection.setRequestProperty(Constants.AUTH, authorizationValue);
+            connection.setRequestProperty(Constants.CONTENT, Constants.CONTENT_TYPE);
+            connection.setRequestMethod(Constants.GET);
 
-            if (connection.getResponseCode() == 200) { //TODO - check if already defined
-                try (BufferedReader dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream(), Charset.defaultCharset()))) {
-                    //dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            if (connection.getResponseCode() == OK) {
+                try (BufferedReader dataInputStream = new BufferedReader(
+                        new InputStreamReader(connection.getInputStream(), Charset.defaultCharset()))) {
                     StringBuilder response = new StringBuilder();
                     String inputLine;
-
                     while ((inputLine = dataInputStream.readLine()) != null) {
                         response.append(inputLine);
                     }
@@ -171,7 +165,7 @@ public class JIRAAccessor {
                 } catch (IOException e) {
                     String errorMessage = "Failed to read from JIRA Response Stream";
                     LOGGER.error(errorMessage, e);
-                    throw new JIRAException(errorMessage, e);
+                    throw new JIRAContentException(errorMessage, e);
                 }
             } else {
                 String errorMessage = "Failed to get expected JIRA response, response code: " +
@@ -180,9 +174,9 @@ public class JIRAAccessor {
                 throw new JIRAException(errorMessage);
             }
         } catch (IOException e) {
-            String errorMessage = "Failed to get Response code";
+            String errorMessage = "Failed to connect to Jira";
             LOGGER.error(errorMessage, e);
-            throw new AccessJIRAException(errorMessage, e);
+            throw new JIRAConnectionException(errorMessage, e);
         } finally {
             if (connection != null) {
                 connection.disconnect();

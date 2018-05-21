@@ -57,7 +57,8 @@ public final class Constants {
     public static final String LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN = "ReleasedNotInPublicSVN";
     public static final String SUPPORT_JIRA_URL_FIELD = "SUPPORT_JIRA";
     //JIRAData constants
-    public static final int PAGE_SIZE = 50;
+    public static final int RESULTS_PER_PAGE = 50;
+    public static final int OK = 200;
     public static final String AUTH = "Authorization";
     public static final String CONTENT = "Content-Type";
     public static final String CONTENT_TYPE = "application/json; charset=UTF-8";

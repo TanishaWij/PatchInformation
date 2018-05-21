@@ -17,9 +17,9 @@
 //
 package org.wso2.dailyPatchInformation.exceptions.PmtExceptions;
 
-public class ExtractingFromResultsetException extends PmtException {
+public class PmtContentException extends PmtException {
 
-    public ExtractingFromResultsetException(String message, Throwable cause) {
+    public PmtContentException(String message, Throwable cause) {
 
         super(message, cause);
     }

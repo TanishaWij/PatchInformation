@@ -464,22 +464,22 @@ java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:45)
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
 	... 5 more
 2018-05-21 15:01:09 ERROR Main:89 - Failed to extract JIRA issues from JIRA.
-org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:45)
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -489,15 +489,15 @@ Caused by: java.lang.NullPointerException
 org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to extract JIRA issues from JIRA.
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:90)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:45)
-Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	... 1 more
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -508,22 +508,22 @@ java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:52)
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
 	... 5 more
 2018-05-21 15:01:09 ERROR Main:89 - Failed to extract JIRA issues from JIRA.
-org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:52)
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -533,15 +533,15 @@ Caused by: java.lang.NullPointerException
 org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to extract JIRA issues from JIRA.
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:90)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:52)
-Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	... 1 more
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -552,22 +552,22 @@ java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:45)
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
 	... 5 more
 2018-05-21 15:02:09 ERROR Main:89 - Failed to extract JIRA issues from JIRA.
-org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:45)
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -577,15 +577,15 @@ Caused by: java.lang.NullPointerException
 org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to extract JIRA issues from JIRA.
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:90)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:45)
-Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	... 1 more
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -596,22 +596,22 @@ java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:52)
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
 	... 5 more
 2018-05-21 15:02:09 ERROR Main:89 - Failed to extract JIRA issues from JIRA.
-org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:52)
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -621,15 +621,15 @@ Caused by: java.lang.NullPointerException
 org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to extract JIRA issues from JIRA.
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:90)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(Main.java:52)
-Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.AccessJIRAException: Url defined to access JIRA is malformed
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:69)
+Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAConnectionException: Url defined to access JIRA is malformed
+	at getJIRAIssues(JIRAAccessor.java:69)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(Main.java:85)
 	... 1 more
 Caused by: java.net.MalformedURLException
 	at java.net.URL.<init>(URL.java:627)
 	at java.net.URL.<init>(URL.java:490)
 	at java.net.URL.<init>(URL.java:439)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:57)
+	at getJIRAIssues(JIRAAccessor.java:57)
 	... 2 more
 Caused by: java.lang.NullPointerException
 	at java.net.URL.<init>(URL.java:532)
@@ -666,12 +666,12 @@ Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:49)
 2018-05-21 15:26:42 ERROR DailyPatchInfoMailSender:98 - Failed to extract JIRA issues from JIRA.
 org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:49)
 Caused by: Unexpected character (<) at position 0.
@@ -680,7 +680,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:26:42 ERROR DailyPatchInfoMailSender:52 - Execution failed, process was not completed
 
@@ -688,7 +688,7 @@ org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to ex
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:99)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:49)
 Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	... 1 more
 Caused by: Unexpected character (<) at position 0.
@@ -697,7 +697,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:26:42 INFO  DailyPatchInfoMailSender:57 - Executing process to send email on Customer related JIRA issues.
 2018-05-21 15:26:46 ERROR JIRAAccessor:72 - Failed to parse JIRA response String to Json
@@ -707,12 +707,12 @@ Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:58)
 2018-05-21 15:26:46 ERROR DailyPatchInfoMailSender:98 - Failed to extract JIRA issues from JIRA.
 org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:58)
 Caused by: Unexpected character (<) at position 0.
@@ -721,7 +721,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:26:46 ERROR DailyPatchInfoMailSender:61 - Execution failed, process was not completed
 
@@ -729,7 +729,7 @@ org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to ex
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:99)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:58)
 Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	... 1 more
 Caused by: Unexpected character (<) at position 0.
@@ -738,7 +738,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:28:56 INFO  DailyPatchInfoMailSender:48 - Executing process to send email on Internal JIRA issues.
 2018-05-21 15:29:00 ERROR JIRAAccessor:72 - Failed to parse JIRA response String to Json
@@ -748,12 +748,12 @@ Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:49)
 2018-05-21 15:29:00 ERROR DailyPatchInfoMailSender:98 - Failed to extract JIRA issues from JIRA.
 org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:49)
 Caused by: Unexpected character (<) at position 0.
@@ -762,7 +762,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:29:00 ERROR DailyPatchInfoMailSender:52 - Execution failed, process was not completed
 
@@ -770,7 +770,7 @@ org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to ex
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:99)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:49)
 Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	... 1 more
 Caused by: Unexpected character (<) at position 0.
@@ -779,7 +779,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:29:00 INFO  DailyPatchInfoMailSender:57 - Executing process to send email on Customer related JIRA issues.
 2018-05-21 15:29:04 ERROR JIRAAccessor:72 - Failed to parse JIRA response String to Json
@@ -789,12 +789,12 @@ Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:58)
 2018-05-21 15:29:04 ERROR DailyPatchInfoMailSender:98 - Failed to extract JIRA issues from JIRA.
 org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:58)
 Caused by: Unexpected character (<) at position 0.
@@ -803,7 +803,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:29:04 ERROR DailyPatchInfoMailSender:61 - Execution failed, process was not completed
 
@@ -811,7 +811,7 @@ org.wso2.dailyPatchInformation.exceptions.PatchInformtionException: Failed to ex
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:99)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.main(DailyPatchInfoMailSender.java:58)
 Caused by: org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.ParsingToJsonException: Failed to parse JIRA response String to Json
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:73)
+	at getJIRAIssues(JIRAAccessor.java:73)
 	at org.wso2.dailyPatchInformation.PatchInformationMailSender.executeEmailSendingProcess(DailyPatchInfoMailSender.java:94)
 	... 1 more
 Caused by: Unexpected character (<) at position 0.
@@ -820,7 +820,7 @@ Caused by: Unexpected character (<) at position 0.
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:118)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:81)
 	at org.json.simple.parser.JSONParser.parse(JSONParser.java:75)
-	at org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor.getJIRAs(JIRAAccessor.java:59)
+	at getJIRAIssues(JIRAAccessor.java:59)
 	... 2 more
 2018-05-21 15:31:00 INFO  DailyPatchInfoMailSender:48 - Executing process to send email on Internal JIRA issues.
 2018-05-21 15:31:05 INFO  DailyPatchInfoMailSender:95 - Successfully extracted JIRA issue information from JIRA.
@@ -1003,4 +1003,124 @@ Caused by: Unexpected character (<) at position 0.
 2018-05-21 18:03:19 INFO  PatchInformationMailSender:111 - Successfully extracted patch information from the pmt.
 2018-05-21 18:03:20 INFO  PatchInformationMailSender:121 - Successfully sent email with patch information.
 2018-05-21 18:03:20 INFO  PatchInformationMailSender:59 - Execution completed successfully.
+
+2018-05-21 18:20:02 INFO  PatchInformationMailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-21 18:20:08 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:20:10 INFO  PatchInformationMailSender:110 - Successfully extracted patch information from the pmt.
+2018-05-21 18:20:11 INFO  PatchInformationMailSender:120 - Successfully sent email with patch information.
+2018-05-21 18:20:11 INFO  PatchInformationMailSender:50 - Execution completed successfully.
+
+2018-05-21 18:20:11 INFO  PatchInformationMailSender:57 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 18:20:16 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:20:17 INFO  PatchInformationMailSender:110 - Successfully extracted patch information from the pmt.
+2018-05-21 18:20:18 INFO  PatchInformationMailSender:120 - Successfully sent email with patch information.
+2018-05-21 18:20:18 INFO  PatchInformationMailSender:59 - Execution completed successfully.
+
+2018-05-21 18:27:38 INFO  PatchInformationMailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-21 18:27:45 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:27:46 INFO  PatchInformationMailSender:110 - Successfully extracted patch information from the pmt.
+2018-05-21 18:27:47 INFO  PatchInformationMailSender:120 - Successfully sent email with patch information.
+2018-05-21 18:27:47 INFO  PatchInformationMailSender:50 - Execution completed successfully.
+
+2018-05-21 18:27:47 INFO  PatchInformationMailSender:57 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 18:27:52 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:27:53 INFO  PatchInformationMailSender:110 - Successfully extracted patch information from the pmt.
+2018-05-21 18:27:53 INFO  PatchInformationMailSender:120 - Successfully sent email with patch information.
+2018-05-21 18:27:53 INFO  PatchInformationMailSender:59 - Execution completed successfully.
+
+2018-05-21 18:28:16 INFO  PatchInformationMailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-21 18:28:21 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:28:23 INFO  PatchInformationMailSender:110 - Successfully extracted patch information from the pmt.
+2018-05-21 18:28:24 INFO  PatchInformationMailSender:120 - Successfully sent email with patch information.
+2018-05-21 18:28:24 INFO  PatchInformationMailSender:50 - Execution completed successfully.
+
+2018-05-21 18:28:24 INFO  PatchInformationMailSender:57 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 18:28:28 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:28:29 INFO  PatchInformationMailSender:110 - Successfully extracted patch information from the pmt.
+2018-05-21 18:28:30 INFO  PatchInformationMailSender:120 - Successfully sent email with patch information.
+2018-05-21 18:28:30 INFO  PatchInformationMailSender:59 - Execution completed successfully.
+
+2018-05-21 18:40:25 INFO  PatchInformationMailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-21 18:40:31 INFO  PatchInformationMailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:40:32 INFO  PatchInformationMailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-21 18:40:34 INFO  PatchInformationMailSender:119 - Successfully sent email with patch information.
+2018-05-21 18:40:34 INFO  PatchInformationMailSender:49 - Execution completed successfully.
+
+2018-05-21 18:40:34 INFO  PatchInformationMailSender:56 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 18:40:38 INFO  PatchInformationMailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:40:39 INFO  PatchInformationMailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-21 18:40:40 INFO  PatchInformationMailSender:119 - Successfully sent email with patch information.
+2018-05-21 18:40:40 INFO  PatchInformationMailSender:58 - Execution completed successfully.
+
+2018-05-21 18:44:24 INFO  PatchInformationMailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-21 18:44:30 INFO  PatchInformationMailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:44:32 INFO  PatchInformationMailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-21 18:44:33 INFO  PatchInformationMailSender:119 - Successfully sent email with patch information.
+2018-05-21 18:44:33 INFO  PatchInformationMailSender:49 - Execution completed successfully.
+
+2018-05-21 18:44:33 INFO  PatchInformationMailSender:56 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 18:44:38 INFO  PatchInformationMailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:44:38 INFO  PatchInformationMailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-21 18:44:39 INFO  PatchInformationMailSender:119 - Successfully sent email with patch information.
+2018-05-21 18:44:39 INFO  PatchInformationMailSender:58 - Execution completed successfully.
+
+2018-05-21 18:52:02 INFO  PatchInformationMailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-21 18:52:08 INFO  PatchInformationMailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:52:09 INFO  PatchInformationMailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-21 18:52:11 INFO  PatchInformationMailSender:119 - Successfully sent email with patch information.
+2018-05-21 18:52:11 INFO  PatchInformationMailSender:49 - Execution completed successfully.
+
+2018-05-21 18:52:11 INFO  PatchInformationMailSender:56 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 18:52:17 INFO  PatchInformationMailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:52:18 INFO  PatchInformationMailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-21 18:52:19 INFO  PatchInformationMailSender:119 - Successfully sent email with patch information.
+2018-05-21 18:52:19 INFO  PatchInformationMailSender:58 - Execution completed successfully.
+
+2018-05-21 19:34:09 INFO  PatchInformationMailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-21 19:34:16 INFO  PatchInformationMailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:34:17 INFO  PatchInformationMailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-21 19:34:19 INFO  PatchInformationMailSender:124 - Successfully sent email with patch information.
+2018-05-21 19:34:19 INFO  PatchInformationMailSender:53 - Execution completed successfully.
+
+2018-05-21 19:34:19 INFO  PatchInformationMailSender:60 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 19:34:24 INFO  PatchInformationMailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:34:25 INFO  PatchInformationMailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-21 19:34:26 INFO  PatchInformationMailSender:124 - Successfully sent email with patch information.
+2018-05-21 19:34:26 INFO  PatchInformationMailSender:62 - Execution completed successfully.
+
+2018-05-21 19:48:04 INFO  PatchInformationMailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-21 19:48:10 INFO  PatchInformationMailSender:102 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:48:12 INFO  PatchInformationMailSender:117 - Successfully extracted patch information from the pmt.
+2018-05-21 19:48:13 INFO  PatchInformationMailSender:127 - Successfully sent email with patch information.
+2018-05-21 19:48:13 INFO  PatchInformationMailSender:53 - Execution completed successfully.
+
+2018-05-21 19:48:13 INFO  PatchInformationMailSender:59 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 19:48:17 INFO  PatchInformationMailSender:102 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:48:18 INFO  PatchInformationMailSender:117 - Successfully extracted patch information from the pmt.
+2018-05-21 19:48:18 INFO  PatchInformationMailSender:127 - Successfully sent email with patch information.
+2018-05-21 19:48:18 INFO  PatchInformationMailSender:61 - Execution completed successfully.
+
+2018-05-21 19:49:04 INFO  PatchInformationMailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-21 19:49:11 INFO  PatchInformationMailSender:102 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:49:13 INFO  PatchInformationMailSender:117 - Successfully extracted patch information from the pmt.
+2018-05-21 19:49:14 INFO  PatchInformationMailSender:127 - Successfully sent email with patch information.
+2018-05-21 19:49:14 INFO  PatchInformationMailSender:53 - Execution completed successfully.
+
+2018-05-21 19:49:14 INFO  PatchInformationMailSender:59 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 19:49:21 INFO  PatchInformationMailSender:102 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:49:21 INFO  PatchInformationMailSender:117 - Successfully extracted patch information from the pmt.
+2018-05-21 19:49:22 INFO  PatchInformationMailSender:127 - Successfully sent email with patch information.
+2018-05-21 19:49:22 INFO  PatchInformationMailSender:61 - Execution completed successfully.
+
+2018-05-21 19:50:24 INFO  PatchInformationMailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-21 19:50:30 INFO  PatchInformationMailSender:102 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:50:31 INFO  PatchInformationMailSender:117 - Successfully extracted patch information from the pmt.
+2018-05-21 19:50:34 INFO  PatchInformationMailSender:127 - Successfully sent email with patch information.
+2018-05-21 19:50:34 INFO  PatchInformationMailSender:53 - Execution completed successfully.
+
+2018-05-21 19:50:34 INFO  PatchInformationMailSender:59 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 19:50:46 INFO  PatchInformationMailSender:102 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 19:50:47 INFO  PatchInformationMailSender:117 - Successfully extracted patch information from the pmt.
+2018-05-21 19:50:48 INFO  PatchInformationMailSender:127 - Successfully sent email with patch information.
+2018-05-21 19:50:48 INFO  PatchInformationMailSender:61 - Execution completed successfully.
 

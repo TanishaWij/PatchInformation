@@ -19,8 +19,8 @@ package org.wso2.dailyPatchInformation.pmtData;
 
 import org.apache.log4j.Logger;
 import org.wso2.dailyPatchInformation.JIRAData.JIRAIssue;
-import org.wso2.dailyPatchInformation.exceptions.PmtExceptions.AccessingPmtException;
-import org.wso2.dailyPatchInformation.exceptions.PmtExceptions.ExtractingFromResultsetException;
+import org.wso2.dailyPatchInformation.exceptions.PmtExceptions.PmtConnectionException;
+import org.wso2.dailyPatchInformation.exceptions.PmtExceptions.PmtContentException;
 import org.wso2.dailyPatchInformation.exceptions.PmtExceptions.PmtException;
 
 import java.sql.Connection;
@@ -55,12 +55,11 @@ import static org.wso2.dailyPatchInformation.constants.Constants.TAKEN_OFF_QUEUE
 
 /**
  * Accesses the pmtdb and queries it to get the JIRA issues that have a corresponding entry in the pmt and then gets the
- * patch information for each of the JIRA issues
+ * patch information for each of the JIRA issues.
  */
 public class PmtAccessor {
 
     private static final Logger LOGGER = Logger.getLogger(PmtAccessor.class);
-    //todo :
     private static PmtAccessor PMT_ACCESSOR;
 
     private PmtAccessor() {
@@ -124,50 +123,49 @@ public class PmtAccessor {
                     allJIRANamesInPmt.add(JIRAName);
                 }
             } catch (SQLException e) {
-                String errorMessage = "Failed to extract data from returned ResultSet";
+                String errorMessage = "Failed to extract data from returned pmt ResultSet";
                 LOGGER.error(errorMessage, e);
-                throw new ExtractingFromResultsetException(errorMessage, e);
+                throw new PmtContentException(errorMessage, e);
             }
-            //todo: method
-            //get JIRA issues recorded in both the PMT and JIRA
-            ArrayList<JIRAIssue> JIRAIssuesInPmtAndJIRA = new ArrayList<>();
-            for (JIRAIssue JIRAIssue : JIRAIssues) {
-                if (allJIRANamesInPmt.contains(JIRAIssue.getName())) {
-                    JIRAIssuesInPmtAndJIRA.add(JIRAIssue);
-                }
-            }
-            return JIRAIssuesInPmtAndJIRA;
+            return getJIRAIssuesInPmtAndJIRA(JIRAIssues, allJIRANamesInPmt);
         } catch (SQLException e) {
             String errorMessage = "Failed to connect to the Pmt db";
             LOGGER.error(errorMessage, e);
-            throw new AccessingPmtException(errorMessage, e);
+            throw new PmtConnectionException(errorMessage, e);
         }
     }
 
-    public ArrayList<Patch> getPatchInformation(ArrayList<JIRAIssue> JIRAIssuesInPmtAndJIRA, String url, String user, String password) throws PmtException {
+    private ArrayList<JIRAIssue> getJIRAIssuesInPmtAndJIRA(ArrayList<JIRAIssue>JIRAIssues,ArrayList<String> allJIRANamesInPmt){
+        ArrayList<JIRAIssue> JIRAIssuesInPmtAndJIRA = new ArrayList<>();
+        for (JIRAIssue JIRAIssue : JIRAIssues) {
+            if (allJIRANamesInPmt.contains(JIRAIssue.getName())) {
+                JIRAIssuesInPmtAndJIRA.add(JIRAIssue);
+            }
+        }
+        return JIRAIssuesInPmtAndJIRA;
+    }
+
+    public void populatePatches(ArrayList<JIRAIssue> JIRAIssuesInPmtAndJIRA, String url, String user, String password) throws PmtException {
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {
-            ArrayList<Patch> allPatches = new ArrayList<>();
             for (JIRAIssue JIRAIssue : JIRAIssuesInPmtAndJIRA) {
                 String query = QUERY_PER_PATCH + JIRAIssue.getName() + "';";
                 try (PreparedStatement pst = con.prepareStatement(query); ResultSet result = pst.executeQuery()) {
-                    //TODO: dont return anything
-                    allPatches.addAll(populatePatches(result, JIRAIssue));
+                    populatePatchesFromResultSet(result, JIRAIssue);
                 } catch (SQLException e) {
                     String errorMessage = "Failed to extract data from returned ResultSet for: " + JIRAIssue.getName();
                     LOGGER.error(errorMessage, e);
-                    throw new ExtractingFromResultsetException(errorMessage, e);
+                    throw new PmtContentException(errorMessage, e);
                 }
             }
-            return allPatches;
         } catch (SQLException e) {
             String errorMessage = "Failed to connect to the Pmt db";
             LOGGER.error(errorMessage, e);
-            throw new AccessingPmtException(errorMessage, e);
+            throw new PmtConnectionException(errorMessage, e);
         }
     }
 
-    private ArrayList<Patch> populatePatches(ResultSet result, JIRAIssue JIRAIssue) throws SQLException {
+    private void populatePatchesFromResultSet(ResultSet result, JIRAIssue JIRAIssue) throws SQLException {
 
         String oldestPatchReportDate = NOT_SET;
         String curReportDate;
@@ -198,7 +196,6 @@ public class PmtAccessor {
                         String daysInSigning = result.getString("DAYS_IN_SIGNING");
                         JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.IN_SIGNING,
                                 "InSigning", daysInSigning));
-
                         //check if patch is in development
                     } else if (LC_STATE_STAGING.equals(lcState) || LC_STATE_DEVELOPMENT.equals(lcState) ||
                             LC_STATE_ONHOLD.equals(lcState) || LC_STATE_TESTING.equals(lcState) ||
@@ -208,7 +205,6 @@ public class PmtAccessor {
                         JIRAIssue.addPatchToJIRA(new DevPatch(JIRALink, patchName, productName, assignee, State.IN_DEV, lcState,
                                 curReportDate,
                                 daysSincePatchWasReported));
-
                         //if patch has been released
                     } else if (LC_STATE_RELEASED.equals(lcState)) {
                         JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.REALEASED, lcState,
@@ -221,12 +217,10 @@ public class PmtAccessor {
                                 getDate(result.getString("RELEASED_NOT_IN_PUBLIC_SVN_ON"))));
                     }
                 }
-
             } else if (STILL_IN_QUEUE.equals(active)) {
-                JIRAIssue.addPatchToJIRA(new Patch(JIRALink, "Patch not created yet", productName,
+                JIRAIssue.addPatchToJIRA(new Patch(JIRALink, "Patch name not created", productName,
                         assignee, State.IN_PATCH_QUEUE, "InQueue", daysSincePatchWasReported));
             }
         }
-        return JIRAIssue.getPatchesInJIRA();
     }
 }

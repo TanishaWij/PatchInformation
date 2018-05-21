@@ -24,7 +24,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * For a given property key, returns the property value
+ * Stores Property file values.
  */
 public class PropertyValues {
 
@@ -32,7 +32,7 @@ public class PropertyValues {
     private String dbUser;
     private String dbPassword;
     private String pmtConnection;
-    private String JIRABasicAuth;
+    private String JIRAAuthentication;
     private String emailUser;
     private String toList;
     private String ccList;
@@ -49,7 +49,7 @@ public class PropertyValues {
         this.dbUser = prop.getProperty("dbUser");
         this.dbPassword = prop.getProperty("dbPassword");
         this.pmtConnection = prop.getProperty("pmtConnection");
-        this.JIRABasicAuth = prop.getProperty("JIRABasicAuth");
+        this.JIRAAuthentication = prop.getProperty("JIRABasicAuth");
         this.emailUser = prop.getProperty("emailUser");
         this.toList = prop.getProperty("toList");
         this.ccList = prop.getProperty("ccList");
@@ -81,9 +81,9 @@ public class PropertyValues {
         return pmtConnection;
     }
 
-    public String getJIRABasicAuth() {
+    public String getJIRAAuthentication() {
 
-        return JIRABasicAuth;
+        return JIRAAuthentication;
     }
 
     public String getEmailUser() {

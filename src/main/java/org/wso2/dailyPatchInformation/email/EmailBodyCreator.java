@@ -65,7 +65,7 @@ public class EmailBodyCreator {
      * @param emailHeader email header dependent on if its the internal or customer related email.
      * @return the email body.
      */
-    public String getEmailBody(ArrayList<Patch> patches, ArrayList<JIRAIssue> JIRAIssues, String emailHeader) {
+    public String getEmailBody(ArrayList<JIRAIssue> JIRAIssues, String emailHeader) {
 
         ArrayList<Patch> patchesInQueue = new ArrayList<>();
         ArrayList<Patch> patchesInDevelopment = new ArrayList<>();
@@ -73,7 +73,7 @@ public class EmailBodyCreator {
         ArrayList<Patch> patchesReleased = new ArrayList<>();
         String emailBody = emailHeader;
         emailBody += getSummeryHtmlTable(JIRAIssues);
-        assignPatchesToStates(patches, patchesInQueue, patchesInSigning, patchesInDevelopment, patchesReleased);
+        assignPatchesToStates(getAllPatches(JIRAIssues), patchesInQueue, patchesInSigning, patchesInDevelopment, patchesReleased);
         //get patch queue table
         emailBody += getStateHtmlTable(IN_QUEUE_SECTION_HEADER, "WORK DAYS IN QUEUE", patchesInQueue);
         emailBody += getStateHtmlTable(IN_DEVELOPMENT_SECTION_HEADER, "WORK DAYS IN DEV", patchesInDevelopment);
@@ -111,6 +111,15 @@ public class EmailBodyCreator {
                     break;
             }
         }
+    }
+
+    private ArrayList<Patch> getAllPatches(ArrayList<JIRAIssue> JIRAIssues) {
+
+        ArrayList<Patch> patches = new ArrayList<>();
+        for (JIRAIssue jiraIssue : JIRAIssues) {
+            patches.addAll(jiraIssue.getPatchesInJIRA());
+        }
+        return patches;
     }
 
     /**

@@ -59,19 +59,16 @@ public class JIRAIssue implements HtmlTableRow {
     public String getAssigneeName() {
 
         return this.assigneeName;
-
     }
 
     public void setJIRALink(String JIRALink) {
 
         this.JIRALink = JIRALink;
-
     }
 
     public void setPatchReportDate(String oldestPatchReportDate) {
 
         this.oldestPatchReportDate = oldestPatchReportDate;
-
     }
 
     public String objectToHtml(String backgroundColor) {

@@ -26,7 +26,6 @@ import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailException;
 import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAException;
 import org.wso2.dailyPatchInformation.exceptions.PatchInformtionException;
 import org.wso2.dailyPatchInformation.exceptions.PmtExceptions.PmtException;
-import org.wso2.dailyPatchInformation.pmtData.Patch;
 import org.wso2.dailyPatchInformation.pmtData.PmtAccessor;
 import org.wso2.dailyPatchInformation.propertyValues.PropertyValues;
 
@@ -38,29 +37,30 @@ import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_HTML
 import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_SUBJECT_CUSTOMER_RELATED;
 import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_SUBJECT_INTERNAL;
 
+/**
+ * Sends 2 emails on behalf of the engineering efficiency team. One on Customer related JIRA issues,
+ * and the other on internal JIRA issues and their corresponding patch information.
+ */
 public class PatchInformationMailSender {
 
-    private final static Logger logger = Logger.getLogger(PatchInformationMailSender.class);
+    private final static Logger LOGGER = Logger.getLogger(PatchInformationMailSender.class);
 
     public static void main(String[] args) {
 
         try {
-            logger.info("Executing process to send email on Internal JIRA issues.");
+            LOGGER.info("Executing process to send email on Internal JIRA issues.");
             executeEmailSendingProcess(false);
-            logger.info("Execution completed successfully.\n");
+            LOGGER.info("Execution completed successfully.\n");
         } catch (PatchInformtionException e) {
-            logger.error("Execution failed, process was not completed\n", e);
-        } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Execution failed, process was not completed\n", e);
         }
+
         try {
-            logger.info("Executing process to send email on Customer related JIRA issues.");
+            LOGGER.info("Executing process to send email on Customer related JIRA issues.");
             executeEmailSendingProcess(true);
-            logger.info("Execution completed successfully.\n");
+            LOGGER.info("Execution completed successfully.\n");
         } catch (PatchInformtionException e) {
-            logger.error("Execution failed, process was not completed\n", e);
-        } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Execution failed, process was not completed\n", e);
         }
     }
 
@@ -68,12 +68,19 @@ public class PatchInformationMailSender {
      * The process gets internal JIRA issues or customer related JIRA issues, and sends an email containing information
      * on them and their associated patches.
      *
-     * @param isMailOnCustomerReportedIssues boolean to determine whether it is the internal or customer related mail being sent.
-     * @throws Exception The process execution has halted
+     * @param isMailOnCustomerReportedIssues boolean to determine if it is the internal or customer related mail
+     *                                      being sent.
+     * @throws PatchInformtionException The process execution has halted
      */
-    private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues) throws PatchInformtionException, IOException {
+    private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues) throws PatchInformtionException{
 
-        PropertyValues propertyValues = PropertyValues.getPropertyValues();
+        PropertyValues propertyValues;
+        try {
+            propertyValues = PropertyValues.getPropertyValues();
+        } catch (IOException e) {
+            throw new PatchInformtionException("Failed to read properties file", e);
+        }
+
         String urlToJIRAIssues;
         String emailSubject;
         String htmlEmailHeader;
@@ -91,11 +98,11 @@ public class PatchInformationMailSender {
 
         ArrayList<JIRAIssue> JIRAIssues;
         try {
-            JIRAIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getJIRAs(urlToJIRAIssues, propertyValues.getJIRABasicAuth()));
-            logger.info("Successfully extracted JIRA issue information from JIRA.");
+            JIRAIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getJIRAIssues(urlToJIRAIssues, propertyValues.getJIRAAuthentication()));
+            LOGGER.info("Successfully extracted JIRA issue information from JIRA.");
         } catch (JIRAException e) {
             String errorMessage = "Failed to extract JIRA issues from JIRA.";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new PatchInformtionException(errorMessage, e);
         }
 
@@ -105,23 +112,22 @@ public class PatchInformationMailSender {
         String pmtUserPassword = propertyValues.getDbPassword();
         PmtAccessor pmtAccessor = PmtAccessor.getPmtAccessor();
         try {
-
             ArrayList<JIRAIssue> JIRATicketsInPmtAndJIRA = new ArrayList<>(pmtAccessor.filterJIRAIssues(JIRAIssues, pmtConnection, pmtUserName, pmtUserPassword));
-            ArrayList<Patch> patches = new ArrayList<>(pmtAccessor.getPatchInformation(JIRATicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword));
-            logger.info("Successfully extracted patch information from the pmt.");
-            emailBody = EmailBodyCreator.getEmailBodyCreator().getEmailBody(patches, JIRATicketsInPmtAndJIRA, htmlEmailHeader);
+            pmtAccessor.populatePatches(JIRATicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword);
+            LOGGER.info("Successfully extracted patch information from the pmt.");
+            emailBody = EmailBodyCreator.getEmailBodyCreator().getEmailBody(JIRATicketsInPmtAndJIRA, htmlEmailHeader);
         } catch (PmtException e) {
             String errorMessage = "Failed to extract Patch information from the pmt.";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new PatchInformtionException(errorMessage, e);
         }
 
         try {
             EmailSender.getEmailSender().sendMessage(emailBody, emailSubject, propertyValues.getEmailUser(), propertyValues.getToList(), propertyValues.getCcList());
-            logger.info("Successfully sent email with patch information.");
+            LOGGER.info("Successfully sent email with patch information.");
         } catch (EmailException e) {
             String errorMessage = "Failed to send email.";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new PatchInformtionException(errorMessage, e);
         }
 

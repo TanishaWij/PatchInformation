@@ -15,12 +15,13 @@
 // specific language governing permissions and limitations
 // under the License.
 //
-package org.wso2.dailyPatchInformation.exceptions.JIRAExceptions;
+package org.wso2.dailyPatchInformation.exceptions.PmtExceptions;
 
-public class AccessJIRAException extends org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAException {
+public class PmtConnectionException extends PmtException {
 
-    public AccessJIRAException(String message, Throwable cause) {
+    public PmtConnectionException(String message, Throwable cause) {
 
         super(message, cause);
     }
+
 }

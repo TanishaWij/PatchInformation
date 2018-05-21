@@ -17,9 +17,9 @@
 //
 package org.wso2.dailyPatchInformation.exceptions.JIRAExceptions;
 
-public class ParsingToJsonException extends JIRAException {
+public class JIRAConnectionException extends org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAException {
 
-    public ParsingToJsonException(String message, Throwable cause) {
+    public JIRAConnectionException(String message, Throwable cause) {
 
         super(message, cause);
     }
