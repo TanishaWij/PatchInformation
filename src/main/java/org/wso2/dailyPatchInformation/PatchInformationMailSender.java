@@ -38,9 +38,9 @@ import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_HTML
 import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_SUBJECT_CUSTOMER_RELATED;
 import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_SUBJECT_INTERNAL;
 
-public class DailyPatchInfoMailSender {
+public class PatchInformationMailSender {
 
-    private final static Logger logger = Logger.getLogger(DailyPatchInfoMailSender.class);
+    private final static Logger logger = Logger.getLogger(PatchInformationMailSender.class);
 
     public static void main(String[] args) {
 
@@ -91,7 +91,7 @@ public class DailyPatchInfoMailSender {
 
         ArrayList<JIRAIssue> JIRAIssues;
         try {
-            JIRAIssues = new ArrayList<JIRAIssue>(JIRAAccessor.getJIRAs(urlToJIRAIssues, propertyValues.getJIRABasicAuth()));
+            JIRAIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getJIRAs(urlToJIRAIssues, propertyValues.getJIRABasicAuth()));
             logger.info("Successfully extracted JIRA issue information from JIRA.");
         } catch (JIRAException e) {
             String errorMessage = "Failed to extract JIRA issues from JIRA.";
@@ -104,8 +104,9 @@ public class DailyPatchInfoMailSender {
             String pmtConnection = propertyValues.getPmtConnection();
             String pmtUserName = propertyValues.getDbUser();
             String pmtUserPassword = propertyValues.getDbPassword();
-            ArrayList<JIRAIssue> JIRATicketsInPmtAndJIRA = new ArrayList<>(PmtAccessor.filterJIRAIssues(JIRAIssues, pmtConnection, pmtUserName, pmtUserPassword));
-            ArrayList<Patch> patches = new ArrayList<>(PmtAccessor.getPatchInformation(JIRATicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword));
+            PmtAccessor pmtAccessor = PmtAccessor.getPmtAccessor();
+            ArrayList<JIRAIssue> JIRATicketsInPmtAndJIRA = new ArrayList<>(pmtAccessor.filterJIRAIssues(JIRAIssues, pmtConnection, pmtUserName, pmtUserPassword));
+            ArrayList<Patch> patches = new ArrayList<>(pmtAccessor.getPatchInformation(JIRATicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword));
             logger.info("Successfully extracted patch information from the pmt.");
             emailBody = EmailBodyCreator.getEmailBody(patches, JIRATicketsInPmtAndJIRA, htmlEmailHeader);
         } catch (PmtException e) {
@@ -115,7 +116,7 @@ public class DailyPatchInfoMailSender {
         }
 
         try {
-            EmailSender.sendMessage(emailBody, emailSubject, propertyValues.getEmailUser(), propertyValues.getToList(), propertyValues.getCcList());
+            EmailSender.getEmailSender().sendMessage(emailBody, emailSubject, propertyValues.getEmailUser(), propertyValues.getToList(), propertyValues.getCcList());
             logger.info("Successfully sent email with patch information.");
         } catch (EmailException e) {
             String errorMessage = "Failed to send email.";

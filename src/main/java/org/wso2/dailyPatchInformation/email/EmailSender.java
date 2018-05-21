@@ -30,7 +30,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import org.apache.log4j.Logger;
-import org.wso2.dailyPatchInformation.DailyPatchInfoMailSender;
+import org.wso2.dailyPatchInformation.PatchInformationMailSender;
 import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailException;
 import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailSendingException;
 import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailSetupException;
@@ -58,7 +58,17 @@ import static org.wso2.dailyPatchInformation.constants.EmailConstants.SCOPES;
  */
 public class EmailSender {
 
-    private final static Logger logger = Logger.getLogger(EmailSender.class);
+    private final static Logger LOGGER = Logger.getLogger(EmailSender.class);
+    private static EmailSender emailSender;
+    private EmailSender() {
+    }
+
+    public static EmailSender getEmailSender() {
+        if(emailSender == null){
+            emailSender = new EmailSender();
+        }
+        return emailSender;
+    }
 
     /**
      * Creates an authorized Credential object.
@@ -67,20 +77,20 @@ public class EmailSender {
      * @return An authorized Credential object.
      * @throws EmailSetupException If there is no client_secret.
      */
-    private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws EmailSetupException {
+    private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws EmailSetupException {
         // Load client secrets.
-        InputStream in = DailyPatchInfoMailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
+        InputStream in = PatchInformationMailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
         GoogleClientSecrets clientSecrets;
         try {
             clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
         } catch (IOException e) {
             String errorMessage = "Failed to read clientSecret.json file in resources folder";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
 
         // Build flow and trigger user authorization request.
-        GoogleAuthorizationCodeFlow flow = null;
+        GoogleAuthorizationCodeFlow flow;
         try {
             flow = new GoogleAuthorizationCodeFlow.Builder(
                     HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
@@ -91,7 +101,7 @@ public class EmailSender {
             return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
         } catch (IOException e) {
             String errorMessage = "Failed to set up folder to store user credentials";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
     }
@@ -104,7 +114,7 @@ public class EmailSender {
      * @return the MimeMessage to be used to send email
      * @throws EmailSetupException
      */
-    private static MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC) throws EmailSetupException {
+    private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC) throws EmailSetupException {
 
         Properties props = new Properties();
         Session session = Session.getDefaultInstance(props, null);
@@ -126,7 +136,7 @@ public class EmailSender {
             }
         } catch (MessagingException e) {
             String errorMessage = "Failed to extract email Addresses in Properties file";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
 
@@ -135,10 +145,9 @@ public class EmailSender {
             email.setContent(bodyText, EMAIL_TYPE);
         } catch (MessagingException e) {
             String errorMessage = "Failed to set email subject or body";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
-
         return email;
     }
 
@@ -149,14 +158,14 @@ public class EmailSender {
      * @return a message containing a base64url encoded email
      * @throws EmailSetupException failed to create Message
      */
-    private static Message createMessageWithEmail(MimeMessage emailContent) throws EmailSetupException {
+    private Message createMessageWithEmail(MimeMessage emailContent) throws EmailSetupException {
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             emailContent.writeTo(buffer);
         } catch (IOException | MessagingException e) {
             String errorMessage = "Failed to extract email content from MimeMessage object";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
 
@@ -174,7 +183,7 @@ public class EmailSender {
      * @param subject   subject of the email
      * @throws EmailException email was not sent
      */
-    public static void sendMessage(String emailBody, String subject, String emailFrom, String emailTo, String emailCC) throws EmailException {
+    public void sendMessage(String emailBody, String subject, String emailFrom, String emailTo, String emailCC) throws EmailException {
         // Build a new authorized API client service.
         try {
             NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
@@ -188,13 +197,13 @@ public class EmailSender {
                 service.users().messages().send("me", message).execute();
             } catch (IOException e) {
                 String errorMessage = "Failed to execute the sending of the email";
-                logger.error(errorMessage, e);
+                LOGGER.error(errorMessage, e);
                 throw new EmailSendingException(errorMessage, e);
             }
 
         } catch (GeneralSecurityException | IOException e) {
             String errorMessage = "Failed to set up new trusted transport";
-            logger.error(errorMessage, e);
+            LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
 

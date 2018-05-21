@@ -17,8 +17,8 @@
 //
 package org.wso2.dailyPatchInformation.email;
 
-import org.wso2.dailyPatchInformation.JIRAData.JIRAIssue;
 import org.wso2.dailyPatchInformation.constants.Constants;
+import org.wso2.dailyPatchInformation.JIRAData.JIRAIssue;
 import org.wso2.dailyPatchInformation.pmtData.Comparators.PatchChainedComparator;
 import org.wso2.dailyPatchInformation.pmtData.Comparators.ProductNameComparator;
 import org.wso2.dailyPatchInformation.pmtData.Comparators.StateNameComparator;
@@ -26,16 +26,7 @@ import org.wso2.dailyPatchInformation.pmtData.Patch;
 
 import java.util.ArrayList;
 
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.DEV_STATE_TABLE_COLUMNS_START;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_FOOTER;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.IN_DEVELOPMENT_SECTION_HEADER;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.IN_QUEUE_SECTION_HEADER;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.IN_SIGNING_SECTION_HEADER;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.RELEASED_SECTION_HEADER;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.STATE_TABLE_COLUMNS_END;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.STATE_TABLE_COLUMNS_START;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.SUMMARY_SECTION_HEADER;
-import static org.wso2.dailyPatchInformation.constants.EmailConstants.TABLE_HEADER_SUMMARY;
+import static org.wso2.dailyPatchInformation.constants.EmailConstants.*;
 
 /**
  * Creates and returns the body of the email. The body is broken up into a summary table, and a table for each of
@@ -76,7 +67,6 @@ public class EmailBodyCreator {
      * @param patches arraylist of all patches to be recorded.
      */
     private static void assignPatchesToStates(ArrayList<Patch> patches) {
-
         for (Patch patch : patches) {
             switch (patch.getState()) {
                 case IN_DEV:

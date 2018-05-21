@@ -17,7 +17,7 @@
 //
 package org.wso2.dailyPatchInformation.propertyValues;
 
-import org.wso2.dailyPatchInformation.DailyPatchInfoMailSender;
+import org.wso2.dailyPatchInformation.PatchInformationMailSender;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,8 +40,7 @@ public class PropertyValues {
     private String urlToInternalIssuesFilter;
 
     private PropertyValues() throws IOException {
-
-        InputStream propertyFile = DailyPatchInfoMailSender.class.getResourceAsStream("/config.properties");
+        InputStream propertyFile = PatchInformationMailSender.class.getResourceAsStream("/config.properties");
         Properties prop = new Properties();
         prop.load(propertyFile);
         this.dbUser = prop.getProperty("dbUser");
