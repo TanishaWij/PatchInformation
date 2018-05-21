@@ -61,11 +61,14 @@ public class EmailSender {
 
     private final static Logger LOGGER = Logger.getLogger(EmailSender.class);
     private static EmailSender emailSender;
+
     private EmailSender() {
+
     }
 
     public static EmailSender getEmailSender() {
-        if(emailSender == null){
+
+        if (emailSender == null) {
             emailSender = new EmailSender();
         }
         return emailSender;

@@ -40,11 +40,11 @@ public class PropertyValues {
     private String urlToInternalIssuesFilter;
 
     private PropertyValues() throws IOException {
+
         Properties prop = new Properties();
-        try(InputStream propertyFile = PatchInformationMailSender.class.getResourceAsStream("/config.properties")){
+        try (InputStream propertyFile = PatchInformationMailSender.class.getResourceAsStream("/config.properties")) {
             prop.load(propertyFile);
         }
-
 
         this.dbUser = prop.getProperty("dbUser");
         this.dbPassword = prop.getProperty("dbPassword");

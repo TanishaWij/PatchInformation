@@ -44,11 +44,14 @@ import static org.wso2.dailyPatchInformation.constants.EmailConstants.TABLE_HEAD
 public class EmailBodyCreator {
 
     private static EmailBodyCreator EMAIL_BODY_CREATOR;
+
     private EmailBodyCreator() {
+
     }
 
     public static EmailBodyCreator getEmailBodyCreator() {
-        if (EMAIL_BODY_CREATOR == null){
+
+        if (EMAIL_BODY_CREATOR == null) {
             EMAIL_BODY_CREATOR = new EmailBodyCreator();
         }
         return EMAIL_BODY_CREATOR;
@@ -86,8 +89,9 @@ public class EmailBodyCreator {
      * @param patches arraylist of all patches to be recorded.
      */
     private void assignPatchesToStates(ArrayList<Patch> patches, ArrayList<Patch> patchesInQueue,
-                                              ArrayList<Patch> patchesInSigning, ArrayList<Patch> patchesInDevelopment,
-                                              ArrayList<Patch> patchesReleased) {
+                                       ArrayList<Patch> patchesInSigning, ArrayList<Patch> patchesInDevelopment,
+                                       ArrayList<Patch> patchesReleased) {
+
         for (Patch patch : patches) {
             switch (patch.getState()) {
                 case IN_DEV:

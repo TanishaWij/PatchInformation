@@ -18,14 +18,14 @@
 package org.wso2.dailyPatchInformation;
 
 import org.apache.log4j.Logger;
+import org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor;
+import org.wso2.dailyPatchInformation.JIRAData.JIRAIssue;
 import org.wso2.dailyPatchInformation.email.EmailBodyCreator;
 import org.wso2.dailyPatchInformation.email.EmailSender;
 import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailException;
 import org.wso2.dailyPatchInformation.exceptions.JIRAExceptions.JIRAException;
 import org.wso2.dailyPatchInformation.exceptions.PatchInformtionException;
 import org.wso2.dailyPatchInformation.exceptions.PmtExceptions.PmtException;
-import org.wso2.dailyPatchInformation.JIRAData.JIRAAccessor;
-import org.wso2.dailyPatchInformation.JIRAData.JIRAIssue;
 import org.wso2.dailyPatchInformation.pmtData.Patch;
 import org.wso2.dailyPatchInformation.pmtData.PmtAccessor;
 import org.wso2.dailyPatchInformation.propertyValues.PropertyValues;

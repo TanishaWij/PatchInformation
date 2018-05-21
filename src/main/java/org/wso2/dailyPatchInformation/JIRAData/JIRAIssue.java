@@ -35,6 +35,7 @@ public class JIRAIssue implements HtmlTableRow {
     private String JIRALink;
 
     JIRAIssue(String JIRAName, String assignee) {
+
         this.name = JIRAName;
         this.assigneeName = assignee;
         this.patches = new ArrayList<>();

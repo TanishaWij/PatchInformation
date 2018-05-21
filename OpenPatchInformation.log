@@ -992,3 +992,15 @@ Caused by: Unexpected character (<) at position 0.
 2018-05-21 18:00:33 INFO  PatchInformationMailSender:121 - Successfully sent email with patch information.
 2018-05-21 18:00:33 INFO  PatchInformationMailSender:59 - Execution completed successfully.
 
+2018-05-21 18:03:07 INFO  PatchInformationMailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-21 18:03:12 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:03:13 INFO  PatchInformationMailSender:111 - Successfully extracted patch information from the pmt.
+2018-05-21 18:03:14 INFO  PatchInformationMailSender:121 - Successfully sent email with patch information.
+2018-05-21 18:03:14 INFO  PatchInformationMailSender:50 - Execution completed successfully.
+
+2018-05-21 18:03:14 INFO  PatchInformationMailSender:57 - Executing process to send email on Customer related JIRA issues.
+2018-05-21 18:03:18 INFO  PatchInformationMailSender:95 - Successfully extracted JIRA issue information from JIRA.
+2018-05-21 18:03:19 INFO  PatchInformationMailSender:111 - Successfully extracted patch information from the pmt.
+2018-05-21 18:03:20 INFO  PatchInformationMailSender:121 - Successfully sent email with patch information.
+2018-05-21 18:03:20 INFO  PatchInformationMailSender:59 - Execution completed successfully.
+

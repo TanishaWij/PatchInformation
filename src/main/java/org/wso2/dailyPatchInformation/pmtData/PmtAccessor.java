@@ -45,12 +45,12 @@ import static org.wso2.dailyPatchInformation.constants.Constants.LC_STATE_RELEAS
 import static org.wso2.dailyPatchInformation.constants.Constants.LC_STATE_STAGING;
 import static org.wso2.dailyPatchInformation.constants.Constants.LC_STATE_TESTING;
 import static org.wso2.dailyPatchInformation.constants.Constants.NOT_SET;
-import static org.wso2.dailyPatchInformation.constants.Constants.State;
 import static org.wso2.dailyPatchInformation.constants.Constants.NOT_SPECIFIED;
 import static org.wso2.dailyPatchInformation.constants.Constants.QUERY_PER_PATCH;
 import static org.wso2.dailyPatchInformation.constants.Constants.SELECT_SUPPORT_JIRAS;
 import static org.wso2.dailyPatchInformation.constants.Constants.STILL_IN_QUEUE;
 import static org.wso2.dailyPatchInformation.constants.Constants.SUPPORT_JIRA_URL_FIELD;
+import static org.wso2.dailyPatchInformation.constants.Constants.State;
 import static org.wso2.dailyPatchInformation.constants.Constants.TAKEN_OFF_QUEUE;
 
 /**
@@ -59,18 +59,53 @@ import static org.wso2.dailyPatchInformation.constants.Constants.TAKEN_OFF_QUEUE
  */
 public class PmtAccessor {
 
+    private static final Logger LOGGER = Logger.getLogger(PmtAccessor.class);
     //todo :
     private static PmtAccessor PMT_ACCESSOR;
-    private static final Logger LOGGER = Logger.getLogger(PmtAccessor.class);
 
     private PmtAccessor() {
+
     }
 
     public static PmtAccessor getPmtAccessor() {
-        if (PMT_ACCESSOR == null){
+
+        if (PMT_ACCESSOR == null) {
             PMT_ACCESSOR = new PmtAccessor();
         }
         return PMT_ACCESSOR;
+    }
+
+    private static String getDate(String dateAndTime) {
+
+        if (dateAndTime == null || !(dateAndTime.contains(" "))) {
+            return NOT_SPECIFIED;
+        } else {
+            String[] dateSplit = dateAndTime.split(" ");
+            return dateSplit[0];
+        }
+    }
+
+    /**
+     * Returns the oldest of two date
+     *
+     * @param currentDateStr the date val currently recorded
+     * @param newDateStr     new date
+     * @return the oldest date
+     */
+    private static String dateCompare(String currentDateStr, String newDateStr) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date currentDate = sdf.parse(currentDateStr);
+            Date newDate = sdf.parse(newDateStr);
+            if (currentDate.before(newDate)) {
+                return currentDateStr;
+            } else {
+                return newDateStr;
+            }
+        } catch (ParseException e) {
+            return currentDateStr;
+        }
     }
 
     public ArrayList<JIRAIssue> filterJIRAIssues(ArrayList<JIRAIssue> JIRAIssues, String url, String user, String password) throws PmtException {
@@ -193,38 +228,5 @@ public class PmtAccessor {
             }
         }
         return JIRAIssue.getPatchesInJIRA();
-    }
-
-    private static String getDate(String dateAndTime) {
-
-        if (dateAndTime == null || !(dateAndTime.contains(" "))) {
-            return NOT_SPECIFIED;
-        } else {
-            String[] dateSplit = dateAndTime.split(" ");
-            return dateSplit[0];
-        }
-    }
-
-    /**
-     * Returns the oldest of two date
-     *
-     * @param currentDateStr the date val currently recorded
-     * @param newDateStr     new date
-     * @return the oldest date
-     */
-    private static String dateCompare(String currentDateStr, String newDateStr) {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date currentDate = sdf.parse(currentDateStr);
-            Date newDate = sdf.parse(newDateStr);
-            if (currentDate.before(newDate)) {
-                return currentDateStr;
-            } else {
-                return newDateStr;
-            }
-        } catch (ParseException e) {
-            return currentDateStr;
-        }
     }
 }
