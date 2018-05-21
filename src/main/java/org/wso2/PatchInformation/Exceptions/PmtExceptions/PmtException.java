@@ -17,7 +17,9 @@
 //
 package org.wso2.PatchInformation.Exceptions.PmtExceptions;
 
-public class PmtException extends Exception {
+import org.wso2.PatchInformation.Exceptions.PatchInformtionException;
+
+public class PmtException extends PatchInformtionException {
 
     public PmtException(String message, Throwable cause) {
 

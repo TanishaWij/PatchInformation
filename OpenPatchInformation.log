@@ -42,7 +42,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
 	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
-	at org.wso2.PatchInformation.Main.executeProcess(Main.java:80)
+	at executeEmailSendingProcess(Main.java:80)
 	at org.wso2.PatchInformation.Main.main(Main.java:42)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
@@ -84,7 +84,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
 	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
-	at org.wso2.PatchInformation.Main.executeProcess(Main.java:80)
+	at executeEmailSendingProcess(Main.java:80)
 	at org.wso2.PatchInformation.Main.main(Main.java:47)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
@@ -131,7 +131,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
 	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
-	at org.wso2.PatchInformation.Main.executeProcess(Main.java:92)
+	at executeEmailSendingProcess(Main.java:92)
 	at org.wso2.PatchInformation.Main.main(Main.java:53)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
@@ -173,7 +173,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
 	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
-	at org.wso2.PatchInformation.Main.executeProcess(Main.java:92)
+	at executeEmailSendingProcess(Main.java:92)
 	at org.wso2.PatchInformation.Main.main(Main.java:58)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
@@ -215,7 +215,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
 	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
-	at org.wso2.PatchInformation.Main.executeProcess(Main.java:82)
+	at executeEmailSendingProcess(Main.java:82)
 	at org.wso2.PatchInformation.Main.main(Main.java:43)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
@@ -257,7 +257,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
 	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
-	at org.wso2.PatchInformation.Main.executeProcess(Main.java:82)
+	at executeEmailSendingProcess(Main.java:82)
 	at org.wso2.PatchInformation.Main.main(Main.java:48)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
@@ -291,3 +291,49 @@ Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 2018-05-21 08:30:54 INFO  Main:70 - Executing process for Customer related Jira issues.
 2018-05-21 08:30:59 INFO  AccessJira:123 - Jira issues successfully extracted from Jira.
 2018-05-21 08:31:00 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
+2018-05-21 08:52:52 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-21 08:53:00 INFO  AccessJira:123 - Jira issues successfully extracted from Jira.
+2018-05-21 08:53:01 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
+2018-05-21 08:53:02 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-21 08:53:07 INFO  AccessJira:123 - Jira issues successfully extracted from Jira.
+2018-05-21 08:53:08 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
+2018-05-21 08:54:03 INFO  Main:75 - Executing process for Internal Jira issues.
+2018-05-21 08:54:09 INFO  AccessJira:123 - Jira issues successfully extracted from Jira.
+2018-05-21 08:54:11 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
+2018-05-21 08:54:12 INFO  Main:70 - Executing process for Customer related Jira issues.
+2018-05-21 08:54:17 INFO  AccessJira:123 - Jira issues successfully extracted from Jira.
+2018-05-21 08:54:18 INFO  AccessPMT:99 - Patch information associated with the Jira issues extracted successfully.
+2018-05-21 09:28:10 INFO  Main:46 - Executing process to send email on Internal Jira issues.
+2018-05-21 09:28:16 INFO  Main:89 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:28:17 INFO  Main:100 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:28:18 INFO  Main:110 - Successfully sent Email with patch information.
+2018-05-21 09:28:18 INFO  Main:48 - Execution of process was successful
+2018-05-21 09:28:18 INFO  Main:53 - Executing process to send email on Customer related Jira issues.
+2018-05-21 09:28:23 INFO  Main:89 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:28:24 INFO  Main:100 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:28:25 INFO  Main:110 - Successfully sent Email with patch information.
+2018-05-21 09:28:25 INFO  Main:55 - Execution of process was successful
+2018-05-21 09:30:23 INFO  Main:46 - Executing process to send email on Internal Jira issues.
+2018-05-21 09:30:29 INFO  Main:89 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:30:30 INFO  Main:100 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:30:31 INFO  Main:110 - Successfully sent Email with patch information.
+2018-05-21 09:30:31 INFO  Main:48 - Execution of process was successful.
+
+2018-05-21 09:30:31 INFO  Main:53 - Executing process to send email on Customer related Jira issues.
+2018-05-21 09:30:36 INFO  Main:89 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:30:38 INFO  Main:100 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:30:39 INFO  Main:110 - Successfully sent Email with patch information.
+2018-05-21 09:30:39 INFO  Main:55 - Execution of process was successful.
+
+2018-05-21 09:31:04 INFO  Main:46 - Executing process to send email on Internal Jira issues.
+2018-05-21 09:31:10 INFO  Main:89 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:31:11 INFO  Main:100 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:31:12 INFO  Main:110 - Successfully sent Email with patch information.
+2018-05-21 09:31:12 INFO  Main:48 - Execution completed successfully.
+
+2018-05-21 09:31:12 INFO  Main:53 - Executing process to send email on Customer related Jira issues.
+2018-05-21 09:31:17 INFO  Main:89 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:31:18 INFO  Main:100 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:31:19 INFO  Main:110 - Successfully sent Email with patch information.
+2018-05-21 09:31:19 INFO  Main:55 - Execution completed successfully.
+

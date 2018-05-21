@@ -20,6 +20,10 @@ package org.wso2.PatchInformation;
 import org.apache.log4j.Logger;
 import org.wso2.PatchInformation.Email.EmailBodyCreator;
 import org.wso2.PatchInformation.Email.EmailSender;
+import org.wso2.PatchInformation.Exceptions.EmailExceptions.EmailException;
+import org.wso2.PatchInformation.Exceptions.JiraExceptions.JiraException;
+import org.wso2.PatchInformation.Exceptions.PatchInformtionException;
+import org.wso2.PatchInformation.Exceptions.PmtExceptions.PmtException;
 import org.wso2.PatchInformation.JiraData.AccessJira;
 import org.wso2.PatchInformation.JiraData.JiraIssue;
 import org.wso2.PatchInformation.PmtData.AccessPMT;
@@ -39,14 +43,18 @@ public class Main {
     public static void main(String[] args) {
 
         try {
-            executeProcess(false);
-        } catch (Exception e) {
-            logger.error("Mail on internal Jira issues not sent successfully\n");
+            logger.info("Executing process to send email on Internal Jira issues.");
+            executeEmailSendingProcess(false);
+            logger.info("Execution completed successfully.\n");
+        } catch (PatchInformtionException e) {
+            logger.error("Execution failed, process was not completed\n");
         }
         try {
-            executeProcess(true);
-        } catch (Exception e) {
-            logger.error("Mail on customer related Jira issues not sent successfully\n");
+            logger.info("Executing process to send email on Customer related Jira issues.");
+            executeEmailSendingProcess(true);
+            logger.info("Execution completed successfully.\n");
+        } catch (PatchInformtionException e) {
+            logger.error("Execution failed, process was not completed\n");
         }
     }
 
@@ -57,7 +65,7 @@ public class Main {
      * @param isMailOnCustomerReportedIssues boolean to determine whether it is the internal or customer related mail being sent.
      * @throws Exception The process execution has halted
      */
-    private static void executeProcess(boolean isMailOnCustomerReportedIssues) throws Exception {
+    private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues) throws PatchInformtionException{
 
         String urlToJiraIssues;
         String emailSubject;
@@ -67,23 +75,44 @@ public class Main {
             urlToJiraIssues = ConfiguredProperties.getValueOf("UrlToCustomerIssues");
             emailSubject = EMAIL_SUBJECT_CUSTOMER_RELATED;
             htmlEmailHeader = EMAIL_HTML_HEADER_CUSTOMER_RELATED;
-            logger.info("Executing process for Customer related Jira issues.");
+
         } else {
             urlToJiraIssues = ConfiguredProperties.getValueOf("UrlToInternalIssues");
             emailSubject = EMAIL_SUBJECT_INTERNAL;
             htmlEmailHeader = EMAIL_HTML_HEADER_INTERNAL;
-            logger.info("Executing process for Internal Jira issues.");
+
         }
 
-        ArrayList<JiraIssue> jiraIssues = new ArrayList<>(AccessJira.getJirasReturnedBy(urlToJiraIssues));
+        ArrayList<JiraIssue> jiraIssues;
+        try {
+            jiraIssues = new ArrayList<>(AccessJira.getJirasReturnedBy(urlToJiraIssues));
+            logger.info("Successfully extracted Jira issues from Jira.");
+        } catch (JiraException e) {
+            String errorMessage = "Failed to extract Jira issues from Jira.";
+            logger.error(errorMessage, e);
+            throw new PatchInformtionException(errorMessage, e);
+        }
 
-        ArrayList<JiraIssue> jiraTicketsInPmtAndJira = new ArrayList<>(AccessPMT.getJiraIssuesInBothPMTAndJira(jiraIssues));
+        String emailBody;
+        try {
+            ArrayList<JiraIssue> jiraTicketsInPmtAndJira = new ArrayList<>(AccessPMT.getJiraIssuesInBothPMTAndJira(jiraIssues));
+            ArrayList<Patch> patches = new ArrayList<>(AccessPMT.getPatchesAssociatedWith(jiraTicketsInPmtAndJira));
+            logger.info("Successfully extracted patch information associated with the Jira issues from the pmt.");
+            emailBody = EmailBodyCreator.getEmailBody(patches, jiraTicketsInPmtAndJira, htmlEmailHeader);
+        } catch (PmtException e) {
+            String errorMessage = "Failed to extract Patch information from the pmt.";
+            logger.error(errorMessage, e);
+            throw new PatchInformtionException(errorMessage, e);
+        }
 
-        ArrayList<Patch> patches = new ArrayList<>(AccessPMT.getPatchesAssociatedWith(jiraTicketsInPmtAndJira));
-
-        String emailBody = EmailBodyCreator.getEmailBody(patches, jiraTicketsInPmtAndJira, htmlEmailHeader);
-
-        EmailSender.sendMessage(emailBody,emailSubject);
+        try {
+            EmailSender.sendMessage(emailBody, emailSubject);
+            logger.info("Successfully sent Email with patch information.");
+        } catch (EmailException e) {
+            String errorMessage = "Failed to send email.";
+            logger.error(errorMessage, e);
+            throw new PatchInformtionException(errorMessage, e);
+        }
 
     }
 

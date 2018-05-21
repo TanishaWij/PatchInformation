@@ -17,7 +17,9 @@
 //
 package org.wso2.PatchInformation.Exceptions.JiraExceptions;
 
-public class JiraException extends Exception {
+import org.wso2.PatchInformation.Exceptions.PatchInformtionException;
+
+public class JiraException extends PatchInformtionException {
 
     public JiraException(String message, Throwable cause) {
 

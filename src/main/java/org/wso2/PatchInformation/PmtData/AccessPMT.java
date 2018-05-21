@@ -96,7 +96,6 @@ public class AccessPMT {
                         throw new ExtractingFromResultsetException(errorMessage, e);
                 }
             }
-            logger.info("Patch information associated with the Jira issues extracted successfully.");
             return allPatches;
         } catch (SQLException e) {
             String errorMessage = "Failed to connect to the Pmt db";

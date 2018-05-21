@@ -23,4 +23,9 @@ public class ExtractingFromResponseStreamException extends JiraException {
 
         super(message, cause);
     }
+
+    public ExtractingFromResponseStreamException(String message) {
+
+        super(message);
+    }
 }

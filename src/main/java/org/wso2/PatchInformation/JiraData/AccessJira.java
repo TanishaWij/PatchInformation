@@ -28,7 +28,6 @@ import org.wso2.PatchInformation.Exceptions.JiraExceptions.AccessJiraException;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.ExtractingFromResponseStreamException;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.JiraException;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.ParsingToJsonException;
-import org.wso2.PatchInformation.Exceptions.JiraExceptions.ResponseCodeException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -118,9 +117,7 @@ public class AccessJira {
                 logger.error(errorMessage, e);
                 throw new ParsingToJsonException(errorMessage, e);
             }
-
         }
-        logger.info("Jira issues successfully extracted from Jira.");
         return jiraIssues;
     }
 
@@ -164,9 +161,10 @@ public class AccessJira {
                     throw new ExtractingFromResponseStreamException(errorMessage, e);
                 }
             } else {
-                    String errorMessage = "Failed to get expected Jira response, response code: " + connection.getResponseCode();
+                    String errorMessage = "Failed to get expected Jira response, response code: " +
+                            connection.getResponseCode() + " returned";
                     logger.error(errorMessage);
-                    throw new ResponseCodeException(errorMessage);
+                    throw new ExtractingFromResponseStreamException(errorMessage);
             }
         } catch (IOException e) {
             String errorMessage = "Failed to get Response code";

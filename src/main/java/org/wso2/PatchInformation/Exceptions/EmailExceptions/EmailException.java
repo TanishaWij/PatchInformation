@@ -17,7 +17,9 @@
 //
 package org.wso2.PatchInformation.Exceptions.EmailExceptions;
 
-public class EmailException extends Exception {
+import org.wso2.PatchInformation.Exceptions.PatchInformtionException;
+
+public class EmailException extends PatchInformtionException {
 
     public EmailException(String message, Throwable cause) {
 
