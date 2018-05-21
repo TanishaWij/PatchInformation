@@ -51,8 +51,8 @@ import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import static org.wso2.PatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 import static org.wso2.PatchInformation.Constants.EmailConstants.EMAIL_TYPE;
+import static org.wso2.PatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 
 public class EmailSender {
 
@@ -133,6 +133,7 @@ public class EmailSender {
             logger.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
+
         try {
             email.setSubject(subject);
             email.setContent(bodyText, EMAIL_TYPE);
@@ -141,6 +142,7 @@ public class EmailSender {
             logger.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
+
         return email;
     }
 
@@ -161,6 +163,7 @@ public class EmailSender {
             logger.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
+
         byte[] bytes = buffer.toByteArray();
         String encodedEmail = Base64.encodeBase64URLSafeString(bytes);
         Message message = new Message();
@@ -184,7 +187,6 @@ public class EmailSender {
                     .build();
 
             MimeMessage emailContent = createEmail(subject, emailBody);
-
             Message message = createMessageWithEmail(emailContent);
             try {
                 service.users().messages().send("me", message).execute();
@@ -193,6 +195,7 @@ public class EmailSender {
                 logger.error(errorMessage, e);
                 throw new EmailSendingException(errorMessage, e);
             }
+
         } catch (GeneralSecurityException | IOException e) {
             String errorMessage = "Failed to set up new trusted transport for sending email";
             logger.error(errorMessage, e);

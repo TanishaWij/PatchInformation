@@ -66,7 +66,7 @@ public class Main {
      * @param isMailOnCustomerReportedIssues boolean to determine whether it is the internal or customer related mail being sent.
      * @throws Exception The process execution has halted
      */
-    private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues) throws PatchInformtionException{
+    private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues) throws PatchInformtionException {
 
         String urlToJiraIssues;
         String emailSubject;

@@ -16,6 +16,7 @@
 // under the License.
 //
 package org.wso2.PatchInformation.PmtData;
+
 import org.wso2.PatchInformation.JiraData.JiraIssue;
 
 import java.sql.ResultSet;
@@ -45,7 +46,8 @@ class PatchesCreator {
 
     /**
      * Creates and returns the patches associated with a particular Jira issue
-     * @param result from querying the pmtdb
+     *
+     * @param result    from querying the pmtdb
      * @param jiraIssue associated with the pmt query
      * @return An arrylist of patches
      * @throws SQLException
@@ -75,7 +77,7 @@ class PatchesCreator {
                 String patchName = result.getString("PATCH_NAME");
                 String signRequestSentOn = result.getString("SIGN_REQUEST_SENT_ON");
                 //check if patch is in signing
-                if (LC_STATE_ONHOLD.equals(lcState) ){
+                if (LC_STATE_ONHOLD.equals(lcState)) {
                     //ignore and do nothing
 
                 } else if (((LC_STATE_STAGING.equals(lcState)) && (signRequestSentOn != null) ||
@@ -115,6 +117,7 @@ class PatchesCreator {
     }
 
     private static String getDate(String dateAndTime) {
+
         if (dateAndTime == null || !(dateAndTime.contains(" "))) {
             return NOT_SPECIFIED;
         } else {

@@ -55,11 +55,7 @@ public final class Constants {
     public static final String LC_STATE_RELEASED = "Released";
     public static final String LC_STATE_RELEASED_NOT_AUTOMATED = "ReleasedNotAutomated";
     public static final String LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN = "ReleasedNotInPublicSVN";
-    public static final String SUPPORT_JIRA_URL =   "SUPPORT_JIRA";
-    public enum State {
-        IN_DEV, IN_PATCH_QUEUE, IN_SIGNING, REALEASED
-    }
-
+    public static final String SUPPORT_JIRA_URL = "SUPPORT_JIRA";
     //jiraData constants
     public static final int PAGE_SIZE = 50;
     public static final String AUTH = "Authorization";
@@ -70,14 +66,17 @@ public final class Constants {
     public static final String TOTAL = "total";
     public static final String ISSUE = "issues";
     public static final String FIELDS = "fields";
-    public static final String ASSIGNEE ="assignee";
+    public static final String ASSIGNEE = "assignee";
     public static final String JIRA_KEY = "key";
     public static final String EMAIL = "emailAddress";
     public static final String NOT_SET = "notSet";
     public static final String NOT_SPECIFIED = "Not Specified";
-
     private Constants() {
         // restrict instantiation
+    }
+
+    public enum State {
+        IN_DEV, IN_PATCH_QUEUE, IN_SIGNING, REALEASED
     }
 
 }

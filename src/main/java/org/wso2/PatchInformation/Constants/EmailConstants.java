@@ -16,6 +16,7 @@
 // under the License.
 //
 package org.wso2.PatchInformation.Constants;
+
 public final class EmailConstants {
 
     public static final String EMAIL_HTML_HEADER_INTERNAL = "<!DOCTYPE html>\n" +
@@ -106,7 +107,6 @@ public final class EmailConstants {
 
     public static final String EMAIL_TYPE = "text/html";
 
-
     public static final String STATE_TABLE_COLUMNS_START = "<table align=\"center\" cellspacing=\"0\" " +
             "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
             "<tr>" +
@@ -166,6 +166,7 @@ public final class EmailConstants {
             "20px; padding: 10px;\">";
 
     private EmailConstants() {
+
     }
 
 }

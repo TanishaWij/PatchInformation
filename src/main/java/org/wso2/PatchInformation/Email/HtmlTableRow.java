@@ -18,9 +18,10 @@
 package org.wso2.PatchInformation.Email;
 
 /**
- * Interface that ensures that objects that implement the object to html object
+ * Interface that ensures that objects that implement this have a method that returns its data as an html html table row value
  */
 public interface HtmlTableRow {
-     String objectToHtml(String backgroundColor);
+
+    String objectToHtml(String backgroundColor);
 
 }

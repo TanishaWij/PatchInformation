@@ -30,11 +30,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import static org.wso2.PatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 import static org.wso2.PatchInformation.Constants.Constants.JIRA_URL_PREFIX_LENGTH;
 import static org.wso2.PatchInformation.Constants.Constants.QUERY_PER_PATCH;
 import static org.wso2.PatchInformation.Constants.Constants.SELECT_SUPPORT_JIRAS;
 import static org.wso2.PatchInformation.Constants.Constants.SUPPORT_JIRA_URL;
+import static org.wso2.PatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 
 /**
  * Accesses the pmtdb and queries it to get the Jira issues that have a corresponding entry in the pmt and then gets the
@@ -89,11 +89,11 @@ public class AccessPMT {
             for (JiraIssue jiraIssue : jiraIssuesInPmtAndJira) {
                 String query = QUERY_PER_PATCH + jiraIssue.getName() + "';";
                 try (PreparedStatement pst = con.prepareStatement(query); ResultSet result = pst.executeQuery()) {
-                        allPatches.addAll(PatchesCreator.getPatchesIn(result, jiraIssue));
-                    } catch (SQLException e) {
-                        String errorMessage = "Failed to extract data from returned ResultSet for: " + jiraIssue.getName();
-                        logger.error(errorMessage, e);
-                        throw new ExtractingFromResultsetException(errorMessage, e);
+                    allPatches.addAll(PatchesCreator.getPatchesIn(result, jiraIssue));
+                } catch (SQLException e) {
+                    String errorMessage = "Failed to extract data from returned ResultSet for: " + jiraIssue.getName();
+                    logger.error(errorMessage, e);
+                    throw new ExtractingFromResultsetException(errorMessage, e);
                 }
             }
             return allPatches;

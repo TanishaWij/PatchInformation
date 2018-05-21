@@ -22,12 +22,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.wso2.PatchInformation.PropertyValues.ConfiguredProperties;
 import org.wso2.PatchInformation.Constants.Constants;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.AccessJiraException;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.ExtractingFromResponseStreamException;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.JiraException;
 import org.wso2.PatchInformation.Exceptions.JiraExceptions.ParsingToJsonException;
+import org.wso2.PatchInformation.PropertyValues.ConfiguredProperties;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -146,7 +146,7 @@ public class AccessJira {
             }
 
             if (connection.getResponseCode() == 200) {
-                try (BufferedReader dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()))){
+                try (BufferedReader dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
                     //dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuilder response = new StringBuilder();
                     String inputLine;
@@ -161,10 +161,10 @@ public class AccessJira {
                     throw new ExtractingFromResponseStreamException(errorMessage, e);
                 }
             } else {
-                    String errorMessage = "Failed to get expected Jira response, response code: " +
-                            connection.getResponseCode() + " returned";
-                    logger.error(errorMessage);
-                    throw new ExtractingFromResponseStreamException(errorMessage);
+                String errorMessage = "Failed to get expected Jira response, response code: " +
+                        connection.getResponseCode() + " returned";
+                logger.error(errorMessage);
+                throw new ExtractingFromResponseStreamException(errorMessage);
             }
         } catch (IOException e) {
             String errorMessage = "Failed to get Response code";

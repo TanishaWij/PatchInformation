@@ -17,9 +17,9 @@
 //
 
 package org.wso2.PatchInformation.PmtData;
+
 import org.wso2.PatchInformation.Constants.Constants;
 import org.wso2.PatchInformation.Email.HtmlTableRow;
-
 
 /**
  * Extended from the more general Patch class. Same functionality, more class attributes.
@@ -28,8 +28,9 @@ public class DevPatch extends Patch implements HtmlTableRow {
 
     private String reportDate;
 
-    public DevPatch(String url, String Name, String productName, String assignee, Constants.State state, String patchLCState,
-                    String reportDate, String daysInState) {
+    DevPatch(String url, String Name, String productName, String assignee, Constants.State state, String patchLCState,
+             String reportDate, String daysInState) {
+
         super(url, Name, productName, assignee, state, patchLCState, daysInState);
         this.reportDate = reportDate;
     }
