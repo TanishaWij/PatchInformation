@@ -32,10 +32,7 @@ import org.wso2.PatchInformation.PropertyValues.ConfiguredProperties;
 
 import java.util.ArrayList;
 
-import static org.wso2.PatchInformation.Constants.EmailConstants.EMAIL_HTML_HEADER_CUSTOMER_RELATED;
-import static org.wso2.PatchInformation.Constants.EmailConstants.EMAIL_HTML_HEADER_INTERNAL;
-import static org.wso2.PatchInformation.Constants.EmailConstants.EMAIL_SUBJECT_CUSTOMER_RELATED;
-import static org.wso2.PatchInformation.Constants.EmailConstants.EMAIL_SUBJECT_INTERNAL;
+import static org.wso2.PatchInformation.Constants.EmailConstants.*;
 
 public class Main {
 

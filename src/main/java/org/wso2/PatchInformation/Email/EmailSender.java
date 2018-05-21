@@ -197,7 +197,7 @@ public class EmailSender {
             }
 
         } catch (GeneralSecurityException | IOException e) {
-            String errorMessage = "Failed to set up new trusted transport for sending email";
+            String errorMessage = "Failed to set up new trusted transport";
             logger.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
