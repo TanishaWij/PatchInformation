@@ -41,9 +41,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
-	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
+	at org.wso2.DailyPatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
 	at executeEmailSendingProcess(Main.java:80)
-	at org.wso2.PatchInformation.Main.main(Main.java:42)
+	at org.wso2.DailyPatchInformation.Main.main(Main.java:42)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
 	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
@@ -83,9 +83,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
-	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
+	at org.wso2.DailyPatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
 	at executeEmailSendingProcess(Main.java:80)
-	at org.wso2.PatchInformation.Main.main(Main.java:47)
+	at org.wso2.DailyPatchInformation.Main.main(Main.java:47)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
 	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
@@ -130,9 +130,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
-	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
+	at org.wso2.DailyPatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
 	at executeEmailSendingProcess(Main.java:92)
-	at org.wso2.PatchInformation.Main.main(Main.java:53)
+	at org.wso2.DailyPatchInformation.Main.main(Main.java:53)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
 	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
@@ -172,9 +172,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
-	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
+	at org.wso2.DailyPatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
 	at executeEmailSendingProcess(Main.java:92)
-	at org.wso2.PatchInformation.Main.main(Main.java:58)
+	at org.wso2.DailyPatchInformation.Main.main(Main.java:58)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
 	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
@@ -214,9 +214,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
-	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
+	at org.wso2.DailyPatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
 	at executeEmailSendingProcess(Main.java:82)
-	at org.wso2.PatchInformation.Main.main(Main.java:43)
+	at org.wso2.DailyPatchInformation.Main.main(Main.java:43)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
 	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
@@ -256,9 +256,9 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
 	at java.sql.DriverManager.getConnection(DriverManager.java:664)
 	at java.sql.DriverManager.getConnection(DriverManager.java:247)
-	at org.wso2.PatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
+	at org.wso2.DailyPatchInformation.PmtData.AccessPMT.getJiraIssuesInBothPMTAndJira(AccessPMT.java:50)
 	at executeEmailSendingProcess(Main.java:82)
-	at org.wso2.PatchInformation.Main.main(Main.java:48)
+	at org.wso2.DailyPatchInformation.Main.main(Main.java:48)
 Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 	at java.net.PlainSocketImpl.socketConnect(Native Method)
 	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
@@ -384,4 +384,28 @@ Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 2018-05-21 10:24:41 INFO  Main:98 - Successfully extracted patch information associated with the Jira issues from the pmt.
 2018-05-21 10:24:42 INFO  Main:108 - Successfully sent Email with patch information.
 2018-05-21 10:24:42 INFO  Main:53 - Execution completed successfully.
+
+2018-05-21 10:50:06 INFO  Main:44 - Executing process to send email on Internal Jira issues.
+2018-05-21 10:50:12 INFO  Main:87 - Successfully extracted Jira issue information from Jira.
+2018-05-21 10:50:13 INFO  Main:98 - Successfully extracted patch information from the pmt.
+2018-05-21 10:50:15 INFO  Main:108 - Successfully sent Email with patch information.
+2018-05-21 10:50:15 INFO  Main:46 - Execution completed successfully.
+
+2018-05-21 10:50:15 INFO  Main:51 - Executing process to send email on Customer related Jira issues.
+2018-05-21 10:50:20 INFO  Main:87 - Successfully extracted Jira issue information from Jira.
+2018-05-21 10:50:21 INFO  Main:98 - Successfully extracted patch information from the pmt.
+2018-05-21 10:50:22 INFO  Main:108 - Successfully sent Email with patch information.
+2018-05-21 10:50:22 INFO  Main:53 - Execution completed successfully.
+
+2018-05-21 10:50:46 INFO  Main:44 - Executing process to send email on Internal Jira issues.
+2018-05-21 10:50:52 INFO  Main:87 - Successfully extracted Jira issue information from Jira.
+2018-05-21 10:50:53 INFO  Main:98 - Successfully extracted patch information from the pmt.
+2018-05-21 10:50:54 INFO  Main:108 - Successfully sent Email with patch information.
+2018-05-21 10:50:54 INFO  Main:46 - Execution completed successfully.
+
+2018-05-21 10:50:54 INFO  Main:51 - Executing process to send email on Customer related Jira issues.
+2018-05-21 10:50:59 INFO  Main:87 - Successfully extracted Jira issue information from Jira.
+2018-05-21 10:50:59 INFO  Main:98 - Successfully extracted patch information from the pmt.
+2018-05-21 10:51:00 INFO  Main:108 - Successfully sent Email with patch information.
+2018-05-21 10:51:00 INFO  Main:53 - Execution completed successfully.
 
