@@ -102,15 +102,10 @@ public final class EmailConstants {
     public static final String RELEASED_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">Released Patches That Are Not Live Synced</p>";
     public static final String SUMMARY_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Jiras that are not Live synced</p>";
+            "font-weight: 600; line-height: 26px; color: #000000;\">Summary of all Jiras to be Live synced</p>";
 
     public static final String EMAIL_TYPE = "text/html";
-    public static final String EMAIL_PROTOCOL = "smtp";
-    public static final String EMAIL_HOST = "smtp.gmail.com";
-    public static final String EMAIL_PORT = "587";
-    public static final String PORT = "mail.smtp.port";
-    public static final String HOST = "mail.smtp.host";
-    public static final String PROTOCOL = "protocol";
+
 
     public static final String STATE_TABLE_COLUMNS_START = "<table align=\"center\" cellspacing=\"0\" " +
             "cellpadding=\"0\" border=\"0\" width=\"95%\">" +

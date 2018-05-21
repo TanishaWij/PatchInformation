@@ -131,7 +131,7 @@ public class AccessJira {
     private static String sendJiraGETRequest(URL url) throws JiraException {
 
         HttpURLConnection connection = null;
-        BufferedReader dataInputStream = null;
+
         try {
             //open and set connection values
             try {
@@ -146,8 +146,8 @@ public class AccessJira {
             }
 
             if (connection.getResponseCode() == 200) {
-                try {
-                    dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                try (BufferedReader dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()))){
+                    //dataInputStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     StringBuilder response = new StringBuilder();
                     String inputLine;
 
@@ -171,13 +171,6 @@ public class AccessJira {
             logger.error(errorMessage, e);
             throw new AccessJiraException(errorMessage, e);
         } finally {
-            if (dataInputStream != null) {
-                try {
-                    dataInputStream.close();
-                } catch (IOException e) {
-                    logger.warn("Buffered reader was not closed", e);
-                }
-            }
             if (connection != null) {
                 connection.disconnect();
             }

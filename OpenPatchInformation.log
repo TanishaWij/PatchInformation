@@ -349,3 +349,27 @@ Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 2018-05-21 09:34:06 INFO  Main:111 - Successfully sent Email with patch information.
 2018-05-21 09:34:06 INFO  Main:56 - Execution completed successfully.
 
+2018-05-21 09:43:30 INFO  Main:47 - Executing process to send email on Internal Jira issues.
+2018-05-21 09:43:36 INFO  Main:90 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:43:37 INFO  Main:101 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:43:38 INFO  Main:111 - Successfully sent Email with patch information.
+2018-05-21 09:43:38 INFO  Main:49 - Execution completed successfully.
+
+2018-05-21 09:43:38 INFO  Main:54 - Executing process to send email on Customer related Jira issues.
+2018-05-21 09:43:43 INFO  Main:90 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:43:44 INFO  Main:101 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:43:44 INFO  Main:111 - Successfully sent Email with patch information.
+2018-05-21 09:43:44 INFO  Main:56 - Execution completed successfully.
+
+2018-05-21 09:51:25 INFO  Main:47 - Executing process to send email on Internal Jira issues.
+2018-05-21 09:51:30 INFO  Main:90 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:51:32 INFO  Main:101 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:51:33 INFO  Main:111 - Successfully sent Email with patch information.
+2018-05-21 09:51:33 INFO  Main:49 - Execution completed successfully.
+
+2018-05-21 09:51:33 INFO  Main:54 - Executing process to send email on Customer related Jira issues.
+2018-05-21 09:51:37 INFO  Main:90 - Successfully extracted Jira issues from Jira.
+2018-05-21 09:51:38 INFO  Main:101 - Successfully extracted patch information associated with the Jira issues from the pmt.
+2018-05-21 09:51:39 INFO  Main:111 - Successfully sent Email with patch information.
+2018-05-21 09:51:39 INFO  Main:56 - Execution completed successfully.
+
