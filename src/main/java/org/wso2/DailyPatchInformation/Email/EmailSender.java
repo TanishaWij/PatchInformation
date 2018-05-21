@@ -25,12 +25,9 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.Base64;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
-import com.google.api.services.gmail.GmailScopes;
 import com.google.api.services.gmail.model.Message;
 import org.apache.log4j.Logger;
 import org.wso2.DailyPatchInformation.Exceptions.EmailExceptions.EmailException;
@@ -43,15 +40,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
-import java.util.Collections;
-import java.util.List;
 import java.util.Properties;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import static org.wso2.DailyPatchInformation.Constants.EmailConstants.APPLICATION_NAME;
+import static org.wso2.DailyPatchInformation.Constants.EmailConstants.CLIENT_SECRET_DIR;
+import static org.wso2.DailyPatchInformation.Constants.EmailConstants.CREDENTIALS_FOLDER;
 import static org.wso2.DailyPatchInformation.Constants.EmailConstants.EMAIL_TYPE;
+import static org.wso2.DailyPatchInformation.Constants.EmailConstants.JSON_FACTORY;
+import static org.wso2.DailyPatchInformation.Constants.EmailConstants.SCOPES;
 import static org.wso2.DailyPatchInformation.PropertyValues.ConfiguredProperties.getValueOf;
 
 /**
@@ -60,12 +60,6 @@ import static org.wso2.DailyPatchInformation.PropertyValues.ConfiguredProperties
 public class EmailSender {
 
     private final static Logger logger = Logger.getLogger(EmailSender.class);
-
-    private static final String APPLICATION_NAME = "Gmail API Java Quickstart"; //TODO set
-    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final String CREDENTIALS_FOLDER = "src/main/resources/gmailCredentials";
-    private static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_SEND);
-    private static final String CLIENT_SECRET_DIR = "/clientSecret.json";
 
     /**
      * Creates an authorized Credential object.

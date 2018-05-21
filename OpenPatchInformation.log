@@ -409,3 +409,15 @@ Caused by: java.net.NoRouteToHostException: No route to host (Host unreachable)
 2018-05-21 10:51:00 INFO  Main:108 - Successfully sent Email with patch information.
 2018-05-21 10:51:00 INFO  Main:53 - Execution completed successfully.
 
+2018-05-21 11:10:29 INFO  Main:44 - Executing process to send email on Internal Jira issues.
+2018-05-21 11:10:35 INFO  Main:87 - Successfully extracted Jira issue information from Jira.
+2018-05-21 11:10:36 INFO  Main:98 - Successfully extracted patch information from the pmt.
+2018-05-21 11:10:37 INFO  Main:108 - Successfully sent Email with patch information.
+2018-05-21 11:10:37 INFO  Main:46 - Execution completed successfully.
+
+2018-05-21 11:10:37 INFO  Main:51 - Executing process to send email on Customer related Jira issues.
+2018-05-21 11:10:41 INFO  Main:87 - Successfully extracted Jira issue information from Jira.
+2018-05-21 11:10:42 INFO  Main:98 - Successfully extracted patch information from the pmt.
+2018-05-21 11:10:43 INFO  Main:108 - Successfully sent Email with patch information.
+2018-05-21 11:10:43 INFO  Main:53 - Execution completed successfully.
+

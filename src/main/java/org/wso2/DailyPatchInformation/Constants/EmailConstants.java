@@ -17,8 +17,21 @@
 //
 package org.wso2.DailyPatchInformation.Constants;
 
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.gmail.GmailScopes;
+
+import java.util.Collections;
+import java.util.List;
+
 public final class EmailConstants {
 
+
+    public static final String APPLICATION_NAME = "Gmail API Java Quickstart";
+    public static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    public static final String CREDENTIALS_FOLDER = "src/main/resources/gmailCredentials";
+    public static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_SEND);
+    public static final String CLIENT_SECRET_DIR = "/clientSecret.json";
     public static final String EMAIL_HTML_HEADER_INTERNAL = "<!DOCTYPE html>\n" +
             "<html>\n" +
             "   <head>\n" +
