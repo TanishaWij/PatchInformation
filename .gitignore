@@ -1,9 +1,10 @@
 # Directories
 .idea
 target
+resources
 
 # Files
-resources
+
 *.iml
 *.xml
 config.properties
