@@ -42,7 +42,8 @@ public class PropertyValues {
     private PropertyValues() throws IOException {
 
         Properties prop = new Properties();
-        try (InputStream propertyFile = PatchInformationMailSender.class.getResourceAsStream("/config.properties")) {
+        try (InputStream propertyFile =
+                     PatchInformationMailSender.class.getResourceAsStream("/config.properties")) {
             prop.load(propertyFile);
         }
 

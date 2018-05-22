@@ -92,7 +92,6 @@ public class EmailSender {
             LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
-
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow;
         try {
@@ -101,7 +100,6 @@ public class EmailSender {
                     .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(CREDENTIALS_FOLDER)))
                     .setAccessType("offline")
                     .build();
-            //authorize
             return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
         } catch (IOException e) {
             String errorMessage = "Failed to set up folder to store user credentials";
@@ -116,43 +114,34 @@ public class EmailSender {
      * @param subject  subject of the email
      * @param bodyText body text of the email
      * @return the MimeMessage to be used to send email
-     * @throws EmailSetupException
+     * @throws EmailSetupException email was not created
      */
-    private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC) throws EmailSetupException {
-
-        Properties props = new Properties();
-        Session session = Session.getDefaultInstance(props, null);
-
-        MimeMessage email = new MimeMessage(session);
-
+    private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC)
+            throws EmailSetupException {
         try {
+            Properties props = new Properties();
+            Session session = Session.getDefaultInstance(props, null);
+            MimeMessage email = new MimeMessage(session);
             email.setFrom(new InternetAddress(emailFrom));
             String[] toList = emailTo.split(",");
             for (String aToList : toList) {
                 email.addRecipient(javax.mail.Message.RecipientType.TO,
                         new InternetAddress(aToList));
             }
-
             String[] ccList = emailCC.split(",");
             for (String aCcList : ccList) {
                 email.addRecipient(javax.mail.Message.RecipientType.CC,
                         new InternetAddress(aCcList));
             }
+            email.setSubject(subject);
+            email.setContent(bodyText, EMAIL_TYPE);
+            return email;
         } catch (MessagingException e) {
-            String errorMessage = "Failed to extract email Addresses in Properties file";
+            String errorMessage = "Failed to set up email";
             LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
 
-        try {
-            email.setSubject(subject);
-            email.setContent(bodyText, EMAIL_TYPE);
-        } catch (MessagingException e) {
-            String errorMessage = "Failed to set email subject or body";
-            LOGGER.error(errorMessage, e);
-            throw new EmailSetupException(errorMessage, e);
-        }
-        return email;
     }
 
     /**
@@ -187,7 +176,8 @@ public class EmailSender {
      * @param subject   subject of the email
      * @throws EmailException email was not sent
      */
-    public void sendMessage(String emailBody, String subject, String emailFrom, String emailTo, String emailCC) throws EmailException {
+    public void sendMessage(String emailBody, String subject, String emailFrom, String emailTo, String emailCC)
+            throws EmailException {
         // Build a new authorized API client service.
         try {
             NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();

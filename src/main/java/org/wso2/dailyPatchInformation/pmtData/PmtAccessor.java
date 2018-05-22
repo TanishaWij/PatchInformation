@@ -107,7 +107,8 @@ public class PmtAccessor {
         }
     }
 
-    public ArrayList<JIRAIssue> filterJIRAIssues(ArrayList<JIRAIssue> JIRAIssues, String url, String user, String password) throws PmtException {
+    public ArrayList<JIRAIssue> filterJIRAIssues(ArrayList<JIRAIssue> JIRAIssues, String url, String user,
+                                                 String password) throws PmtException {
 
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(SELECT_SUPPORT_JIRAS);
@@ -135,7 +136,8 @@ public class PmtAccessor {
         }
     }
 
-    private ArrayList<JIRAIssue> getJIRAIssuesInPmtAndJIRA(ArrayList<JIRAIssue>JIRAIssues,ArrayList<String> allJIRANamesInPmt){
+    private ArrayList<JIRAIssue> getJIRAIssuesInPmtAndJIRA(ArrayList<JIRAIssue>JIRAIssues,
+                                                           ArrayList<String> allJIRANamesInPmt){
         ArrayList<JIRAIssue> JIRAIssuesInPmtAndJIRA = new ArrayList<>();
         for (JIRAIssue JIRAIssue : JIRAIssues) {
             if (allJIRANamesInPmt.contains(JIRAIssue.getName())) {
@@ -145,7 +147,8 @@ public class PmtAccessor {
         return JIRAIssuesInPmtAndJIRA;
     }
 
-    public void populatePatches(ArrayList<JIRAIssue> JIRAIssuesInPmtAndJIRA, String url, String user, String password) throws PmtException {
+    public void populatePatches(ArrayList<JIRAIssue> JIRAIssuesInPmtAndJIRA, String url, String user, String password)
+            throws PmtException {
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             for (JIRAIssue JIRAIssue : JIRAIssuesInPmtAndJIRA) {
@@ -202,19 +205,18 @@ public class PmtAccessor {
                             LC_STATE_PREQA.equals(lcState) || LC_STATE_FAILED_QA.equals(lcState) ||
                             LC_STATE_READY_FOR_QA.equals(lcState)) {
 
-                        JIRAIssue.addPatchToJIRA(new DevPatch(JIRALink, patchName, productName, assignee, State.IN_DEV, lcState,
-                                curReportDate,
-                                daysSincePatchWasReported));
+                        JIRAIssue.addPatchToJIRA(new DevPatch(JIRALink, patchName, productName, assignee,
+                                State.IN_DEV, lcState, curReportDate, daysSincePatchWasReported));
                         //if patch has been released
                     } else if (LC_STATE_RELEASED.equals(lcState)) {
-                        JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.REALEASED, lcState,
-                                getDate(result.getString("RELEASED_ON"))));
+                        JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.REALEASED,
+                                lcState, getDate(result.getString("RELEASED_ON"))));
                     } else if (LC_STATE_RELEASED_NOT_AUTOMATED.equals(lcState)) {
-                        JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.REALEASED, lcState,
-                                getDate(result.getString("RELEASED_NOT_AUTOMATED_ON"))));
+                        JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.REALEASED,
+                                lcState, getDate(result.getString("RELEASED_NOT_AUTOMATED_ON"))));
                     } else if (LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN.equals(lcState)) {
-                        JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.REALEASED, lcState,
-                                getDate(result.getString("RELEASED_NOT_IN_PUBLIC_SVN_ON"))));
+                        JIRAIssue.addPatchToJIRA(new Patch(JIRALink, patchName, productName, assignee, State.REALEASED,
+                                lcState, getDate(result.getString("RELEASED_NOT_IN_PUBLIC_SVN_ON"))));
                     }
                 }
             } else if (STILL_IN_QUEUE.equals(active)) {

@@ -33,7 +33,8 @@ public class Patch implements HtmlTableRow {
     private String patchLCState;
     private String daysInState;
 
-    public Patch(String JIRALink, String Name, String productName, String assignee, Constants.State state, String patchLCState, String daysInState) {
+    public Patch(String JIRALink, String Name, String productName, String assignee, Constants.State state,
+                 String patchLCState, String daysInState) {
 
         this.url = JIRALink;
         this.name = Name;

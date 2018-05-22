@@ -60,7 +60,6 @@ public class EmailBodyCreator {
     /**
      * Returns the body of the email.
      *
-     * @param patches     all patches to be assigned to states and their details to be recorded in the email.
      * @param JIRAIssues  all JIRA issues containing details to be recorded in the email.
      * @param emailHeader email header dependent on if its the internal or customer related email.
      * @return the email body.
@@ -73,11 +72,14 @@ public class EmailBodyCreator {
         ArrayList<Patch> patchesReleased = new ArrayList<>();
         String emailBody = emailHeader;
         emailBody += getSummeryHtmlTable(JIRAIssues);
-        assignPatchesToStates(getAllPatches(JIRAIssues), patchesInQueue, patchesInSigning, patchesInDevelopment, patchesReleased);
+        assignPatchesToStates(getAllPatches(JIRAIssues), patchesInQueue, patchesInSigning, patchesInDevelopment,
+                patchesReleased);
         //get patch queue table
         emailBody += getStateHtmlTable(IN_QUEUE_SECTION_HEADER, "WORK DAYS IN QUEUE", patchesInQueue);
-        emailBody += getStateHtmlTable(IN_DEVELOPMENT_SECTION_HEADER, "WORK DAYS IN DEV", patchesInDevelopment);
-        emailBody += getStateHtmlTable(IN_SIGNING_SECTION_HEADER, "WORK DAYS IN SIGNING", patchesInSigning);
+        emailBody += getStateHtmlTable(IN_DEVELOPMENT_SECTION_HEADER, "WORK DAYS IN DEV",
+                patchesInDevelopment);
+        emailBody += getStateHtmlTable(IN_SIGNING_SECTION_HEADER, "WORK DAYS IN SIGNING",
+                patchesInSigning);
         emailBody += getStateHtmlTable(RELEASED_SECTION_HEADER, "DATE RELEASED", patchesReleased);
         emailBody += EMAIL_FOOTER;
         return emailBody;
@@ -97,15 +99,12 @@ public class EmailBodyCreator {
                 case IN_DEV:
                     patchesInDevelopment.add(patch);
                     break;
-
                 case IN_PATCH_QUEUE:
                     patchesInQueue.add(patch);
                     break;
-
                 case IN_SIGNING:
                     patchesInSigning.add(patch);
                     break;
-
                 case REALEASED:
                     patchesReleased.add(patch);
                     break;
@@ -113,6 +112,12 @@ public class EmailBodyCreator {
         }
     }
 
+    /**
+     * returns an arraylist of all patches
+     *
+     * @param JIRAIssues arraylist of JIRA issues
+     * @return all patches
+     */
     private ArrayList<Patch> getAllPatches(ArrayList<JIRAIssue> JIRAIssues) {
 
         ArrayList<Patch> patches = new ArrayList<>();
@@ -138,17 +143,25 @@ public class EmailBodyCreator {
         return summaryTable;
     }
 
-    private String getStateHtmlTable(String stateHeader, String dateColumnName, ArrayList<Patch> patchesInState) {
+    /**
+     * Builds the html string corresponding to each of the 4 states table and the corresponding JIRA issues.
+     *
+     * @param header    email header
+     * @param dateColumnName table attribute name for "date" coloumn on table
+     * @param patches arraylist of patches
+     * @return html code showing the state data in a table
+     */
+    private String getStateHtmlTable(String header, String dateColumnName, ArrayList<Patch> patches) {
 
-        String table = stateHeader;
-        if (IN_DEVELOPMENT_SECTION_HEADER.equals(stateHeader)) {
+        String table = header;
+        if (IN_DEVELOPMENT_SECTION_HEADER.equals(header)) {
             table += DEV_STATE_TABLE_COLUMNS_START;
         } else {
             table += STATE_TABLE_COLUMNS_START;
         }
         table += dateColumnName + STATE_TABLE_COLUMNS_END;
-        patchesInState.sort(new PatchChainedComparator(new ProductNameComparator(), new StateNameComparator()));
-        ArrayList<HtmlTableRow> patchesToHtml = new ArrayList<>(patchesInState);
+        patches.sort(new PatchChainedComparator(new ProductNameComparator(), new StateNameComparator()));
+        ArrayList<HtmlTableRow> patchesToHtml = new ArrayList<>(patches);
         table += getTableRows(patchesToHtml);
         table += "</table>";
         return table;
@@ -178,7 +191,6 @@ public class EmailBodyCreator {
         }
         return htmlRows.toString();
     }
-
 }
 
 

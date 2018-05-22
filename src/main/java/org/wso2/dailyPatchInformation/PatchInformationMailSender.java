@@ -72,7 +72,8 @@ public class PatchInformationMailSender {
      *                                      being sent.
      * @throws PatchInformtionException The process execution has halted
      */
-    private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues) throws PatchInformtionException{
+    private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues)
+            throws PatchInformtionException{
 
         PropertyValues propertyValues;
         try {
@@ -80,11 +81,9 @@ public class PatchInformationMailSender {
         } catch (IOException e) {
             throw new PatchInformtionException("Failed to read properties file", e);
         }
-
         String urlToJIRAIssues;
         String emailSubject;
         String htmlEmailHeader;
-
         if (isMailOnCustomerReportedIssues) {
             urlToJIRAIssues = propertyValues.getUrlToCustomerIssuesFilter();
             emailSubject = EMAIL_SUBJECT_CUSTOMER_RELATED;
@@ -95,24 +94,24 @@ public class PatchInformationMailSender {
             emailSubject = EMAIL_SUBJECT_INTERNAL;
             htmlEmailHeader = EMAIL_HTML_HEADER_INTERNAL;
         }
-
         ArrayList<JIRAIssue> JIRAIssues;
         try {
-            JIRAIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getJIRAIssues(urlToJIRAIssues, propertyValues.getJIRAAuthentication()));
+            JIRAIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getJIRAIssues(urlToJIRAIssues,
+                    propertyValues.getJIRAAuthentication()));
             LOGGER.info("Successfully extracted JIRA issue information from JIRA.");
         } catch (JIRAException e) {
             String errorMessage = "Failed to extract JIRA issues from JIRA.";
             LOGGER.error(errorMessage, e);
             throw new PatchInformtionException(errorMessage, e);
         }
-
         String emailBody;
         String pmtConnection = propertyValues.getPmtConnection();
         String pmtUserName = propertyValues.getDbUser();
         String pmtUserPassword = propertyValues.getDbPassword();
         PmtAccessor pmtAccessor = PmtAccessor.getPmtAccessor();
         try {
-            ArrayList<JIRAIssue> JIRATicketsInPmtAndJIRA = new ArrayList<>(pmtAccessor.filterJIRAIssues(JIRAIssues, pmtConnection, pmtUserName, pmtUserPassword));
+            ArrayList<JIRAIssue> JIRATicketsInPmtAndJIRA = new ArrayList<>(
+                    pmtAccessor.filterJIRAIssues(JIRAIssues, pmtConnection, pmtUserName, pmtUserPassword));
             pmtAccessor.populatePatches(JIRATicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword);
             LOGGER.info("Successfully extracted patch information from the pmt.");
             emailBody = EmailBodyCreator.getEmailBodyCreator().getEmailBody(JIRATicketsInPmtAndJIRA, htmlEmailHeader);
@@ -121,9 +120,9 @@ public class PatchInformationMailSender {
             LOGGER.error(errorMessage, e);
             throw new PatchInformtionException(errorMessage, e);
         }
-
         try {
-            EmailSender.getEmailSender().sendMessage(emailBody, emailSubject, propertyValues.getEmailUser(), propertyValues.getToList(), propertyValues.getCcList());
+            EmailSender.getEmailSender().sendMessage(emailBody, emailSubject, propertyValues.getEmailUser(),
+                    propertyValues.getToList(), propertyValues.getCcList());
             LOGGER.info("Successfully sent email with patch information.");
         } catch (EmailException e) {
             String errorMessage = "Failed to send email.";

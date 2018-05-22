@@ -23,9 +23,4 @@ public class JIRAContentException extends org.wso2.dailyPatchInformation.excepti
 
         super(message, cause);
     }
-
-    public JIRAContentException(String message) {
-
-        super(message);
-    }
 }

@@ -81,7 +81,8 @@ public final class EmailConstants {
             "   </tr>\n" +
             "</table>\n" +
             "</body></html>\n";
-    public static final String TABLE_HEADER_SUMMARY = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"95%\">" +
+    public static final String TABLE_HEADER_SUMMARY = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\"" +
+            " border=\"0\" width=\"95%\">" +
             "<tr>" +
             " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
             " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
@@ -105,7 +106,8 @@ public final class EmailConstants {
             "</td>" +
             "</tr>";
     public static final String EMAIL_SUBJECT_INTERNAL = "Information on internal JIRA tickets and patches";
-    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "Information on Customer related JIRA tickets and patches";
+    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "Information on Customer related JIRA tickets and" +
+            " patches";
     public static final String IN_QUEUE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">Patches In The Patch Queue</p>";
     public static final String IN_DEVELOPMENT_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
@@ -115,7 +117,8 @@ public final class EmailConstants {
     public static final String RELEASED_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">Released Patches That Are Not Live Synced</p>";
     public static final String SUMMARY_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Summary of patch related JIRA issues in development</p>";
+            "font-weight: 600; line-height: 26px; color: #000000;\">Summary of patch related JIRA issues in " +
+            "development</p>";
 
     public static final String EMAIL_TYPE = "text/html";
 
@@ -150,7 +153,8 @@ public final class EmailConstants {
             " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
             " 20px; padding: 10px;\">";
     public static final String STATE_TABLE_COLUMNS_END = "</td></tr>";
-    public static final String DEV_STATE_TABLE_COLUMNS_START = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" width=\"95%\">" +
+    public static final String DEV_STATE_TABLE_COLUMNS_START = "<table align=\"center\" cellspacing=\"0\" " +
+            "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
             "<tr><td width=\"20%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
             "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
             "padding: 10px;\"> JIRA LINK</td><td width=\"20%\" align=\"center\" color=\"#044767\"" +

@@ -116,7 +116,7 @@ public class JIRAAccessor {
                         JSONObject fieldsInJson = (JSONObject) issueInJson.get(Constants.FIELDS);
                         JSONObject assigneeInJson = (JSONObject) fieldsInJson.get(Constants.ASSIGNEE);
                         //create new JIRAIssue
-                        JIRAIssues.add(new org.wso2.dailyPatchInformation.JIRAData.JIRAIssue(issueInJson.get(Constants.JIRA_KEY).toString(),
+                        JIRAIssues.add(new JIRAIssue(issueInJson.get(Constants.JIRA_KEY).toString(),
                                 assigneeInJson.get(Constants.EMAIL).toString()));
                     } catch (NullPointerException e) {
                         String errorMessage = "Failed to extract JIRA issue's field data";
