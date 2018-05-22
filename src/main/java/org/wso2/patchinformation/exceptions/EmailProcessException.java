@@ -1,7 +1,7 @@
 package org.wso2.patchinformation.exceptions;
 
 /**
- * Exceptions that occur during the execution of the whole process.
+ * Exceptions that occur during the execution of the process from start to finish.
  */
 public class EmailProcessException extends Exception {
 
@@ -24,3 +24,4 @@ public class EmailProcessException extends Exception {
         super(message);
     }
 }
+

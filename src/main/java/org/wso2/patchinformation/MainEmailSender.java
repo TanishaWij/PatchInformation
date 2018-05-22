@@ -99,7 +99,6 @@ public class MainEmailSender {
             LOGGER.error(errorMessage, e);
             throw new EmailProcessException(errorMessage, e);
         }
-
         String emailBodyHTML;
         String pmtConnection = propertyValues.getPmtConnection();
         String pmtUserName = propertyValues.getDbUser();
@@ -126,7 +125,5 @@ public class MainEmailSender {
             LOGGER.error(errorMessage, e);
             throw new EmailProcessException(errorMessage, e);
         }
-
     }
-
 }
