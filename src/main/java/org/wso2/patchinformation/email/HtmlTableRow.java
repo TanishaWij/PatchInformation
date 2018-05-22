@@ -22,7 +22,6 @@ package org.wso2.patchinformation.email;
  * table row value
  */
 public interface HtmlTableRow {
-
     String objectToHtml(String backgroundColor);
 
 }

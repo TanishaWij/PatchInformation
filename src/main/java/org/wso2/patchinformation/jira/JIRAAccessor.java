@@ -49,11 +49,9 @@ public class JIRAAccessor {
     private static JIRAAccessor jiraAccessor;
 
     private JIRAAccessor() {
-
     }
 
     public static JIRAAccessor getJiraAccessor() {
-
         if (jiraAccessor == null) {
             jiraAccessor = new JIRAAccessor();
         }
@@ -100,7 +98,6 @@ public class JIRAAccessor {
      */
     private ArrayList<JIRAIssue> getJIRAsIssuesFromFilter(String urlToFilterResults, int totalJIRAs,
                                                           String authorizationValue) throws JIRAException {
-
         ArrayList<JIRAIssue> jiraIssues = new ArrayList<>();
         for (int i = 0; i <= totalJIRAs / RESULTS_PER_PAGE; i++) { //paging the JIRAIssue response
             try {
@@ -145,7 +142,6 @@ public class JIRAAccessor {
      * @throws JIRAException Failed to connect to JIRA and return the http response as a String
      */
     private String sendJIRARequest(URL url, String authorizationValue) throws JIRAException {
-
         HttpURLConnection connection = null;
         try {
             connection = (HttpsURLConnection) url.openConnection();

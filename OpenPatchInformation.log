@@ -1222,3 +1222,51 @@ Caused by: Unexpected character (<) at position 0.
 2018-05-22 10:12:55 INFO  MainEmailSender:60 - Execution completed successfully.
 
 2018-05-22 11:10:56 INFO  MainEmailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-22 11:31:04 INFO  MainEmailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-22 11:31:09 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 11:31:11 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 11:31:12 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 11:31:12 INFO  MainEmailSender:53 - Execution completed successfully.
+
+2018-05-22 11:31:12 INFO  MainEmailSender:58 - Executing process to send email on Customer related JIRA issues.
+2018-05-22 11:31:16 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 11:31:17 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 11:31:18 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 11:31:18 INFO  MainEmailSender:60 - Execution completed successfully.
+
+2018-05-22 11:55:03 INFO  MainEmailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-22 11:55:09 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 11:55:11 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 11:55:12 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 11:55:12 INFO  MainEmailSender:53 - Execution completed successfully.
+
+2018-05-22 11:55:12 INFO  MainEmailSender:58 - Executing process to send email on Customer related JIRA issues.
+2018-05-22 11:55:22 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 11:55:24 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 11:55:24 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 11:55:24 INFO  MainEmailSender:60 - Execution completed successfully.
+
+2018-05-22 13:58:48 INFO  MainEmailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-22 13:58:54 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 13:58:56 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 14:02:21 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 14:02:21 INFO  MainEmailSender:53 - Execution completed successfully.
+
+2018-05-22 14:02:21 INFO  MainEmailSender:58 - Executing process to send email on Customer related JIRA issues.
+2018-05-22 14:02:26 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 14:02:27 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 14:02:28 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 14:02:28 INFO  MainEmailSender:60 - Execution completed successfully.
+
+2018-05-22 14:03:48 INFO  MainEmailSender:51 - Executing process to send email on Internal JIRA issues.
+2018-05-22 14:03:54 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 14:03:55 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 14:03:57 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 14:03:57 INFO  MainEmailSender:53 - Execution completed successfully.
+
+2018-05-22 14:03:57 INFO  MainEmailSender:58 - Executing process to send email on Customer related JIRA issues.
+2018-05-22 14:04:01 INFO  MainEmailSender:99 - Successfully extracted JIRA issue information from JIRA.
+2018-05-22 14:04:02 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-22 14:04:04 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-22 14:04:04 INFO  MainEmailSender:60 - Execution completed successfully.
+

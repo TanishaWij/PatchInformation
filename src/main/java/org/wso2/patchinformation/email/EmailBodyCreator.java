@@ -46,11 +46,9 @@ public class EmailBodyCreator {
     private static EmailBodyCreator emailBodyCreator;
 
     private EmailBodyCreator() {
-
     }
 
     public static EmailBodyCreator getEmailBodyCreator() {
-
         if (emailBodyCreator == null) {
             emailBodyCreator = new EmailBodyCreator();
         }
@@ -65,7 +63,6 @@ public class EmailBodyCreator {
      * @return the email body.
      */
     public String getEmailBody(ArrayList<JIRAIssue> jiraIssues, String emailHeader) {
-
         ArrayList<Patch> patchesInQueue = new ArrayList<>();
         ArrayList<Patch> patchesInDev = new ArrayList<>();
         ArrayList<Patch> patchesInSigning = new ArrayList<>();
@@ -92,7 +89,6 @@ public class EmailBodyCreator {
     private void assignPatchesToStates(ArrayList<Patch> patches, ArrayList<Patch> patchesInQueue,
                                        ArrayList<Patch> patchesInSigning, ArrayList<Patch> patchesInDevelopment,
                                        ArrayList<Patch> patchesReleased) {
-
         for (Patch patch : patches) {
             switch (patch.getState()) {
                 case IN_DEV:
@@ -118,7 +114,6 @@ public class EmailBodyCreator {
      * @return all patches
      */
     private ArrayList<Patch> getAllPatches(ArrayList<JIRAIssue> jiraIssues) {
-
         ArrayList<Patch> patches = new ArrayList<>();
         for (JIRAIssue jiraIssue : jiraIssues) {
             patches.addAll(jiraIssue.getPatchesInJIRA());
@@ -133,7 +128,6 @@ public class EmailBodyCreator {
      * @return the html code for the table
      */
     private String getSummeryTable(ArrayList<JIRAIssue> jiraIssues) {
-
         String summaryTable = SUMMARY_SECTION_HEADER;
         summaryTable += TABLE_HEADER_SUMMARY;
         ArrayList<HtmlTableRow> jirasToHtml = new ArrayList<>(jiraIssues);
@@ -151,7 +145,6 @@ public class EmailBodyCreator {
      * @return html code showing the state data in a table
      */
     private String getStateTable(String header, String dateColumnName, ArrayList<Patch> patches) {
-
         String table = header;
         if (IN_DEV_SECTION_HEADER.equals(header)) {
             table += DEV_STATE_TABLE_COLUMNS_START;
@@ -173,7 +166,6 @@ public class EmailBodyCreator {
      * @return html code for row vaues of table
      */
     private String getTableRows(ArrayList<HtmlTableRow> rows) {
-
         StringBuilder htmlRows = new StringBuilder();
         boolean toggleFlag = true;
         String backgroundColor;

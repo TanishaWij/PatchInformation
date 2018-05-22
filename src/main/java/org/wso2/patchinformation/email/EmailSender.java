@@ -63,7 +63,6 @@ public class EmailSender {
     private static EmailSender emailSender;
 
     private EmailSender() {
-
     }
 
     public static EmailSender getEmailSender() {
@@ -82,7 +81,6 @@ public class EmailSender {
      * @throws EmailSetupException If there is no client_secret.
      */
     private Credential getCredentials(final NetHttpTransport httpTransport) throws EmailSetupException {
-
         InputStream in = MainEmailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
         GoogleClientSecrets clientSecrets;
         try {
@@ -118,7 +116,6 @@ public class EmailSender {
      */
     private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC)
             throws EmailSetupException {
-
         try {
             Properties props = new Properties();
             Session session = Session.getDefaultInstance(props, null);
@@ -152,7 +149,6 @@ public class EmailSender {
      * @throws EmailSetupException failed to create Message
      */
     private Message createMessageWithEmail(MimeMessage emailContent) throws EmailSetupException {
-
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             emailContent.writeTo(buffer);

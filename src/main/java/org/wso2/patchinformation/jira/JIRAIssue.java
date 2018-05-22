@@ -30,49 +30,40 @@ public class JIRAIssue implements HtmlTableRow {
     private String name;
     private String assigneeName;
     private ArrayList<Patch> patches;
-
     private String oldestPatchReportDate;
     private String jiralink;
 
     JIRAIssue(String jiraName, String assignee) {
-
         this.name = jiraName;
         this.assigneeName = assignee;
         this.patches = new ArrayList<>();
     }
 
     public void addPatchToJIRA(Patch newPatch) {
-
         this.patches.add(newPatch);
     }
 
     public ArrayList<Patch> getPatchesInJIRA() {
-
         return this.patches;
     }
 
     public String getName() {
-
         return name;
     }
 
     public String getAssigneeName() {
-
         return this.assigneeName;
     }
 
     public void setJiralink(String jiralink) {
-
         this.jiralink = jiralink;
     }
 
     public void setPatchReportDate(String oldestPatchReportDate) {
-
         this.oldestPatchReportDate = oldestPatchReportDate;
     }
 
     public String objectToHtml(String backgroundColor) {
-
         return "<tr><td width=\"" + "30%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight:" +
                 " 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +

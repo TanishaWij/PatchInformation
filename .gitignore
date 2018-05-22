@@ -3,7 +3,7 @@
 target
 
 # Files
-
+resources
 *.iml
 *.xml
 config.properties
