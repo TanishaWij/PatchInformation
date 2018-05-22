@@ -20,10 +20,7 @@ package org.wso2.patchinformation;
 import org.apache.log4j.Logger;
 import org.wso2.patchinformation.email.EmailBodyCreator;
 import org.wso2.patchinformation.email.EmailSender;
-import org.wso2.patchinformation.exceptions.EmailSendingProcessException;
-import org.wso2.patchinformation.exceptions.email.EmailException;
-import org.wso2.patchinformation.exceptions.jira.JIRAException;
-import org.wso2.patchinformation.exceptions.pmt.PmtException;
+import org.wso2.patchinformation.exceptions.EmailProcessException;
 import org.wso2.patchinformation.jira.JIRAAccessor;
 import org.wso2.patchinformation.jira.JIRAIssue;
 import org.wso2.patchinformation.pmt.PmtAccessor;
@@ -51,14 +48,14 @@ public class MainEmailSender {
             LOGGER.info("Executing process to send email on Internal JIRA issues.");
             executeEmailSendingProcess(false);
             LOGGER.info("Execution completed successfully.\n");
-        } catch (EmailSendingProcessException e) {
+        } catch (EmailProcessException e) {
             LOGGER.error("Execution failed, process was not completed\n", e);
         }
         try {
             LOGGER.info("Executing process to send email on Customer related JIRA issues.");
             executeEmailSendingProcess(true);
             LOGGER.info("Execution completed successfully.\n");
-        } catch (EmailSendingProcessException e) {
+        } catch (EmailProcessException e) {
             LOGGER.error("Execution failed, process was not completed\n", e);
         }
     }
@@ -69,16 +66,16 @@ public class MainEmailSender {
      *
      * @param isMailOnCustomerReportedIssues boolean to determine if it is the internal or customer related mail
      *                                       being sent.
-     * @throws EmailSendingProcessException The process execution has halted
+     * @throws EmailProcessException The process execution has halted
      */
     private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues)
-            throws EmailSendingProcessException {
+            throws EmailProcessException {
 
         PropertyValues propertyValues;
         try {
             propertyValues = PropertyValues.getPropertyValues();
         } catch (IOException e) {
-            throw new EmailSendingProcessException("Failed to read properties file", e);
+            throw new EmailProcessException("Failed to read properties file", e);
         }
         String urlToJIRAFilter;
         String emailSubject;
@@ -97,11 +94,12 @@ public class MainEmailSender {
             jiraIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getIssues(urlToJIRAFilter,
                     propertyValues.getJiraAuthentication()));
             LOGGER.info("Successfully extracted JIRA issue information from JIRA.");
-        } catch (JIRAException e) {
+        } catch (EmailProcessException e) {
             String errorMessage = "Failed to extract JIRA issues from JIRA.";
             LOGGER.error(errorMessage, e);
-            throw new EmailSendingProcessException(errorMessage, e);
+            throw new EmailProcessException(errorMessage, e);
         }
+
         String emailBodyHTML;
         String pmtConnection = propertyValues.getPmtConnection();
         String pmtUserName = propertyValues.getDbUser();
@@ -114,19 +112,19 @@ public class MainEmailSender {
             LOGGER.info("Successfully extracted patch information from the pmt.");
             emailBodyHTML = EmailBodyCreator.getEmailBodyCreator().getEmailBody(jiraTicketsInPmtAndJIRA,
                     emailHeaderHTML);
-        } catch (PmtException e) {
+        } catch (EmailProcessException e) {
             String errorMessage = "Failed to extract Patch information from the pmt.";
             LOGGER.error(errorMessage, e);
-            throw new EmailSendingProcessException(errorMessage, e);
+            throw new EmailProcessException(errorMessage, e);
         }
         try {
             EmailSender.getEmailSender().sendMessage(emailBodyHTML, emailSubject, propertyValues.getEmailUser(),
                     propertyValues.getToList(), propertyValues.getCcList());
             LOGGER.info("Successfully sent email with patch information.");
-        } catch (EmailException e) {
+        } catch (EmailProcessException e) {
             String errorMessage = "Failed to send email.";
             LOGGER.error(errorMessage, e);
-            throw new EmailSendingProcessException(errorMessage, e);
+            throw new EmailProcessException(errorMessage, e);
         }
 
     }

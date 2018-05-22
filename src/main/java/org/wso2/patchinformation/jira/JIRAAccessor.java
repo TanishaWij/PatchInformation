@@ -23,9 +23,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.wso2.patchinformation.constants.Constants;
-import org.wso2.patchinformation.exceptions.jira.JIRAConnectionException;
-import org.wso2.patchinformation.exceptions.jira.JIRAContentException;
-import org.wso2.patchinformation.exceptions.jira.JIRAException;
+import org.wso2.patchinformation.exceptions.ConnectionException;
+import org.wso2.patchinformation.exceptions.ContentException;
+import org.wso2.patchinformation.exceptions.EmailProcessException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -63,9 +63,9 @@ public class JIRAAccessor {
      *
      * @param jiraFilter url to JIRA filter results
      * @return Arraylist of JIRA Issues
-     * @throws JIRAException JIRAs not extracted successfully
+     * @throws EmailProcessException JIRAs not extracted successfully
      */
-    public ArrayList<JIRAIssue> getIssues(String jiraFilter, String authorizationValue) throws JIRAException {
+    public ArrayList<JIRAIssue> getIssues(String jiraFilter, String authorizationValue) throws EmailProcessException {
         //gets response from JIRAIssue filter and parse it into a Json object
         try {
             String jiraResponse = sendJIRARequest(new URL(jiraFilter), authorizationValue);
@@ -80,11 +80,11 @@ public class JIRAAccessor {
         } catch (MalformedURLException e) {
             String errorMessage = "Url defined to access JIRA is malformed";
             LOGGER.error(errorMessage);
-            throw new JIRAConnectionException(errorMessage, e);
+            throw new ConnectionException(errorMessage, e);
         } catch (ParseException e) {
             String errorMessage = "Failed to parse JIRA response String to Json";
             LOGGER.error(errorMessage, e);
-            throw new JIRAContentException(errorMessage, e);
+            throw new ContentException(errorMessage, e);
         }
     }
 
@@ -94,10 +94,10 @@ public class JIRAAccessor {
      * @param urlToFilterResults from JIRA
      * @param totalJIRAs         total number of JIRA results returned by the filter
      * @return Araaylist of JIRAIssues
-     * @throws JIRAException JIRA data not extracted successfully
+     * @throws EmailProcessException JIRA data not extracted successfully
      */
     private ArrayList<JIRAIssue> getJIRAsIssuesFromFilter(String urlToFilterResults, int totalJIRAs,
-                                                          String authorizationValue) throws JIRAException {
+                                                          String authorizationValue) throws EmailProcessException {
         ArrayList<JIRAIssue> jiraIssues = new ArrayList<>();
         for (int i = 0; i <= totalJIRAs / RESULTS_PER_PAGE; i++) { //paging the JIRAIssue response
             try {
@@ -118,17 +118,17 @@ public class JIRAAccessor {
                     } catch (NullPointerException e) {
                         String errorMessage = "Failed to extract JIRA issue's field data";
                         LOGGER.error(errorMessage, e);
-                        throw new JIRAContentException(errorMessage, e);
+                        throw new ContentException(errorMessage, e);
                     }
                 }
             } catch (MalformedURLException e) {
                 String errorMessage = "Url defined to access JIRA is malformed";
                 LOGGER.error(errorMessage, e);
-                throw new JIRAConnectionException(errorMessage, e);
+                throw new ConnectionException(errorMessage, e);
             } catch (ParseException e) {
-                String errorMessage = "Failed to parse jira response string to Json";
+                String errorMessage = "Failed to parse JIRA response string to Json";
                 LOGGER.error(errorMessage, e);
-                throw new JIRAContentException(errorMessage, e);
+                throw new ContentException(errorMessage, e);
             }
         }
         return jiraIssues;
@@ -139,9 +139,9 @@ public class JIRAAccessor {
      *
      * @param url to which the http get request is sent
      * @return http response as a String
-     * @throws JIRAException Failed to connect to JIRA and return the http response as a String
+     * @throws EmailProcessException Failed to connect to JIRA and return the http response as a String
      */
-    private String sendJIRARequest(URL url, String authorizationValue) throws JIRAException {
+    private String sendJIRARequest(URL url, String authorizationValue) throws EmailProcessException {
         HttpURLConnection connection = null;
         try {
             connection = (HttpsURLConnection) url.openConnection();
@@ -160,18 +160,18 @@ public class JIRAAccessor {
                 } catch (IOException e) {
                     String errorMessage = "Failed to read from JIRA Response Stream";
                     LOGGER.error(errorMessage, e);
-                    throw new JIRAContentException(errorMessage, e);
+                    throw new ContentException(errorMessage, e);
                 }
             } else {
                 String errorMessage = "Failed to get expected JIRA response, response code: " +
                         connection.getResponseCode() + " returned";
                 LOGGER.error(errorMessage);
-                throw new JIRAException(errorMessage);
+                throw new ConnectionException(errorMessage);
             }
         } catch (IOException e) {
             String errorMessage = "Failed to connect to Jira";
             LOGGER.error(errorMessage, e);
-            throw new JIRAConnectionException(errorMessage, e);
+            throw new ConnectionException(errorMessage, e);
         } finally {
             if (connection != null) {
                 connection.disconnect();

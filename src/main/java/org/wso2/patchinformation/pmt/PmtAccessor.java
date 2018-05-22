@@ -18,9 +18,9 @@
 package org.wso2.patchinformation.pmt;
 
 import org.apache.log4j.Logger;
-import org.wso2.patchinformation.exceptions.pmt.PmtConnectionException;
-import org.wso2.patchinformation.exceptions.pmt.PmtContentException;
-import org.wso2.patchinformation.exceptions.pmt.PmtException;
+import org.wso2.patchinformation.exceptions.ConnectionException;
+import org.wso2.patchinformation.exceptions.ContentException;
+import org.wso2.patchinformation.exceptions.EmailProcessException;
 import org.wso2.patchinformation.jira.JIRAIssue;
 
 import java.sql.Connection;
@@ -108,7 +108,7 @@ public class PmtAccessor {
     }
 
     public ArrayList<JIRAIssue> filterJIRAIssues(ArrayList<JIRAIssue> jiraIssues, String url, String user,
-                                                 String password) throws PmtException {
+                                                 String password) throws EmailProcessException {
 
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(SELECT_SUPPORT_JIRAS);
@@ -126,13 +126,13 @@ public class PmtAccessor {
             } catch (SQLException e) {
                 String errorMessage = "Failed to extract data from returned pmt ResultSet";
                 LOGGER.error(errorMessage, e);
-                throw new PmtContentException(errorMessage, e);
+                throw new ContentException(errorMessage, e);
             }
             return getJIRAIssuesInPmtAndJIRA(jiraIssues, allJIRANamesInPmt);
         } catch (SQLException e) {
             String errorMessage = "Failed to connect to the Pmt db";
             LOGGER.error(errorMessage, e);
-            throw new PmtConnectionException(errorMessage, e);
+            throw new ConnectionException(errorMessage, e);
         }
     }
 
@@ -149,7 +149,7 @@ public class PmtAccessor {
     }
 
     public void populatePatches(ArrayList<JIRAIssue> jiraIssuesInPmtAndJira, String url, String user, String password)
-            throws PmtException {
+            throws EmailProcessException {
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             for (JIRAIssue jiraIssue : jiraIssuesInPmtAndJira) {
@@ -159,13 +159,13 @@ public class PmtAccessor {
                 } catch (SQLException e) {
                     String errorMessage = "Failed to extract data from returned ResultSet for: " + jiraIssue.getName();
                     LOGGER.error(errorMessage, e);
-                    throw new PmtContentException(errorMessage, e);
+                    throw new ContentException(errorMessage, e);
                 }
             }
         } catch (SQLException e) {
             String errorMessage = "Failed to connect to the Pmt db";
             LOGGER.error(errorMessage, e);
-            throw new PmtConnectionException(errorMessage, e);
+            throw new ConnectionException(errorMessage, e);
         }
     }
 

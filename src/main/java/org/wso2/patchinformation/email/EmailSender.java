@@ -31,9 +31,9 @@ import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import org.apache.log4j.Logger;
 import org.wso2.patchinformation.MainEmailSender;
-import org.wso2.patchinformation.exceptions.email.EmailException;
-import org.wso2.patchinformation.exceptions.email.EmailSendingException;
-import org.wso2.patchinformation.exceptions.email.EmailSetupException;
+import org.wso2.patchinformation.exceptions.ConnectionException;
+import org.wso2.patchinformation.exceptions.ContentException;
+import org.wso2.patchinformation.exceptions.EmailProcessException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -63,6 +63,7 @@ public class EmailSender {
     private static EmailSender emailSender;
 
     private EmailSender() {
+
     }
 
     public static EmailSender getEmailSender() {
@@ -78,32 +79,23 @@ public class EmailSender {
      *
      * @param httpTransport The network HTTP Transport.
      * @return An authorized Credential object.
-     * @throws EmailSetupException If there is no client_secret.
+     * @throws IOException If there is no client_secret.
      */
-    private Credential getCredentials(final NetHttpTransport httpTransport) throws EmailSetupException {
+    private Credential getCredentials(final NetHttpTransport httpTransport) throws IOException {
+
         InputStream in = MainEmailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
         GoogleClientSecrets clientSecrets;
-        try {
-            clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in,
-                    Charset.defaultCharset()));
-        } catch (IOException e) {
-            String errorMessage = "Failed to read clientSecret.json file in resources folder";
-            LOGGER.error(errorMessage, e);
-            throw new EmailSetupException(errorMessage, e);
-        }
+        clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in,
+                Charset.defaultCharset()));
         GoogleAuthorizationCodeFlow flow;
-        try {
-            flow = new GoogleAuthorizationCodeFlow.Builder(
-                    httpTransport, JSON_FACTORY, clientSecrets, SCOPES)
-                    .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(CREDENTIALS_FOLDER)))
-                    .setAccessType("offline")
-                    .build();
-            return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
-        } catch (IOException e) {
-            String errorMessage = "Failed to set up folder to store user credentials";
-            LOGGER.error(errorMessage, e);
-            throw new EmailSetupException(errorMessage, e);
-        }
+
+        flow = new GoogleAuthorizationCodeFlow.Builder(
+                httpTransport, JSON_FACTORY, clientSecrets, SCOPES)
+                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(CREDENTIALS_FOLDER)))
+                .setAccessType("offline")
+                .build();
+        return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+
     }
 
     /**
@@ -112,10 +104,11 @@ public class EmailSender {
      * @param subject  subject of the email
      * @param bodyText body text of the email
      * @return the MimeMessage to be used to send email
-     * @throws EmailSetupException email was not created
+     * @throws ContentException email was not created
      */
     private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC)
-            throws EmailSetupException {
+            throws ContentException {
+
         try {
             Properties props = new Properties();
             Session session = Session.getDefaultInstance(props, null);
@@ -137,7 +130,7 @@ public class EmailSender {
         } catch (MessagingException e) {
             String errorMessage = "Failed to set up email";
             LOGGER.error(errorMessage, e);
-            throw new EmailSetupException(errorMessage, e);
+            throw new ContentException(errorMessage, e);
         }
     }
 
@@ -146,16 +139,17 @@ public class EmailSender {
      *
      * @param emailContent email to be set to raw of message
      * @return a message containing a base64url encoded email
-     * @throws EmailSetupException failed to create Message
+     * @throws ContentException failed to create Message
      */
-    private Message createMessageWithEmail(MimeMessage emailContent) throws EmailSetupException {
+    private Message createMessageWithEmail(MimeMessage emailContent) throws ContentException {
+
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             emailContent.writeTo(buffer);
         } catch (IOException | MessagingException e) {
             String errorMessage = "Failed to extract email content from MimeMessage object";
             LOGGER.error(errorMessage, e);
-            throw new EmailSetupException(errorMessage, e);
+            throw new ContentException(errorMessage, e);
         }
         byte[] bytes = buffer.toByteArray();
         String encodedEmail = Base64.encodeBase64URLSafeString(bytes);
@@ -169,10 +163,10 @@ public class EmailSender {
      *
      * @param emailBody body of email
      * @param subject   subject of the email
-     * @throws EmailException email was not sent
+     * @throws EmailProcessException email was not sent
      */
     public void sendMessage(String emailBody, String subject, String emailFrom, String emailTo, String emailCC)
-            throws EmailException {
+            throws EmailProcessException {
         // Build a new authorized API client service.
         try {
             NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -181,17 +175,11 @@ public class EmailSender {
                     .build();
             MimeMessage emailContent = createEmail(subject, emailBody, emailFrom, emailTo, emailCC);
             Message message = createMessageWithEmail(emailContent);
-            try {
-                service.users().messages().send("me", message).execute();
-            } catch (IOException e) {
-                String errorMessage = "Failed to execute the sending of the email";
-                LOGGER.error(errorMessage, e);
-                throw new EmailSendingException(errorMessage, e);
-            }
+            service.users().messages().send("me", message).execute();
         } catch (GeneralSecurityException | IOException e) {
-            String errorMessage = "Failed to set up new trusted transport";
+            String errorMessage = "Failed to send email";
             LOGGER.error(errorMessage, e);
-            throw new EmailSetupException(errorMessage, e);
+            throw new ConnectionException(errorMessage, e);
         }
     }
 }

@@ -3,7 +3,7 @@ package org.wso2.patchinformation.exceptions;
 /**
  * Exceptions that occur during the execution of the whole process.
  */
-public class EmailSendingProcessException extends Exception {
+public class EmailProcessException extends Exception {
 
     /**
      * Constructs an Exception with the specified detail message
@@ -11,7 +11,7 @@ public class EmailSendingProcessException extends Exception {
      * @param message The detailed message.
      * @param cause the cause.
      */
-    public EmailSendingProcessException(String message, Throwable cause) {
+    public EmailProcessException(String message, Throwable cause) {
         super(message, cause);
     }
 
@@ -20,7 +20,7 @@ public class EmailSendingProcessException extends Exception {
      * and cause for the email not being set up
      * @param message The detailed message.
      */
-    public EmailSendingProcessException(String message) {
+    public EmailProcessException(String message) {
         super(message);
     }
 }
