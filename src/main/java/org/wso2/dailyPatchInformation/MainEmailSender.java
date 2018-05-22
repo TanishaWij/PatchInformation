@@ -41,9 +41,9 @@ import static org.wso2.dailyPatchInformation.constants.EmailConstants.EMAIL_SUBJ
  * Sends 2 emails on behalf of the engineering efficiency team. One on Customer related JIRA issues,
  * and the other on internal JIRA issues and their corresponding patch information.
  */
-public class PatchInformationMailSender {
+public class MainEmailSender {
 
-    private final static Logger LOGGER = Logger.getLogger(PatchInformationMailSender.class);
+    private final static Logger LOGGER = Logger.getLogger(MainEmailSender.class);
 
     public static void main(String[] args) {
 
@@ -54,7 +54,6 @@ public class PatchInformationMailSender {
         } catch (PatchInformtionException e) {
             LOGGER.error("Execution failed, process was not completed\n", e);
         }
-
         try {
             LOGGER.info("Executing process to send email on Customer related JIRA issues.");
             executeEmailSendingProcess(true);
@@ -81,22 +80,21 @@ public class PatchInformationMailSender {
         } catch (IOException e) {
             throw new PatchInformtionException("Failed to read properties file", e);
         }
-        String urlToJIRAIssues;
+        String urlToJIRAFilter;
         String emailSubject;
-        String htmlEmailHeader;
+        String emailHeaderHTML;
         if (isMailOnCustomerReportedIssues) {
-            urlToJIRAIssues = propertyValues.getUrlToCustomerIssuesFilter();
+            urlToJIRAFilter = propertyValues.getUrlToCustomerIssuesFilter();
             emailSubject = EMAIL_SUBJECT_CUSTOMER_RELATED;
-            htmlEmailHeader = EMAIL_HTML_HEADER_CUSTOMER_RELATED;
-
+            emailHeaderHTML = EMAIL_HTML_HEADER_CUSTOMER_RELATED;
         } else {
-            urlToJIRAIssues = propertyValues.getUrlToInternalIssuesFilter();
+            urlToJIRAFilter = propertyValues.getUrlToInternalIssuesFilter();
             emailSubject = EMAIL_SUBJECT_INTERNAL;
-            htmlEmailHeader = EMAIL_HTML_HEADER_INTERNAL;
+            emailHeaderHTML = EMAIL_HTML_HEADER_INTERNAL;
         }
         ArrayList<JIRAIssue> JIRAIssues;
         try {
-            JIRAIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getJIRAIssues(urlToJIRAIssues,
+            JIRAIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getIssues(urlToJIRAFilter,
                     propertyValues.getJIRAAuthentication()));
             LOGGER.info("Successfully extracted JIRA issue information from JIRA.");
         } catch (JIRAException e) {
@@ -104,7 +102,7 @@ public class PatchInformationMailSender {
             LOGGER.error(errorMessage, e);
             throw new PatchInformtionException(errorMessage, e);
         }
-        String emailBody;
+        String emailBodyHTML;
         String pmtConnection = propertyValues.getPmtConnection();
         String pmtUserName = propertyValues.getDbUser();
         String pmtUserPassword = propertyValues.getDbPassword();
@@ -114,14 +112,14 @@ public class PatchInformationMailSender {
                     pmtAccessor.filterJIRAIssues(JIRAIssues, pmtConnection, pmtUserName, pmtUserPassword));
             pmtAccessor.populatePatches(JIRATicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword);
             LOGGER.info("Successfully extracted patch information from the pmt.");
-            emailBody = EmailBodyCreator.getEmailBodyCreator().getEmailBody(JIRATicketsInPmtAndJIRA, htmlEmailHeader);
+            emailBodyHTML = EmailBodyCreator.getEmailBodyCreator().getEmailBody(JIRATicketsInPmtAndJIRA, emailHeaderHTML);
         } catch (PmtException e) {
             String errorMessage = "Failed to extract Patch information from the pmt.";
             LOGGER.error(errorMessage, e);
             throw new PatchInformtionException(errorMessage, e);
         }
         try {
-            EmailSender.getEmailSender().sendMessage(emailBody, emailSubject, propertyValues.getEmailUser(),
+            EmailSender.getEmailSender().sendMessage(emailBodyHTML, emailSubject, propertyValues.getEmailUser(),
                     propertyValues.getToList(), propertyValues.getCcList());
             LOGGER.info("Successfully sent email with patch information.");
         } catch (EmailException e) {

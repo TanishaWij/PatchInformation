@@ -17,7 +17,7 @@
 //
 package org.wso2.dailyPatchInformation.propertyValues;
 
-import org.wso2.dailyPatchInformation.PatchInformationMailSender;
+import org.wso2.dailyPatchInformation.MainEmailSender;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,7 +43,7 @@ public class PropertyValues {
 
         Properties prop = new Properties();
         try (InputStream propertyFile =
-                     PatchInformationMailSender.class.getResourceAsStream("/config.properties")) {
+                     MainEmailSender.class.getResourceAsStream("/config.properties")) {
             prop.load(propertyFile);
         }
 

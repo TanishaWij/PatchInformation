@@ -30,7 +30,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import org.apache.log4j.Logger;
-import org.wso2.dailyPatchInformation.PatchInformationMailSender;
+import org.wso2.dailyPatchInformation.MainEmailSender;
 import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailException;
 import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailSendingException;
 import org.wso2.dailyPatchInformation.exceptions.EmailExceptions.EmailSetupException;
@@ -82,8 +82,7 @@ public class EmailSender {
      * @throws EmailSetupException If there is no client_secret.
      */
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws EmailSetupException {
-        // Load client secrets.
-        InputStream in = PatchInformationMailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
+        InputStream in = MainEmailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
         GoogleClientSecrets clientSecrets;
         try {
             clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in, Charset.defaultCharset()));
@@ -92,7 +91,6 @@ public class EmailSender {
             LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
-        // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow;
         try {
             flow = new GoogleAuthorizationCodeFlow.Builder(
@@ -141,7 +139,6 @@ public class EmailSender {
             LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
-
     }
 
     /**
@@ -161,7 +158,6 @@ public class EmailSender {
             LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
-
         byte[] bytes = buffer.toByteArray();
         String encodedEmail = Base64.encodeBase64URLSafeString(bytes);
         Message message = new Message();
@@ -184,7 +180,6 @@ public class EmailSender {
             Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                     .setApplicationName(APPLICATION_NAME)
                     .build();
-
             MimeMessage emailContent = createEmail(subject, emailBody, emailFrom, emailTo, emailCC);
             Message message = createMessageWithEmail(emailContent);
             try {
@@ -194,13 +189,10 @@ public class EmailSender {
                 LOGGER.error(errorMessage, e);
                 throw new EmailSendingException(errorMessage, e);
             }
-
         } catch (GeneralSecurityException | IOException e) {
             String errorMessage = "Failed to set up new trusted transport";
             LOGGER.error(errorMessage, e);
             throw new EmailSetupException(errorMessage, e);
         }
-
     }
-
 }

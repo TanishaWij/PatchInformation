@@ -67,7 +67,7 @@ public class JIRAAccessor {
      * @return Arraylist of JIRA Issues
      * @throws JIRAException JIRAs not extracted successfully
      */
-    public ArrayList<JIRAIssue> getJIRAIssues(String JIRAFilter, String authorizationValue) throws JIRAException {
+    public ArrayList<JIRAIssue> getIssues(String JIRAFilter, String authorizationValue) throws JIRAException {
         //gets response from JIRAIssue filter and parse it into a Json object
         try {
             String JIRAResponse = sendJIRARequest(new URL(JIRAFilter), authorizationValue);
@@ -152,7 +152,6 @@ public class JIRAAccessor {
             connection.setRequestProperty(Constants.AUTH, authorizationValue);
             connection.setRequestProperty(Constants.CONTENT, Constants.CONTENT_TYPE);
             connection.setRequestMethod(Constants.GET);
-
             if (connection.getResponseCode() == OK) {
                 try (BufferedReader dataInputStream = new BufferedReader(
                         new InputStreamReader(connection.getInputStream(), Charset.defaultCharset()))) {

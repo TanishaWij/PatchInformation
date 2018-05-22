@@ -26,7 +26,6 @@ public final class Constants {
     //email utility values
     public static final String BACKGROUND_COLOR_GRAY = "#efefef";
     public static final String BACKGROUND_COLOR_WHITE = "#ffffff";
-
     //SQL statements
     public static final String QUERY_PER_PATCH = "SELECT *, \n" +
             "(5 * (DATEDIFF(CURDATE(), REPORT_DATE) DIV 7)+ MID('0123455401234434012332340122123401101234000123450'," +
@@ -36,10 +35,8 @@ public final class Constants {
             "7 * WEEKDAY((SIGN_REQUEST_SENT_ON)) + WEEKDAY(CURDATE()) + 1, 1)) AS DAYS_IN_SIGNING FROM PATCH_ETA e " +
             "RIGHT JOIN PATCH_QUEUE q ON e.PATCH_QUEUE_ID = q.ID\n" +
             "where SUPPORT_JIRA like '%";
-
     public static final String SELECT_SUPPORT_JIRAS = "SELECT SUPPORT_JIRA FROM PATCH_QUEUE\n" +
             "WHERE YEAR(REPORT_DATE) > '2017';";
-
     public static final int JIRA_URL_PREFIX_LENGTH = 37;
     //"active" on patch queue
     public static final String TAKEN_OFF_QUEUE = "No";

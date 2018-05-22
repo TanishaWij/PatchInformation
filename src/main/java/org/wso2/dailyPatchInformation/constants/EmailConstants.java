@@ -87,7 +87,7 @@ public final class EmailConstants {
             " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
             " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
             "padding: 10px;\">" +
-            "JIRA LINK" +
+            "JIRA ISSUE LINK" +
             " </td>" +
             "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
             "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
@@ -105,20 +105,20 @@ public final class EmailConstants {
             "REPORT DATE" +
             "</td>" +
             "</tr>";
-    public static final String EMAIL_SUBJECT_INTERNAL = "Information on internal JIRA tickets and patches";
-    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "Information on Customer related JIRA tickets and" +
-            " patches";
+    public static final String EMAIL_SUBJECT_INTERNAL = "Information on internal JIRA issues and corresponding Patches";
+    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "Information on Customer related JIRA issues and" +
+            "corresponding Patches";
     public static final String IN_QUEUE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Patches In The Patch Queue</p>";
+            "font-weight: 600; line-height: 26px; color: #000000;\">Patches in the Patch Queue</p>";
     public static final String IN_DEVELOPMENT_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Patches In Development</p>";
+            "font-weight: 600; line-height: 26px; color: #000000;\">Patches in Development</p>";
     public static final String IN_SIGNING_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px;" +
-            " font-weight: 600; line-height: 26px; color: #000000;\">Patches Sent For Signing</p>";
+            " font-weight: 600; line-height: 26px; color: #000000;\">Patches sent for Signing</p>";
     public static final String RELEASED_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Released Patches That Are Not Live Synced</p>";
+            "font-weight: 600; line-height: 26px; color: #000000;\">Released Patches pending Live Sync</p>";
     public static final String SUMMARY_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Summary of patch related JIRA issues in " +
-            "development</p>";
+            "font-weight: 600; line-height: 26px; color: #000000;\">Summary of JIRA Issues and the corresponding" +
+            " Patches in Development</p>";
 
     public static final String EMAIL_TYPE = "text/html";
 
@@ -128,7 +128,7 @@ public final class EmailConstants {
             " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
             " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
             " 20px; padding: 10px;\">" +
-            "JIRA LINK" +
+            "JIRA ISSUE LINK" +
             " </td>" +
             "<td width=\"20%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
             "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
@@ -157,7 +157,7 @@ public final class EmailConstants {
             "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
             "<tr><td width=\"20%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
             "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\"> JIRA LINK</td><td width=\"20%\" align=\"center\" color=\"#044767\"" +
+            "padding: 10px;\"> JIRA ISSUE LINK</td><td width=\"20%\" align=\"center\" color=\"#044767\"" +
             " bgcolor=\"#bebebe\" style=\"font-family: Open Sans," +
             " Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
             "padding: 10px;\">PATCH NAME" +
