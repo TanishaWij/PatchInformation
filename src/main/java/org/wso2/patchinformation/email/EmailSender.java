@@ -63,11 +63,9 @@ public class EmailSender {
     private static EmailSender emailSender;
 
     private EmailSender() {
-
     }
 
     public static EmailSender getEmailSender() {
-
         if (emailSender == null) {
             emailSender = new EmailSender();
         }
@@ -89,13 +87,13 @@ public class EmailSender {
                 Charset.defaultCharset()));
         GoogleAuthorizationCodeFlow flow;
 
+
         flow = new GoogleAuthorizationCodeFlow.Builder(
                 httpTransport, JSON_FACTORY, clientSecrets, SCOPES)
-                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(CREDENTIALS_FOLDER)))
+                .setDataStoreFactory(new FileDataStoreFactory(new java.io.File((CREDENTIALS_FOLDER))))
                 .setAccessType("offline")
                 .build();
         return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
-
     }
 
     /**

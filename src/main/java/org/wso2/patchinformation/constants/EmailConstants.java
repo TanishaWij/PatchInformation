@@ -31,7 +31,7 @@ public final class EmailConstants {
 
     public static final String APPLICATION_NAME = "Patch Information Emailer";
     public static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    public static final String CREDENTIALS_FOLDER = "src/main/resources/gmailCredentials";
+    public static final String CREDENTIALS_FOLDER = "gmailCredentials";
     public static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_SEND);
     public static final String CLIENT_SECRET_DIR = "/clientSecret.json";
     public static final String EMAIL_HTML_HEADER_INTERNAL = "<!DOCTYPE html>\n" +
