@@ -22,6 +22,7 @@ package org.wso2.patchinformation.constants;
  * constant values.
  */
 public final class Constants {
+
     public static final String BACKGROUND_COLOR_GRAY = "#efefef";
     public static final String BACKGROUND_COLOR_WHITE = "#ffffff";
     //SQL statements

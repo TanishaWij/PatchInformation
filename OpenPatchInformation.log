@@ -379,3 +379,27 @@ Caused by: java.io.IOException: unable to create directory: /gmailCredentials
 2018-05-22 19:01:09 INFO  MainEmailSender:122 - Successfully sent email with patch information.
 2018-05-22 19:01:09 INFO  MainEmailSender:57 - Execution completed successfully.
 
+2018-05-23 08:59:29 INFO  MainEmailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-23 08:59:35 INFO  MainEmailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-23 08:59:36 INFO  MainEmailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-23 08:59:38 INFO  MainEmailSender:120 - Successfully sent email with patch information.
+2018-05-23 08:59:38 INFO  MainEmailSender:49 - Execution completed successfully.
+
+2018-05-23 08:59:38 INFO  MainEmailSender:54 - Executing process to send email on Customer related JIRA issues.
+2018-05-23 08:59:43 INFO  MainEmailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-23 08:59:44 INFO  MainEmailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-23 08:59:44 INFO  MainEmailSender:120 - Successfully sent email with patch information.
+2018-05-23 08:59:44 INFO  MainEmailSender:56 - Execution completed successfully.
+
+2018-05-23 09:02:57 INFO  MainEmailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-23 09:03:03 INFO  MainEmailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-23 09:03:04 INFO  MainEmailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-23 09:03:05 INFO  MainEmailSender:120 - Successfully sent email with patch information.
+2018-05-23 09:03:05 INFO  MainEmailSender:49 - Execution completed successfully.
+
+2018-05-23 09:03:05 INFO  MainEmailSender:54 - Executing process to send email on Customer related JIRA issues.
+2018-05-23 09:03:10 INFO  MainEmailSender:94 - Successfully extracted JIRA issue information from JIRA.
+2018-05-23 09:03:11 INFO  MainEmailSender:109 - Successfully extracted patch information from the pmt.
+2018-05-23 09:03:12 INFO  MainEmailSender:120 - Successfully sent email with patch information.
+2018-05-23 09:03:12 INFO  MainEmailSender:56 - Execution completed successfully.
+

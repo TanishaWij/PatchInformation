@@ -30,7 +30,6 @@ public class DevPatch extends Patch implements HtmlTableRow {
 
     DevPatch(String url, String name, String productName, String assignee, Constants.State state, String patchLCState,
              String reportDate, String daysInState) {
-
         super(url, name, productName, assignee, state, patchLCState, daysInState);
         this.reportDate = reportDate;
     }
@@ -43,7 +42,6 @@ public class DevPatch extends Patch implements HtmlTableRow {
      */
     @Override
     public String objectToHtml(String backgroundColor) {
-
         return "<tr><td width=\"" + "20%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; " +
                 "line-height: 20px; padding: 15px 10px 5px 10px;\">" +

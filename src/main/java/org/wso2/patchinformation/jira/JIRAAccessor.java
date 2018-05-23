@@ -17,7 +17,6 @@
 //
 package org.wso2.patchinformation.jira;
 
-import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -45,7 +44,6 @@ import static org.wso2.patchinformation.constants.Constants.RESULTS_PER_PAGE;
  */
 public class JIRAAccessor {
 
-    private static final Logger LOGGER = Logger.getLogger(JIRAAccessor.class);
     private static JIRAAccessor jiraAccessor;
 
     private JIRAAccessor() {
@@ -78,13 +76,9 @@ public class JIRAAccessor {
             int totalJIRAs = Integer.parseInt(responseFromSearchUrlInJson.get(Constants.TOTAL).toString());
             return getJIRAsIssuesFromFilter(urlToFilterResults, totalJIRAs, authorizationValue);
         } catch (MalformedURLException e) {
-            String errorMessage = "Url defined to access JIRA is malformed";
-            LOGGER.error(errorMessage);
-            throw new ConnectionException(errorMessage, e);
+            throw new ConnectionException("Url defined to access JIRA is malformed", e);
         } catch (ParseException e) {
-            String errorMessage = "Failed to parse JIRA response String to Json";
-            LOGGER.error(errorMessage, e);
-            throw new ContentException(errorMessage, e);
+            throw new ContentException("Failed to parse JIRA response String to Json", e);
         }
     }
 
@@ -116,19 +110,13 @@ public class JIRAAccessor {
                         jiraIssues.add(new JIRAIssue(issueInJson.get(Constants.JIRA_KEY).toString(),
                                 assigneeInJson.get(Constants.EMAIL).toString()));
                     } catch (NullPointerException e) {
-                        String errorMessage = "Failed to extract JIRA issue's field data";
-                        LOGGER.error(errorMessage, e);
-                        throw new ContentException(errorMessage, e);
+                        throw new ContentException("Failed to extract JIRA issue's field data", e);
                     }
                 }
             } catch (MalformedURLException e) {
-                String errorMessage = "Url defined to access JIRA is malformed";
-                LOGGER.error(errorMessage, e);
-                throw new ConnectionException(errorMessage, e);
+                throw new ConnectionException("Url defined to access JIRA is malformed", e);
             } catch (ParseException e) {
-                String errorMessage = "Failed to parse JIRA response string to Json";
-                LOGGER.error(errorMessage, e);
-                throw new ContentException(errorMessage, e);
+                throw new ContentException("Failed to parse JIRA response string to Json", e);
             }
         }
         return jiraIssues;
@@ -158,20 +146,15 @@ public class JIRAAccessor {
                     }
                     return response.toString();
                 } catch (IOException e) {
-                    String errorMessage = "Failed to read from JIRA Response Stream";
-                    LOGGER.error(errorMessage, e);
-                    throw new ContentException(errorMessage, e);
+                    throw new ContentException("Failed to read from JIRA Response Stream", e);
                 }
             } else {
                 String errorMessage = "Failed to get expected JIRA response, response code: " +
                         connection.getResponseCode() + " returned";
-                LOGGER.error(errorMessage);
                 throw new ConnectionException(errorMessage);
             }
         } catch (IOException e) {
-            String errorMessage = "Failed to connect to Jira";
-            LOGGER.error(errorMessage, e);
-            throw new ConnectionException(errorMessage, e);
+            throw new ConnectionException("Failed to connect to Jira", e);
         } finally {
             if (connection != null) {
                 connection.disconnect();

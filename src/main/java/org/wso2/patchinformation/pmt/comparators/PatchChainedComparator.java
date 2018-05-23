@@ -33,12 +33,10 @@ public class PatchChainedComparator implements Comparator<Patch>, Serializable {
     private List<Comparator<Patch>> listComparators;
 
     public PatchChainedComparator(Comparator<Patch>... comparators) {
-
         this.listComparators = Arrays.asList(comparators);
     }
 
     public int compare(Patch p1, Patch p2) {
-
         for (Comparator<Patch> comparator : listComparators) {
             int result = comparator.compare(p1, p2);
             if (result != 0) {

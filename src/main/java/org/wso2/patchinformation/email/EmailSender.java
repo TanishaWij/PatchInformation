@@ -29,7 +29,6 @@ import com.google.api.client.util.Base64;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
-import org.apache.log4j.Logger;
 import org.wso2.patchinformation.MainEmailSender;
 import org.wso2.patchinformation.exceptions.ConnectionException;
 import org.wso2.patchinformation.exceptions.ContentException;
@@ -59,7 +58,6 @@ import static org.wso2.patchinformation.constants.EmailConstants.SCOPES;
  */
 public class EmailSender {
 
-    private static final Logger LOGGER = Logger.getLogger(EmailSender.class);
     private static EmailSender emailSender;
 
     private EmailSender() {
@@ -80,14 +78,11 @@ public class EmailSender {
      * @throws IOException If there is no client_secret.
      */
     private Credential getCredentials(final NetHttpTransport httpTransport) throws IOException {
-
         InputStream in = MainEmailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
         GoogleClientSecrets clientSecrets;
         clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in,
                 Charset.defaultCharset()));
         GoogleAuthorizationCodeFlow flow;
-
-
         flow = new GoogleAuthorizationCodeFlow.Builder(
                 httpTransport, JSON_FACTORY, clientSecrets, SCOPES)
                 .setDataStoreFactory(new FileDataStoreFactory(new java.io.File((CREDENTIALS_FOLDER))))
@@ -106,7 +101,6 @@ public class EmailSender {
      */
     private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC)
             throws ContentException {
-
         try {
             Properties props = new Properties();
             Session session = Session.getDefaultInstance(props, null);
@@ -126,9 +120,7 @@ public class EmailSender {
             email.setContent(bodyText, EMAIL_TYPE);
             return email;
         } catch (MessagingException e) {
-            String errorMessage = "Failed to set up email";
-            LOGGER.error(errorMessage, e);
-            throw new ContentException(errorMessage, e);
+            throw new ContentException("Failed to set up email", e);
         }
     }
 
@@ -140,14 +132,11 @@ public class EmailSender {
      * @throws ContentException failed to create Message
      */
     private Message createMessageWithEmail(MimeMessage emailContent) throws ContentException {
-
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             emailContent.writeTo(buffer);
         } catch (IOException | MessagingException e) {
-            String errorMessage = "Failed to extract email content from MimeMessage object";
-            LOGGER.error(errorMessage, e);
-            throw new ContentException(errorMessage, e);
+            throw new ContentException("Failed to extract email content from MimeMessage object", e);
         }
         byte[] bytes = buffer.toByteArray();
         String encodedEmail = Base64.encodeBase64URLSafeString(bytes);
@@ -175,9 +164,7 @@ public class EmailSender {
             Message message = createMessageWithEmail(emailContent);
             service.users().messages().send("me", message).execute();
         } catch (GeneralSecurityException | IOException e) {
-            String errorMessage = "Failed to send email";
-            LOGGER.error(errorMessage, e);
-            throw new ConnectionException(errorMessage, e);
+            throw new ConnectionException("Failed to send email", e);
         }
     }
 }

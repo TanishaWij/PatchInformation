@@ -29,7 +29,6 @@ import java.util.Comparator;
 public class StateNameComparator implements Comparator<Patch>, Serializable {
 
     public int compare(Patch p1, Patch p2) {
-
         return p1.getPatchLCState().compareTo(p2.getPatchLCState());
     }
 }

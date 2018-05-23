@@ -40,13 +40,11 @@ public class PropertyValues {
     private String urlToInternalIssuesFilter;
 
     private PropertyValues() throws IOException {
-
         Properties prop = new Properties();
         try (InputStream propertyFile =
                      MainEmailSender.class.getResourceAsStream("/config.properties")) {
             prop.load(propertyFile);
         }
-
         this.dbUser = prop.getProperty("dbUser");
         this.dbPassword = prop.getProperty("dbPassword");
         this.pmtConnection = prop.getProperty("pmtConnection");
@@ -59,56 +57,45 @@ public class PropertyValues {
     }
 
     public static PropertyValues getPropertyValues() throws IOException {
-
         if (propertyValues == null) {
             propertyValues = new PropertyValues();
         }
-
         return propertyValues;
     }
 
     public String getDbUser() {
-
         return dbUser;
     }
 
     public String getDbPassword() {
-
         return dbPassword;
     }
 
     public String getPmtConnection() {
-
         return pmtConnection;
     }
 
     public String getJiraAuthentication() {
-
         return jiraAuthentication;
     }
 
     public String getEmailUser() {
-
         return emailUser;
     }
 
     public String getToList() {
-
         return toList;
     }
 
     public String getCcList() {
-
         return ccList;
     }
 
     public String getUrlToCustomerIssuesFilter() {
-
         return urlToCustomerIssuesFilter;
     }
 
     public String getUrlToInternalIssuesFilter() {
-
         return urlToInternalIssuesFilter;
     }
 }

@@ -29,7 +29,6 @@ import java.util.Comparator;
 public class ProductNameComparator implements Comparator<Patch>, Serializable {
 
     public int compare(Patch p1, Patch p2) {
-
         return p1.getProductName().compareTo(p2.getProductName());
     }
 

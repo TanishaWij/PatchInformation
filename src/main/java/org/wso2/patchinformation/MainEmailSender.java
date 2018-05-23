@@ -43,7 +43,6 @@ public class MainEmailSender {
     private static final Logger LOGGER = Logger.getLogger(MainEmailSender.class);
 
     public static void main(String[] args) {
-
         try {
             LOGGER.info("Executing process to send email on Internal JIRA issues.");
             executeEmailSendingProcess(false);
@@ -70,7 +69,6 @@ public class MainEmailSender {
      */
     private static void executeEmailSendingProcess(boolean isMailOnCustomerReportedIssues)
             throws EmailProcessException {
-
         PropertyValues propertyValues;
         try {
             propertyValues = PropertyValues.getPropertyValues();

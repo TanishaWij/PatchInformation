@@ -13,7 +13,6 @@ public class ConnectionException extends EmailProcessException {
      * @param cause   the cause.
      */
     public ConnectionException(String message, Throwable cause) {
-
         super(message, cause);
     }
 
@@ -24,7 +23,6 @@ public class ConnectionException extends EmailProcessException {
      * @param message The detailed message.
      */
     public ConnectionException(String message) {
-
         super(message);
     }
 }

@@ -13,7 +13,6 @@ public class ContentException extends EmailProcessException {
      * @param cause   the cause.
      */
     public ContentException(String message, Throwable cause) {
-
         super(message, cause);
     }
 }

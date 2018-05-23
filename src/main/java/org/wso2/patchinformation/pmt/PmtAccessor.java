@@ -17,7 +17,6 @@
 //
 package org.wso2.patchinformation.pmt;
 
-import org.apache.log4j.Logger;
 import org.wso2.patchinformation.exceptions.ConnectionException;
 import org.wso2.patchinformation.exceptions.ContentException;
 import org.wso2.patchinformation.exceptions.EmailProcessException;
@@ -54,20 +53,17 @@ import static org.wso2.patchinformation.constants.Constants.SUPPORT_JIRA_URL_FIE
 import static org.wso2.patchinformation.constants.Constants.State;
 
 /**
- * Accesses the pmtdb and queries it to get the JIRA issues that have a corresponding entry in the pmt and then gets the
- * patch information for each of the JIRA issues.
+ * Accesses the pmtdb and queries it to get the JIRA issues that have a corresponding entry in the pmt and then
+ * gets the patch information for each of the JIRA issues.
  */
 public class PmtAccessor {
 
-    private static final Logger LOGGER = Logger.getLogger(PmtAccessor.class);
     private static PmtAccessor pmtAccessor;
 
     private PmtAccessor() {
-
     }
 
     public static PmtAccessor getPmtAccessor() {
-
         if (pmtAccessor == null) {
             pmtAccessor = new PmtAccessor();
         }
@@ -75,7 +71,6 @@ public class PmtAccessor {
     }
 
     private static String getDate(String dateAndTime) {
-
         if (dateAndTime == null || !(dateAndTime.contains(" "))) {
             return NOT_SPECIFIED;
         } else {
@@ -92,7 +87,6 @@ public class PmtAccessor {
      * @return the oldest date
      */
     private static String dateCompare(String currentDateStr, String newDateStr) {
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date currentDate = sdf.parse(currentDateStr);
@@ -109,7 +103,6 @@ public class PmtAccessor {
 
     public ArrayList<JIRAIssue> filterJIRAIssues(ArrayList<JIRAIssue> jiraIssues, String url, String user,
                                                  String password) throws EmailProcessException {
-
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(SELECT_SUPPORT_JIRAS);
              ResultSet result = pst.executeQuery()) {
@@ -124,21 +117,16 @@ public class PmtAccessor {
                     allJIRANamesInPmt.add(jiraName);
                 }
             } catch (SQLException e) {
-                String errorMessage = "Failed to extract data from returned pmt ResultSet";
-                LOGGER.error(errorMessage, e);
-                throw new ContentException(errorMessage, e);
+                throw new ContentException("Failed to extract data from returned pmt ResultSet", e);
             }
             return getJIRAIssuesInPmtAndJIRA(jiraIssues, allJIRANamesInPmt);
         } catch (SQLException e) {
-            String errorMessage = "Failed to connect to the Pmt db";
-            LOGGER.error(errorMessage, e);
-            throw new ConnectionException(errorMessage, e);
+            throw new ConnectionException("Failed to connect to the Pmt db", e);
         }
     }
 
     private ArrayList<JIRAIssue> getJIRAIssuesInPmtAndJIRA(ArrayList<JIRAIssue> jiraIssues,
                                                            ArrayList<String> allJIRANamesInPmt) {
-
         ArrayList<JIRAIssue> jiraIssuesInPmtAndJira = new ArrayList<>();
         for (JIRAIssue jiraIssue : jiraIssues) {
             if (allJIRANamesInPmt.contains(jiraIssue.getName())) {
@@ -150,27 +138,22 @@ public class PmtAccessor {
 
     public void populatePatches(ArrayList<JIRAIssue> jiraIssuesInPmtAndJira, String url, String user, String password)
             throws EmailProcessException {
-
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             for (JIRAIssue jiraIssue : jiraIssuesInPmtAndJira) {
                 String query = QUERY_PER_PATCH + jiraIssue.getName() + "';";
                 try (PreparedStatement pst = con.prepareStatement(query); ResultSet result = pst.executeQuery()) {
                     populatePatchesFromResultSet(result, jiraIssue);
                 } catch (SQLException e) {
-                    String errorMessage = "Failed to extract data from returned ResultSet for: " + jiraIssue.getName();
-                    LOGGER.error(errorMessage, e);
-                    throw new ContentException(errorMessage, e);
+                    throw new ContentException("Failed to extract data from returned ResultSet for: " +
+                            jiraIssue.getName(), e);
                 }
             }
         } catch (SQLException e) {
-            String errorMessage = "Failed to connect to the Pmt db";
-            LOGGER.error(errorMessage, e);
-            throw new ConnectionException(errorMessage, e);
+            throw new ConnectionException("Failed to connect to the Pmt db", e);
         }
     }
 
     private void populatePatchesFromResultSet(ResultSet result, JIRAIssue jiraIssue) throws SQLException {
-
         String oldestPatchReportDate = NOT_SET;
         String curReportDate;
         //iterate through SQl response
