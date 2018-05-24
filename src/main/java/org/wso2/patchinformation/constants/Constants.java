@@ -39,8 +39,9 @@ public final class Constants {
     public static final int JIRA_URL_PREFIX_LENGTH = 37;
     //"active" on patch queue
     public static final String OFF_QUEUE = "No";
-    public static final String STILL_IN_QUEUE = "Yes";
+    public static final String IN_QUEUE = "Yes";
     //LC States
+    public static final String NOT_IN_PMT = "No record in PMT";
     public static final String LC_STATE_STAGING = "Staging";
     public static final String LC_STATE_DEVELOPMENT = "Development";
     public static final String LC_STATE_TESTING = "Testing";
@@ -78,5 +79,4 @@ public final class Constants {
     public enum State {
         IN_DEV, IN_PATCH_QUEUE, IN_SIGNING, REALEASED
     }
-
 }

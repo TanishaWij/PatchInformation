@@ -33,6 +33,7 @@ public class Patch implements HtmlTableRow {
     private String patchLCState;
     private String daysInState;
 
+
     public Patch(String jiraLink, String name, String productName, String assignee, Constants.State state,
                  String patchLCState, String daysInState) {
         this.url = jiraLink;
@@ -72,7 +73,7 @@ public class Patch implements HtmlTableRow {
         return daysInState;
     }
 
-    public String objectToHtml(String backgroundColor) {
+    public String objectToHTML(String backgroundColor) {
         return "<tr><td width=\"" + "30%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px;" +
                 " font-weight: 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +

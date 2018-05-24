@@ -29,8 +29,9 @@ import org.wso2.patchinformation.properties.PropertyValues;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_HTML_HEADER_CUSTOMER_RELATED;
-import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_HTML_HEADER_INTERNAL;
+import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_HEADER_CUSTOMER_RELATED;
+import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_HEADER_END;
+import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_HEADER_INTERNAL;
 import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_SUBJECT_CUSTOMER_RELATED;
 import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_SUBJECT_INTERNAL;
 
@@ -75,23 +76,26 @@ public class MainEmailSender {
         } catch (IOException e) {
             throw new EmailProcessException("Failed to read properties file", e);
         }
+
         String urlToJIRAFilter;
         String emailSubject;
         String emailHeaderHTML;
         if (isMailOnCustomerReportedIssues) {
             urlToJIRAFilter = propertyValues.getUrlToCustomerIssuesFilter();
             emailSubject = EMAIL_SUBJECT_CUSTOMER_RELATED;
-            emailHeaderHTML = EMAIL_HTML_HEADER_CUSTOMER_RELATED;
+            emailHeaderHTML = EMAIL_HEADER_CUSTOMER_RELATED;
         } else {
             urlToJIRAFilter = propertyValues.getUrlToInternalIssuesFilter();
             emailSubject = EMAIL_SUBJECT_INTERNAL;
-            emailHeaderHTML = EMAIL_HTML_HEADER_INTERNAL;
+            emailHeaderHTML = EMAIL_HEADER_INTERNAL;
         }
+
         ArrayList<JIRAIssue> jiraIssues;
         try {
             jiraIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getIssues(urlToJIRAFilter,
                     propertyValues.getJiraAuthentication()));
             LOGGER.info("Successfully extracted JIRA issue information from JIRA.");
+            emailHeaderHTML += jiraIssues.size() + EMAIL_HEADER_END;
         } catch (EmailProcessException e) {
             String errorMessage = "Failed to extract JIRA issues from JIRA.";
             LOGGER.error(errorMessage, e);
