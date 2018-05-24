@@ -48,12 +48,8 @@ public final class EmailConstants {
                     "         <td align=\"center\" style=\"font-family: Helvetica, Arial, sans-serif; font-size:" +
                     " 18px;" +
                     " font-weight: 400; line-height: 15px; padding-top: 0px;\">\n" +
-                    "            <p style=\"font-size: 30px; font-weight: 600; line-height: 26px; color: #000000;\">" +
-                    "Ongoing Internal Patches as of " + LocalDate.now() + " - ";
-
-    public static final String EMAIL_HEADER_END =  "</p>\n</td>\n" +
-            "      </tr>\n" +
-            "      </table>";
+                    "            <p style=\"font-size: 24px; font-weight: 600; line-height: 26px; color: #000000;\">" +
+                    "Internal Patches as of " + LocalDate.now() + " : Ongoing - ";
 
     public static final String EMAIL_HEADER_CUSTOMER_RELATED =
             "<html>\n" +
@@ -68,7 +64,178 @@ public final class EmailConstants {
                     "18px;" +
                     " font-weight: 400; line-height: 15px; padding-top: 0px;\">\n" +
                     "            <p style=\"font-size: 24px; font-weight: 600; line-height: 26px; color: #000000;\">" +
-                    "Ongoing Customer Related Patches as of " + LocalDate.now() + ": ";
+                    "Customer Related Patches as of " + LocalDate.now() + " : Ongoing - ";
+
+    public static final String EMAIL_HEADER_END =  "</p>\n</td>\n" +
+            "      </tr>\n" +
+            "      </table>";
+
+    public static final String COLUMN_NAMES_SUMMARY = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\"" +
+            " border=\"0\" width=\"95%\">" +
+            "<tr>" +
+            " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "JIRA Issue" +
+            " </td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Assignee" +
+            "</td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Open Patches" +
+            "</td>" +
+            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px;" +
+            " padding: 10px;\">" +
+            "Date Reported" +
+            "</td>" +
+            "</tr>";
+
+    public static final String COLUMN_NAMES = "<table align=\"center\" cellspacing=\"0\" " +
+            "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
+            "<tr>" +
+            " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
+            " 20px; padding: 10px;\">" +
+            "JIRA Issue" +
+            " </td>" +
+            "<td width=\"20%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Patch Name" +
+            "</td>" +
+            "<td width=\"15%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: " +
+            "20px; padding: 10px;\">" +
+            "Product" +
+            "</td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Assignee" +
+            "</td>" +
+            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
+            " 20px; padding: 10px;\">" +
+            "LC State </td>" +
+            "<td width=\"15%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
+            " 20px; padding: 10px;\">";
+
+    public static final String COLUMN_NAMES_INACTIVE = "<table align=\"center\" cellspacing=\"0\" " +
+            "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
+            "<tr>" +
+            " <td width=\"15%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
+            " 20px; padding: 10px;\">" +
+            "JIRA Issue" +
+            " </td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Patch Name" +
+            "</td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: " +
+            "20px; padding: 10px;\">" +
+            "Product" +
+            "</td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Assignee" +
+            "</td>" +
+            " <td width=\"7%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
+            " 20px; padding: 10px;\">" +
+            "JIRA State" +
+            " </td>" +
+            " <td width=\"7%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
+            " 20px; padding: 10px;\">" +
+            "LC State </td>" +
+            "<td width=\"7%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
+            " 20px; padding: 10px;\">";
+
+    public static final String COLUMN_NAMES_DEV = "<table align=\"center\" cellspacing=\"0\" " +
+            "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
+            "<tr><td width=\"20%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\"> JIRA Issue</td><td width=\"20%\" align=\"center\" color=\"#044767\"" +
+            " bgcolor=\"#bebebe\" style=\"font-family: Open Sans," +
+            " Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">Patch Name" +
+            "</td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans,Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\"> Product </td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, " +
+            "Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; padding: " +
+            "10px;\"> Assignee </td>" +
+            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\"> " +
+            "LC State </td>" + "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" " +
+            "style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; " +
+            "line-height: 20px; padding: 10px;\">" +
+            "Reported Date" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, " +
+            "Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: " +
+            "20px; padding: 10px;\">";
+
+    public static final String COLUMN_NAMES_RELEASED = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\"" +
+            " border=\"0\" width=\"95%\">" +
+            "<tr>" +
+            " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "JIRA Issue" +
+            " </td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Assignee" +
+            "</td>" +
+            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
+            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
+            "padding: 10px;\">" +
+            "Released Patches" +
+            "</td>" +
+            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
+            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px;" +
+            " padding: 10px;\">" +
+            "Date Reported" +
+            "</td>" +
+            "</tr>";
+
+    public static final String EMAIL_SUBJECT_INTERNAL = "[Ongoing Patches][Proactive] Proactive Patch Information: " +
+            LocalDate.now();
+    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "[Ongoing Patches][Customer] Customer " +
+            "Patch Information: " + LocalDate.now();
+    public static final String SUMMARY_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+            "font-weight: 600; line-height: 26px; color: #000000;\">Summary of Patch Related JIRAs</p>";
+    public static final String INACTIVE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+            "font-weight: 600; line-height: 26px; color: #000000;\">JIRAs Tagged with Patch Label Having No Ongoing " +
+            "Patches</p>";
+    public static final String IN_QUEUE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+            "font-weight: 600; line-height: 26px; color: #000000;\">New Patches in Queue</p>";
+    public static final String DEV_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+            "font-weight: 600; line-height: 26px; color: #000000;\">Patches in Development</p>";
+    public static final String IN_SIGNING_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px;" +
+            " font-weight: 600; line-height: 26px; color: #000000;\">Patches Sent for Signing</p>";
+    public static final String RELEASED_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+            "font-weight: 600; line-height: 26px; color: #000000;\"> Released Patches with an Unresolved" +
+            " JIRA Issue</p>";
+    public static final String EMAIL_TYPE = "text/html";
+
+
     public static final String EMAIL_FOOTER = "<br><br><table align=\"center\" border=\"0\" cellpadding=\"0\" " +
             "cellspacing=\"0\" width=\"100%\" style=\"max-width:600px;\">\n" +
             "   <tr>\n" +
@@ -87,130 +254,6 @@ public final class EmailConstants {
             "   </tr>\n" +
             "</table>\n" +
             "</body></html>\n";
-    public static final String COLUMN_NAMES_SUMMARY = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\"" +
-            " border=\"0\" width=\"95%\">" +
-            "<tr>" +
-            " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "JIRAIssue" +
-            " </td>" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "Assignee" +
-            "</td>" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "NumberOfOpenPatches" +
-            "</td>" +
-            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px;" +
-            " padding: 10px;\">" +
-            "DateReported" +
-            "</td>" +
-            "</tr>";
-
-    public static final String COLUMN_NAMES_RELEASED = "<table align=\"center\" cellspacing=\"0\" cellpadding=\"0\"" +
-            " border=\"0\" width=\"95%\">" +
-            "<tr>" +
-            " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "JIRAIssue" +
-            " </td>" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "Assignee" +
-            "</td>" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "NumberOfReleasedPatches" +
-            "</td>" +
-            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px;" +
-            " padding: 10px;\">" +
-            "DateReported" +
-            "</td>" +
-            "</tr>";
-
-    public static final String EMAIL_SUBJECT_INTERNAL = "[Ongoing Patches][Internal] Internal Patch Information: " +
-            LocalDate.now();
-    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "[Ongoing Patches][Customer Related] Customer " +
-            "Related Patch Information: " + LocalDate.now();
-    public static final String IN_QUEUE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">New Patches in Queue</p>";
-    public static final String DEV_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Patches in Development</p>";
-    public static final String IN_SIGNING_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px;" +
-            " font-weight: 600; line-height: 26px; color: #000000;\">Patches Sent for Signing</p>";
-    public static final String RELEASED_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\"> Released Patches with an Unresolved" +
-            " JIRA Issue</p>";
-    public static final String SUMMARY_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
-            "font-weight: 600; line-height: 26px; color: #000000;\">Summary of Patch Related JIRAs</p>";
-    public static final String EMAIL_TYPE = "text/html";
-    public static final String COLUMN_NAMES = "<table align=\"center\" cellspacing=\"0\" " +
-            "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
-            "<tr>" +
-            " <td width=\"30%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
-            " 20px; padding: 10px;\">" +
-            "JIRAIssue" +
-            " </td>" +
-            "<td width=\"20%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "PatchName" +
-            "</td>" +
-            "<td width=\"15%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: " +
-            "20px; padding: 10px;\">" +
-            "Product" +
-            "</td>" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">" +
-            "Assignee" +
-            "</td>" +
-            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
-            " 20px; padding: 10px;\">" +
-            "State </td>" +
-            "<td width=\"15%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height:" +
-            " 20px; padding: 10px;\">";
-    public static final String COLUMN_NAMES_DEV = "<table align=\"center\" cellspacing=\"0\" " +
-            "cellpadding=\"0\" border=\"0\" width=\"95%\">" +
-            "<tr><td width=\"20%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\"> JIRAIssue</td><td width=\"20%\" align=\"center\" color=\"#044767\"" +
-            " bgcolor=\"#bebebe\" style=\"font-family: Open Sans," +
-            " Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\">PatchName" +
-            "</td>" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans,Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\"> Product </td>" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family:" +
-            " Open Sans, " +
-            "Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; padding: " +
-            "10px;\"> Assignee </td>" +
-            " <td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: 20px; " +
-            "padding: 10px;\"> " +
-            "State </td>" + "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" " +
-            "style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; " +
-            "line-height: 20px; padding: 10px;\">" +
-            "ReportedDate" +
-            "<td width=\"10%\" align=\"center\" color=\"#044767\" bgcolor=\"#bebebe\" style=\"font-family: " +
-            "Open Sans, " +
-            "Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 800; line-height: " +
-            "20px; padding: 10px;\">";
-
     private EmailConstants() {
 
     }

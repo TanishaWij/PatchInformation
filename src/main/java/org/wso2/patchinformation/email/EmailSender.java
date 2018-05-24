@@ -78,6 +78,7 @@ public class EmailSender {
      * @throws IOException If there is no client_secret.
      */
     private Credential getCredentials(final NetHttpTransport httpTransport) throws IOException {
+
         InputStream in = MainEmailSender.class.getResourceAsStream(CLIENT_SECRET_DIR);
         GoogleClientSecrets clientSecrets;
         clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in,
@@ -101,6 +102,7 @@ public class EmailSender {
      */
     private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC)
             throws ContentException {
+
         try {
             Properties props = new Properties();
             Session session = Session.getDefaultInstance(props, null);
@@ -132,6 +134,7 @@ public class EmailSender {
      * @throws ContentException failed to create Message
      */
     private Message createMessageWithEmail(MimeMessage emailContent) throws ContentException {
+
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
             emailContent.writeTo(buffer);
@@ -154,6 +157,7 @@ public class EmailSender {
      */
     public void sendMessage(String emailBody, String subject, String emailFrom, String emailTo, String emailCC)
             throws EmailProcessException {
+
         // Build a new authorized API client service.
         try {
             NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();

@@ -16,19 +16,34 @@
 // under the License.
 //
 
-package org.wso2.patchinformation.pmt.comparators;
+package org.wso2.patchinformation.comparators;
 
 import org.wso2.patchinformation.pmt.Patch;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 /**
- * Implements the Comparator class to order objects of the Patch class by it's "stateName" attribute.
+ * Implements the Comparator class to order objects of the OpenPatch class by more than one  attribute.
  */
-public class StateNameComparator implements Comparator<Patch>, Serializable {
+public class PatchChainedComparator implements Comparator<Patch>, Serializable {
+
+    private List<Comparator<Patch>> listComparators;
+
+    public PatchChainedComparator(Comparator<Patch>... comparators) {
+        this.listComparators = Arrays.asList(comparators);
+    }
 
     public int compare(Patch p1, Patch p2) {
-        return p1.getPatchLCState().compareTo(p2.getPatchLCState());
+        for (Comparator<Patch> comparator : listComparators) {
+            int result = comparator.compare(p1, p2);
+            if (result != 0) {
+                return result;
+            }
+        }
+        return 0;
     }
 }
+

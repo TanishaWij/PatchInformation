@@ -1,4 +1,6 @@
-package org.wso2.patchinformation.jira;
+package org.wso2.patchinformation.comparators;
+
+import org.wso2.patchinformation.jira.JIRAIssue;
 
 import java.io.Serializable;
 import java.util.Comparator;
@@ -10,7 +12,6 @@ import java.util.Comparator;
 public class ReleasedReportDateComparator implements Comparator<JIRAIssue>, Serializable {
 
     public int compare(JIRAIssue jiraIssue1, JIRAIssue jiraIssue2) {
-        return jiraIssue1.getReportDateReleasedPatches().compareTo(
-                jiraIssue2.getReportDateReleasedPatches());
+        return jiraIssue1.getReportDateReleasedPatches().compareTo(jiraIssue2.getReportDateReleasedPatches());
     }
 }

@@ -36,6 +36,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
+import static org.wso2.patchinformation.constants.Constants.DATE_CREATED;
+import static org.wso2.patchinformation.constants.Constants.NAME;
 import static org.wso2.patchinformation.constants.Constants.OK;
 import static org.wso2.patchinformation.constants.Constants.RESULTS_PER_PAGE;
 
@@ -64,7 +66,7 @@ public class JIRAAccessor {
      * @throws EmailProcessException JIRAs not extracted successfully
      */
     public ArrayList<JIRAIssue> getIssues(String jiraFilter, String authorizationValue) throws EmailProcessException {
-        //gets response from JIRAIssue filter and parse it into a Json object
+
         try {
             String jiraResponse = sendJIRARequest(new URL(jiraFilter), authorizationValue);
             JSONParser jsonParser = new JSONParser();
@@ -92,23 +94,27 @@ public class JIRAAccessor {
      */
     private ArrayList<JIRAIssue> getJIRAsIssuesFromFilter(String urlToFilterResults, int totalJIRAs,
                                                           String authorizationValue) throws EmailProcessException {
+
         ArrayList<JIRAIssue> jiraIssues = new ArrayList<>();
         for (int i = 0; i <= totalJIRAs / RESULTS_PER_PAGE; i++) { //paging the JIRAIssue response
             try {
                 String responseFromSplitSearchUrl = sendJIRARequest(new URL(urlToFilterResults +
                         "&startAt=" + (i * RESULTS_PER_PAGE) + "&maxResults=" +
-                        (i + 1) * RESULTS_PER_PAGE + "&fields=key,assignee"), authorizationValue);
+                        (i + 1) * RESULTS_PER_PAGE + "&fields=key,assignee,created,status"), authorizationValue);
                 JSONParser jsonParser = new JSONParser();
                 JSONObject jsonObjectFromSplitSearchURL = (JSONObject) jsonParser.parse(responseFromSplitSearchUrl);
-                JSONArray issues = (JSONArray) jsonObjectFromSplitSearchURL.get(Constants.ISSUE);
+
+                JSONArray issues = (JSONArray) jsonObjectFromSplitSearchURL.get(Constants.ISSUES);
                 for (Object issue : issues) {
                     try {
-                        JSONObject issueInJson = (JSONObject) issue;
-                        JSONObject fieldsInJson = (JSONObject) issueInJson.get(Constants.FIELDS);
-                        JSONObject assigneeInJson = (JSONObject) fieldsInJson.get(Constants.ASSIGNEE);
+                        JSONObject issueInJSON = (JSONObject) issue;
+                        JSONObject fieldsInJSON = (JSONObject) issueInJSON.get(Constants.FIELDS);
+                        JSONObject assigneeInJSON = (JSONObject) fieldsInJSON.get(Constants.ASSIGNEE);
+                        JSONObject statusInJSON = (JSONObject) fieldsInJSON.get(Constants.STATUS);
                         //create new JIRAIssue
-                        jiraIssues.add(new JIRAIssue(issueInJson.get(Constants.JIRA_KEY).toString(),
-                                assigneeInJson.get(Constants.EMAIL).toString()));
+                        jiraIssues.add(new JIRAIssue(issueInJSON.get(Constants.JIRA_KEY).toString(),
+                                assigneeInJSON.get(Constants.EMAIL).toString(),
+                                fieldsInJSON.get(DATE_CREATED).toString(), statusInJSON.get(NAME).toString()));
                     } catch (NullPointerException e) {
                         throw new ContentException("Failed to extract JIRA issue's field data", e);
                     }
@@ -130,6 +136,7 @@ public class JIRAAccessor {
      * @throws EmailProcessException Failed to connect to JIRA and return the http response as a String
      */
     private String sendJIRARequest(URL url, String authorizationValue) throws EmailProcessException {
+
         HttpURLConnection connection = null;
         try {
             connection = (HttpsURLConnection) url.openConnection();

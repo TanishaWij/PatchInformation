@@ -76,7 +76,7 @@ public class MainEmailSender {
         } catch (IOException e) {
             throw new EmailProcessException("Failed to read properties file", e);
         }
-
+        //set values dependent on email type.
         String urlToJIRAFilter;
         String emailSubject;
         String emailHeaderHTML;
@@ -89,7 +89,7 @@ public class MainEmailSender {
             emailSubject = EMAIL_SUBJECT_INTERNAL;
             emailHeaderHTML = EMAIL_HEADER_INTERNAL;
         }
-
+        //access Jira.
         ArrayList<JIRAIssue> jiraIssues;
         try {
             jiraIssues = new ArrayList<>(JIRAAccessor.getJiraAccessor().getIssues(urlToJIRAFilter,
@@ -101,23 +101,25 @@ public class MainEmailSender {
             LOGGER.error(errorMessage, e);
             throw new EmailProcessException(errorMessage, e);
         }
+        //access the pmt.
         String emailBodyHTML;
         String pmtConnection = propertyValues.getPmtConnection();
         String pmtUserName = propertyValues.getDbUser();
         String pmtUserPassword = propertyValues.getDbPassword();
         PmtAccessor pmtAccessor = PmtAccessor.getPmtAccessor();
         try {
-            ArrayList<JIRAIssue> jiraTicketsInPmtAndJIRA = new ArrayList<>(
+            ArrayList<JIRAIssue> jiraIssuesInPmtAndJIRA = new ArrayList<>(
                     pmtAccessor.filterJIRAIssues(jiraIssues, pmtConnection, pmtUserName, pmtUserPassword));
-            pmtAccessor.populatePatches(jiraTicketsInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword);
+            pmtAccessor.populatePatches(jiraIssuesInPmtAndJIRA, pmtConnection, pmtUserName, pmtUserPassword);
             LOGGER.info("Successfully extracted patch information from the pmt.");
-            emailBodyHTML = EmailBodyCreator.getEmailBodyCreator().getEmailBody(jiraTicketsInPmtAndJIRA,
+            emailBodyHTML = EmailBodyCreator.getEmailBodyCreator().getEmailBody(jiraIssues,
                     emailHeaderHTML);
         } catch (EmailProcessException e) {
-            String errorMessage = "Failed to extract Patch information from the pmt.";
+            String errorMessage = "Failed to extract OpenPatch information from the pmt.";
             LOGGER.error(errorMessage, e);
             throw new EmailProcessException(errorMessage, e);
         }
+        //send mail
         try {
             EmailSender.getEmailSender().sendMessage(emailBodyHTML, emailSubject, propertyValues.getEmailUser(),
                     propertyValues.getToList(), propertyValues.getCcList());

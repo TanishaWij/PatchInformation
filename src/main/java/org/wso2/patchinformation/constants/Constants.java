@@ -36,12 +36,15 @@ public final class Constants {
             "where SUPPORT_JIRA like '%";
     public static final String SELECT_SUPPORT_JIRAS = "SELECT SUPPORT_JIRA FROM PATCH_QUEUE\n" +
             "WHERE YEAR(REPORT_DATE) > '2017';";
+
+    public static final String JIRA_URL_PREFIX = "https://support.wso2.com/jira/browse/";
     public static final int JIRA_URL_PREFIX_LENGTH = 37;
+    public static final String NO_ENTRY_IN_PMT = "No Entry in PMT";
+    public static final String NA = "N/A";
     //"active" on patch queue
     public static final String OFF_QUEUE = "No";
     public static final String IN_QUEUE = "Yes";
     //LC States
-    public static final String NOT_IN_PMT = "No record in PMT";
     public static final String LC_STATE_STAGING = "Staging";
     public static final String LC_STATE_DEVELOPMENT = "Development";
     public static final String LC_STATE_TESTING = "Testing";
@@ -62,13 +65,17 @@ public final class Constants {
     public static final String GET = "GET";
     public static final String SEARCH_URL = "searchUrl";
     public static final String TOTAL = "total";
-    public static final String ISSUE = "issues";
+    public static final String ISSUES = "issues";
     public static final String FIELDS = "fields";
     public static final String ASSIGNEE = "assignee";
+    public static final String STATUS = "status";
+    public static final String DATE_CREATED = "created";
     public static final String JIRA_KEY = "key";
     public static final String EMAIL = "emailAddress";
-    public static final String NOT_SET = "notSet";
+    public static final String NAME = "name";
+    public static final String NOT_SET = "No Entry in PMT";
     public static final String NOT_SPECIFIED = "Not Specified";
+
     private Constants() {
         // restrict instantiation
     }
@@ -77,6 +84,6 @@ public final class Constants {
      * States associated with tables in email
      */
     public enum State {
-        IN_DEV, IN_PATCH_QUEUE, IN_SIGNING, REALEASED
+        IN_DEV, IN_PATCH_QUEUE, IN_SIGNING, REALEASED, INACTIVE
     }
 }

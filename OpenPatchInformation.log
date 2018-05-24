@@ -1181,3 +1181,557 @@ Caused by: com.google.api.client.googleapis.json.GoogleJsonResponseException: 40
 2018-05-23 21:52:00 INFO  MainEmailSender:124 - Successfully sent email with patch information.
 2018-05-23 21:52:00 INFO  MainEmailSender:57 - Execution completed successfully.
 
+2018-05-24 09:05:42 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 09:05:48 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 09:05:50 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 09:05:51 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 09:05:51 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 09:05:51 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 09:05:55 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 09:05:56 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 09:05:57 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 09:05:57 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 09:14:23 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 09:14:30 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 09:14:31 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 09:14:32 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 09:14:32 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 09:14:32 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 09:14:36 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 09:14:37 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 09:14:37 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 09:14:37 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 09:22:14 INFO  MainEmailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-24 09:22:20 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 09:22:21 INFO  MainEmailSender:115 - Successfully extracted patch information from the pmt.
+2018-05-24 09:22:21 INFO  MainEmailSender:49 - Execution completed successfully.
+
+2018-05-24 09:22:21 INFO  MainEmailSender:54 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 09:22:25 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 09:22:26 INFO  MainEmailSender:115 - Successfully extracted patch information from the pmt.
+2018-05-24 09:22:26 INFO  MainEmailSender:56 - Execution completed successfully.
+
+2018-05-24 10:05:03 INFO  MainEmailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-24 10:05:10 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:45:20 INFO  MainEmailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-24 11:46:42 INFO  MainEmailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-24 11:46:48 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:46:50 INFO  MainEmailSender:115 - Successfully extracted patch information from the pmt.
+2018-05-24 11:46:50 INFO  MainEmailSender:49 - Execution completed successfully.
+
+2018-05-24 11:46:50 INFO  MainEmailSender:54 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 11:46:55 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:46:56 INFO  MainEmailSender:115 - Successfully extracted patch information from the pmt.
+2018-05-24 11:46:56 INFO  MainEmailSender:56 - Execution completed successfully.
+
+2018-05-24 11:47:11 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 11:47:17 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:47:18 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 11:47:19 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 11:47:19 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 11:47:19 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 11:47:24 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:47:25 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 11:47:26 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 11:47:26 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 11:51:45 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 11:51:50 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:51:51 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 11:51:53 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 11:51:53 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 11:51:53 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 11:51:57 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:51:58 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 11:51:58 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 11:51:58 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 11:57:09 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 11:57:16 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:57:18 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 11:57:19 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 11:57:19 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 11:57:19 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 11:57:27 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 11:57:28 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 11:57:29 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 11:57:29 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 11:59:56 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:00:01 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:00:03 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:00:05 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:00:05 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:00:05 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:00:11 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:00:12 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:00:13 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:00:13 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 12:02:54 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:03:00 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:03:02 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:03:03 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:03:03 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:03:03 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:03:08 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:03:09 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:03:09 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:03:09 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 12:07:10 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:07:16 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:07:17 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:07:18 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:07:18 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:07:18 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:07:23 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:07:24 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:07:25 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:07:25 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 12:08:19 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:08:25 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:08:27 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:08:28 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:08:28 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:08:28 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:08:33 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:08:34 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:08:35 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:08:35 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 12:09:53 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:10:02 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:10:04 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:10:05 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:10:05 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:10:05 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:10:10 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:10:10 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:10:11 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:10:11 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 12:27:20 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:27:39 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:27:46 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:27:47 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:27:48 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:27:48 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:27:48 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:27:54 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:27:54 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:27:55 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:27:55 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 12:29:46 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:29:51 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:29:53 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:29:54 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:29:54 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:29:54 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:30:00 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:30:01 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:30:02 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:30:02 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 12:37:19 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 12:37:25 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:37:27 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:37:28 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:37:28 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 12:37:28 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 12:37:33 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 12:37:34 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 12:37:35 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 12:37:35 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 13:44:07 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 13:44:13 ERROR MainEmailSender:102 - Failed to extract JIRA issues from JIRA.
+org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:49)
+Caused by: java.lang.NullPointerException
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	... 3 more
+2018-05-24 13:44:13 ERROR MainEmailSender:52 - Execution failed, process was not completed
+
+org.wso2.patchinformation.exceptions.EmailProcessException: Failed to extract JIRA issues from JIRA.
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:103)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:49)
+Caused by: org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
+	... 1 more
+Caused by: java.lang.NullPointerException
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	... 3 more
+2018-05-24 13:44:13 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 13:44:19 ERROR MainEmailSender:102 - Failed to extract JIRA issues from JIRA.
+org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:56)
+Caused by: java.lang.NullPointerException
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	... 3 more
+2018-05-24 13:44:19 ERROR MainEmailSender:59 - Execution failed, process was not completed
+
+org.wso2.patchinformation.exceptions.EmailProcessException: Failed to extract JIRA issues from JIRA.
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:103)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:56)
+Caused by: org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
+	... 1 more
+Caused by: java.lang.NullPointerException
+	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	... 3 more
+2018-05-24 13:46:47 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 13:46:52 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 13:46:54 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 13:46:56 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 13:46:56 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 13:46:56 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 13:47:01 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 13:47:03 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 13:47:03 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 13:47:03 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 13:50:12 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 13:50:19 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 13:50:21 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 13:50:22 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 13:50:22 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 13:50:22 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 13:50:31 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 13:50:31 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 13:50:32 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 13:50:32 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 13:52:25 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 13:52:32 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 13:52:34 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 13:52:35 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 13:52:35 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 13:52:35 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 13:52:40 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 13:52:41 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 13:52:42 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 13:52:42 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 14:00:22 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 14:00:29 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:00:31 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:00:32 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:00:32 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 14:00:32 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 14:00:38 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:00:39 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:00:40 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:00:40 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 14:09:18 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 14:09:25 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:09:26 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:09:28 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:09:28 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 14:09:28 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 14:09:34 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:09:35 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:09:36 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:09:36 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 14:25:08 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 14:25:16 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:25:19 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:25:20 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:25:20 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 14:25:20 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 14:25:27 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:25:27 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:25:29 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:25:29 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 14:40:41 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 14:40:52 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 14:41:00 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:41:02 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:41:03 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:41:03 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 14:41:03 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 14:41:09 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:41:10 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:41:11 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:41:11 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 14:54:57 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 14:55:08 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:55:12 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:55:15 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:55:15 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 14:55:15 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 14:55:21 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 14:55:23 INFO  MainEmailSender:116 - Successfully extracted patch information from the pmt.
+2018-05-24 14:55:24 INFO  MainEmailSender:128 - Successfully sent email with patch information.
+2018-05-24 14:55:24 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 15:23:27 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 15:23:38 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:23:41 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:23:43 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:23:43 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 15:23:43 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 15:23:50 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:23:51 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:23:52 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:23:52 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 15:26:48 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 15:26:53 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:26:55 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:26:56 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:26:56 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 15:26:56 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 15:27:03 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:27:04 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:27:04 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:27:04 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 15:31:11 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 15:31:18 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:31:20 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:31:21 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:31:21 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 15:31:21 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 15:31:25 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:31:26 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:31:27 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:31:27 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 15:47:36 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 15:47:43 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:47:44 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:47:46 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:47:46 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 15:47:46 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 15:47:50 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:47:51 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:47:52 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:47:52 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 15:51:40 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 15:51:46 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:51:48 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:51:49 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:51:49 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 15:51:49 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 15:51:54 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 15:51:55 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 15:51:56 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 15:51:56 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:01:46 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:01:54 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:01:56 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:01:59 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:01:59 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:01:59 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:02:03 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:02:04 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:02:06 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:02:06 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:03:48 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:03:54 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:03:56 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:03:58 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:03:58 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:03:58 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:04:02 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:04:02 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:04:04 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:04:04 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:04:30 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:04:36 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:04:38 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:04:40 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:04:40 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:04:40 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:04:44 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:04:45 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:04:46 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:04:46 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:05:33 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:05:39 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:05:41 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:05:43 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:05:43 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:05:43 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:05:47 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:05:48 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:05:49 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:05:49 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:08:05 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:08:12 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:08:13 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:08:15 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:08:15 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:08:15 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:08:20 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:08:21 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:08:22 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:08:22 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:15:23 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:15:29 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:15:31 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:15:32 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:15:32 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:15:32 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:15:37 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:15:38 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:15:39 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:15:39 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:17:49 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:17:55 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:17:57 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:17:58 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:17:58 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:17:58 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:18:03 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:18:04 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:18:05 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:18:05 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:20:08 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:20:14 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:20:16 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:20:17 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:20:17 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:20:17 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:20:22 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:20:23 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:20:24 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:20:24 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:20:56 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:21:02 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:21:04 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:21:06 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:21:06 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:21:06 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:21:10 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:21:11 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:21:12 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:21:12 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:22:37 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:22:43 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:22:45 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:22:47 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:22:47 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:22:47 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:22:51 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:22:52 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:22:53 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:22:53 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:28:06 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:28:12 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:28:14 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:28:16 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:28:16 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:28:16 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:28:21 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:28:22 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:28:23 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:28:23 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:29:23 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:29:29 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:29:31 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:29:32 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:29:32 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:29:32 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:29:37 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:29:38 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:29:39 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:29:39 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 16:33:26 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:33:33 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:33:35 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:33:38 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 16:33:45 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:33:46 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:33:48 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:33:48 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 16:33:48 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 16:33:54 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 16:33:55 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 16:33:56 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 16:33:56 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-24 17:17:53 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-24 17:18:00 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 17:18:02 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 17:18:03 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 17:18:03 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-24 17:18:03 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-24 17:18:08 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-24 17:18:09 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-24 17:18:09 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-24 17:18:09 INFO  MainEmailSender:57 - Execution completed successfully.
+

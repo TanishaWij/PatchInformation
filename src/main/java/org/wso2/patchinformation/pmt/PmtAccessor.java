@@ -30,6 +30,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import static org.wso2.patchinformation.constants.Constants.IN_QUEUE;
+import static org.wso2.patchinformation.constants.Constants.JIRA_URL_PREFIX;
 import static org.wso2.patchinformation.constants.Constants.JIRA_URL_PREFIX_LENGTH;
 import static org.wso2.patchinformation.constants.Constants.LC_STATE_DEVELOPMENT;
 import static org.wso2.patchinformation.constants.Constants.LC_STATE_FAILED_QA;
@@ -41,7 +42,9 @@ import static org.wso2.patchinformation.constants.Constants.LC_STATE_RELEASED_NO
 import static org.wso2.patchinformation.constants.Constants.LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN;
 import static org.wso2.patchinformation.constants.Constants.LC_STATE_STAGING;
 import static org.wso2.patchinformation.constants.Constants.LC_STATE_TESTING;
+import static org.wso2.patchinformation.constants.Constants.NA;
 import static org.wso2.patchinformation.constants.Constants.NOT_SPECIFIED;
+import static org.wso2.patchinformation.constants.Constants.NO_ENTRY_IN_PMT;
 import static org.wso2.patchinformation.constants.Constants.OFF_QUEUE;
 import static org.wso2.patchinformation.constants.Constants.QUERY_PER_PATCH;
 import static org.wso2.patchinformation.constants.Constants.SELECT_SUPPORT_JIRAS;
@@ -66,19 +69,11 @@ public class PmtAccessor {
         return pmtAccessor;
     }
 
-    private static String getDate(String dateAndTime) {
-        if (dateAndTime == null || !(dateAndTime.contains(" "))) {
-            return NOT_SPECIFIED;
-        } else {
-            String[] dateSplit = dateAndTime.split(" ");
-            return dateSplit[0];
-        }
-    }
-
 
 
     public ArrayList<JIRAIssue> filterJIRAIssues(ArrayList<JIRAIssue> jiraIssues, String url, String user,
                                                  String password) throws EmailProcessException {
+
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement(SELECT_SUPPORT_JIRAS);
              ResultSet result = pst.executeQuery()) {
@@ -86,11 +81,7 @@ public class PmtAccessor {
             try {
                 while (result.next()) {
                     String jiraUrl = result.getString(SUPPORT_JIRA_URL_FIELD);
-                    String jiraName = "";
-                    if (jiraUrl.length() >= JIRA_URL_PREFIX_LENGTH) {
-                        jiraName = jiraUrl.substring(JIRA_URL_PREFIX_LENGTH);
-                    }
-                    allJIRANamesInPmt.add(jiraName);
+                    allJIRANamesInPmt.add(getJiraName(jiraUrl));
                 }
             } catch (SQLException e) {
                 throw new ContentException("Failed to extract data from returned pmt ResultSet", e);
@@ -101,14 +92,25 @@ public class PmtAccessor {
         }
     }
 
+    private String getJiraName(String jiraUrl) {
+        String jiraName = "";
+        if (jiraUrl.length() >= JIRA_URL_PREFIX_LENGTH) {
+            jiraName = jiraUrl.substring(JIRA_URL_PREFIX_LENGTH);
+        }
+        return jiraName;
+    }
+
     private ArrayList<JIRAIssue> getJIRAIssuesInPmtAndJIRA(ArrayList<JIRAIssue> jiraIssues,
                                                            ArrayList<String> allJIRANamesInPmt) {
+
         ArrayList<JIRAIssue> jiraIssuesInPmtAndJira = new ArrayList<>();
         for (JIRAIssue jiraIssue : jiraIssues) {
             if (allJIRANamesInPmt.contains(jiraIssue.getName())) {
                 jiraIssuesInPmtAndJira.add(jiraIssue);
             } else {
-                jiraIssue.setAsNotInPMT();
+                String jiraLink = JIRA_URL_PREFIX + jiraIssue.getName();
+                jiraIssue.addInactivePatchToJIRA(new InactivePatch(jiraLink, NO_ENTRY_IN_PMT, NA,
+                        jiraIssue.getAssigneeName(), NA, jiraIssue.getJiraCreateDate(), jiraIssue.getJiraState()));
             }
         }
         return jiraIssuesInPmtAndJira;
@@ -116,6 +118,7 @@ public class PmtAccessor {
 
     public void populatePatches(ArrayList<JIRAIssue> jiraIssuesInPmtAndJira, String url, String user, String password)
             throws EmailProcessException {
+
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             for (JIRAIssue jiraIssue : jiraIssuesInPmtAndJira) {
                 String query = QUERY_PER_PATCH + jiraIssue.getName() + "';";
@@ -131,6 +134,12 @@ public class PmtAccessor {
         }
     }
 
+    /**
+     * Adds the patches found to its Jira issue.
+     * @param result from mysql query.
+     * @param jiraIssue the Jira issue.
+     * @throws SQLException could not extract data from result set.
+     */
     private void populatePatchesFromResultSet(ResultSet result, JIRAIssue jiraIssue) throws SQLException {
 
         while (result.next()) {
@@ -152,35 +161,59 @@ public class PmtAccessor {
                     if (((LC_STATE_STAGING.equals(lcState)) && (signRequestSentOn != null) ||
                             (LC_STATE_TESTING.equals(lcState)) && (signRequestSentOn != null))) {
                         String daysInSigning = result.getString("DAYS_IN_SIGNING");
-                        jiraIssue.addPatchToJIRA(new Patch(jiraLink, patchName, productName, assignee, State.IN_SIGNING,
-                                "InSigning", daysInSigning), curReportDate);
+                        jiraIssue.addOpenPatchToJIRA(new OpenPatch(jiraLink, patchName, productName, assignee,
+                                State.IN_SIGNING, "InSigning", daysInSigning), curReportDate);
                         //check if patch is in development
                     } else if (LC_STATE_STAGING.equals(lcState) || LC_STATE_DEVELOPMENT.equals(lcState) ||
                             LC_STATE_ONHOLD.equals(lcState) || LC_STATE_TESTING.equals(lcState) ||
                             LC_STATE_PREQA.equals(lcState) || LC_STATE_FAILED_QA.equals(lcState) ||
                             LC_STATE_READY_FOR_QA.equals(lcState)) {
-
-                        jiraIssue.addPatchToJIRA(new DevPatch(jiraLink, patchName, productName, assignee,
+                        jiraIssue.addOpenPatchToJIRA(new DevOpenPatch(jiraLink, patchName, productName, assignee,
                                 State.IN_DEV, lcState, curReportDate, daysSincePatchWasReported), curReportDate);
                         //if patch has been released
                     } else if (LC_STATE_RELEASED.equals(lcState)) {
-                        jiraIssue.addPatchToJIRA(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED,
-                                lcState, getDate(result.getString("RELEASED_ON"))), curReportDate);
+                        jiraIssue.addOpenPatchToJIRA(new OpenPatch(jiraLink, patchName, productName, assignee,
+                                        State.REALEASED, lcState, getDate(result.getString("RELEASED_ON"))),
+                                curReportDate);
                     } else if (LC_STATE_RELEASED_NOT_AUTOMATED.equals(lcState)) {
-                        jiraIssue.addPatchToJIRA(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED,
-                                lcState, getDate(result.getString("RELEASED_NOT_AUTOMATED_ON"))),
+                        jiraIssue.addOpenPatchToJIRA(new OpenPatch(jiraLink, patchName, productName, assignee,
+                                        State.REALEASED, lcState,
+                                        getDate(result.getString("RELEASED_NOT_AUTOMATED_ON"))),
                                 curReportDate);
                     } else if (LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN.equals(lcState)) {
-                        jiraIssue.addPatchToJIRA(new Patch(jiraLink, patchName, productName, assignee, State.REALEASED,
-                                lcState, getDate(result.getString("RELEASED_NOT_IN_PUBLIC_SVN_ON"))),
+                        jiraIssue.addOpenPatchToJIRA(new OpenPatch(jiraLink, patchName, productName, assignee,
+                                        State.REALEASED, lcState,
+                                        getDate(result.getString("RELEASED_NOT_IN_PUBLIC_SVN_ON"))),
                                 curReportDate);
+                    } else {
+                        //patch is broken or in regression
+                        jiraIssue.addInactivePatchToJIRA(new InactivePatch(jiraLink, patchName, productName, assignee,
+                                lcState, jiraIssue.getJiraCreateDate(), jiraIssue.getJiraState()));
                     }
+                } else {
+                    //patch is on hold
+                    jiraIssue.addInactivePatchToJIRA(new InactivePatch(jiraLink, patchName, productName, assignee,
+                            lcState, jiraIssue.getJiraCreateDate(), jiraIssue.getJiraState()));
                 }
             } else if (IN_QUEUE.equals(active)) {
-                jiraIssue.addPatchToJIRA(new Patch(jiraLink, "Patch ID not created", productName,
-                        assignee, State.IN_PATCH_QUEUE, "InQueue", daysSincePatchWasReported),
+                jiraIssue.addOpenPatchToJIRA(new OpenPatch(jiraLink, "Patch ID Not Generated", productName,
+                                assignee, State.IN_PATCH_QUEUE, "InQueue", daysSincePatchWasReported),
                         curReportDate);
+            } else {
+                //Not gone forward with Patch
+                jiraIssue.addInactivePatchToJIRA(new InactivePatch(jiraLink, "Patch ID Not Generated", productName,
+                        assignee, "Not Gone Forward with Patch", jiraIssue.getJiraCreateDate(),
+                        jiraIssue.getJiraState()));
             }
+        }
+    }
+
+    private static String getDate(String dateAndTime) {
+        if (dateAndTime == null || !(dateAndTime.contains(" "))) {
+            return NOT_SPECIFIED;
+        } else {
+            String[] dateSplit = dateAndTime.split(" ");
+            return dateSplit[0];
         }
     }
 }
