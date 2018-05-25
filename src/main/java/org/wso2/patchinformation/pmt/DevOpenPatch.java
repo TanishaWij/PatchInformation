@@ -35,10 +35,10 @@ public class DevOpenPatch extends OpenPatch implements HtmlTableRow {
     }
 
     /**
-     * Builds the patch data as a HTML table row
+     * Builds the patch data as a HTML table row.
      *
-     * @param backgroundColor of table row
-     * @return Returns the HTML code for a table row
+     * @param backgroundColor of table row.
+     * @return Returns the HTML code for a table row.
      */
     @Override
     public String objectToHTML(String backgroundColor) {

@@ -39,7 +39,15 @@ public class PropertyValues {
     private String urlToCustomerIssuesFilter;
     private String urlToInternalIssuesFilter;
 
+    public static PropertyValues getPropertyValues() throws IOException {
+        if (propertyValues == null) {
+            propertyValues = new PropertyValues();
+        }
+        return propertyValues;
+    }
+
     private PropertyValues() throws IOException {
+
         Properties prop = new Properties();
         try (InputStream propertyFile =
                      MainEmailSender.class.getResourceAsStream("/config.properties")) {
@@ -56,12 +64,7 @@ public class PropertyValues {
         this.urlToInternalIssuesFilter = prop.getProperty("UrlToInternalIssuesFilter");
     }
 
-    public static PropertyValues getPropertyValues() throws IOException {
-        if (propertyValues == null) {
-            propertyValues = new PropertyValues();
-        }
-        return propertyValues;
-    }
+
 
     public String getDbUser() {
         return dbUser;

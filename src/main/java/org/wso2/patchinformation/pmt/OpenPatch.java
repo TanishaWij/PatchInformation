@@ -21,7 +21,7 @@ import org.wso2.patchinformation.constants.Constants;
 import org.wso2.patchinformation.email.HtmlTableRow;
 
 /**
- * Represents a PMT OpenPatch.
+ * Represents a PMT Open Patch - Patches that are not on hold, in regression or broken.
  */
 public class OpenPatch extends Patch implements HtmlTableRow {
 
@@ -38,6 +38,12 @@ public class OpenPatch extends Patch implements HtmlTableRow {
         return daysInState;
     }
 
+    /**
+     * Builds the patch data as a HTML table row.
+     *
+     * @param backgroundColor of table row.
+     * @return Returns the HTML code for a table row.
+     */
     public String objectToHTML(String backgroundColor) {
         return "<tr><td width=\"" + "30%" + "\" align=\"left\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px;" +

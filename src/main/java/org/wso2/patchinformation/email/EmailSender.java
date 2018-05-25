@@ -32,7 +32,7 @@ import com.google.api.services.gmail.model.Message;
 import org.wso2.patchinformation.MainEmailSender;
 import org.wso2.patchinformation.exceptions.ConnectionException;
 import org.wso2.patchinformation.exceptions.ContentException;
-import org.wso2.patchinformation.exceptions.EmailProcessException;
+import org.wso2.patchinformation.exceptions.PatchInformationException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -54,7 +54,7 @@ import static org.wso2.patchinformation.constants.EmailConstants.JSON_FACTORY;
 import static org.wso2.patchinformation.constants.EmailConstants.SCOPES;
 
 /**
- * sends an email with the JIRA issues and associated patch information
+ * Sends an email with the JIRA issues and associated patch information.
  */
 public class EmailSender {
 
@@ -95,10 +95,10 @@ public class EmailSender {
     /**
      * Create a MimeMessage using the parameters provided.
      *
-     * @param subject  subject of the email
-     * @param bodyText body text of the email
-     * @return the MimeMessage to be used to send email
-     * @throws ContentException email was not created
+     * @param subject  subject of the email.
+     * @param bodyText body text of the email.
+     * @return the MimeMessage to be used to send email.
+     * @throws ContentException email was not created.
      */
     private MimeMessage createEmail(String subject, String bodyText, String emailFrom, String emailTo, String emailCC)
             throws ContentException {
@@ -107,7 +107,7 @@ public class EmailSender {
             Properties props = new Properties();
             Session session = Session.getDefaultInstance(props, null);
             MimeMessage email = new MimeMessage(session);
-            email.setFrom(new InternetAddress(emailFrom));
+            email.setFrom("Engineering Efficiency <" + emailFrom + ">");
             String[] toList = emailTo.split(",");
             for (String aToList : toList) {
                 email.addRecipient(javax.mail.Message.RecipientType.TO,
@@ -129,9 +129,9 @@ public class EmailSender {
     /**
      * Create a message from an email.
      *
-     * @param emailContent email to be set to raw of message
-     * @return a message containing a base64url encoded email
-     * @throws ContentException failed to create Message
+     * @param emailContent email to be set to raw of message.
+     * @return a message containing a base64url encoded email.
+     * @throws ContentException failed to create Message.
      */
     private Message createMessageWithEmail(MimeMessage emailContent) throws ContentException {
 
@@ -149,16 +149,15 @@ public class EmailSender {
     }
 
     /**
-     * * Send an email from the user's mailbox to its recipients.
+     * Sends an email from the user's mailbox to its recipients.
      *
-     * @param emailBody body of email
-     * @param subject   subject of the email
-     * @throws EmailProcessException email was not sent
+     * @param emailBody body of email.
+     * @param subject   subject of the email.
+     * @throws PatchInformationException email was not sent.
      */
     public void sendMessage(String emailBody, String subject, String emailFrom, String emailTo, String emailCC)
-            throws EmailProcessException {
+            throws PatchInformationException {
 
-        // Build a new authorized API client service.
         try {
             NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
             Gmail service = new Gmail.Builder(httpTransport, JSON_FACTORY, getCredentials(httpTransport))

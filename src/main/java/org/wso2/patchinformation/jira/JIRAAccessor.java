@@ -24,7 +24,7 @@ import org.json.simple.parser.ParseException;
 import org.wso2.patchinformation.constants.Constants;
 import org.wso2.patchinformation.exceptions.ConnectionException;
 import org.wso2.patchinformation.exceptions.ContentException;
-import org.wso2.patchinformation.exceptions.EmailProcessException;
+import org.wso2.patchinformation.exceptions.PatchInformationException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,7 +42,7 @@ import static org.wso2.patchinformation.constants.Constants.OK;
 import static org.wso2.patchinformation.constants.Constants.RESULTS_PER_PAGE;
 
 /**
- * connects to JIRAIssue and extracts the data returned from the filter
+ * Connects to JIRAIssue and extracts the data returned from the filter.
  */
 public class JIRAAccessor {
 
@@ -59,13 +59,14 @@ public class JIRAAccessor {
     }
 
     /**
-     * Returns an Arraylist of JIRAIssue objects containing the data returned after applying the JIRA filter
+     * Returns an ArrayList of JIRAIssue objects after applying a JIRA filter.
      *
-     * @param jiraFilter url to JIRA filter results
-     * @return Arraylist of JIRA Issues
-     * @throws EmailProcessException JIRAs not extracted successfully
+     * @param jiraFilter url to JIRA filter results.
+     * @return ArrayList of JIRA Issues.
+     * @throws PatchInformationException JIRAs not extracted successfully.
      */
-    public ArrayList<JIRAIssue> getIssues(String jiraFilter, String authorizationValue) throws EmailProcessException {
+    public ArrayList<JIRAIssue> getIssues(String jiraFilter, String authorizationValue) throws
+            PatchInformationException {
 
         try {
             String jiraResponse = sendJIRARequest(new URL(jiraFilter), authorizationValue);
@@ -76,7 +77,7 @@ public class JIRAAccessor {
             String responseFromSearchUrl = sendJIRARequest(new URL(urlToFilterResults), authorizationValue);
             JSONObject responseFromSearchUrlInJson = (JSONObject) jsonParser.parse(responseFromSearchUrl);
             int totalJIRAs = Integer.parseInt(responseFromSearchUrlInJson.get(Constants.TOTAL).toString());
-            return getJIRAsIssuesFromFilter(urlToFilterResults, totalJIRAs, authorizationValue);
+            return getIssuesFromFilter(urlToFilterResults, totalJIRAs, authorizationValue);
         } catch (MalformedURLException e) {
             throw new ConnectionException("Url defined to access JIRA is malformed", e);
         } catch (ParseException e) {
@@ -85,15 +86,15 @@ public class JIRAAccessor {
     }
 
     /**
-     * Pages the JIRA response from the search Url, stores into and finally returns an arraylist of JIRAIssue objects
+     * Pages the JIRA response and returns an ArrayList of JIRAIssue objects.
      *
-     * @param urlToFilterResults from JIRA
-     * @param totalJIRAs         total number of JIRA results returned by the filter
-     * @return Araaylist of JIRAIssues
-     * @throws EmailProcessException JIRA data not extracted successfully
+     * @param urlToFilterResults  url to get JIRA results.
+     * @param totalJIRAs         Number of JIRA results returned by the filter.
+     * @return ArrayList of JIRAIssues.
+     * @throws PatchInformationException JIRA data not extracted successfully.
      */
-    private ArrayList<JIRAIssue> getJIRAsIssuesFromFilter(String urlToFilterResults, int totalJIRAs,
-                                                          String authorizationValue) throws EmailProcessException {
+    private ArrayList<JIRAIssue> getIssuesFromFilter(String urlToFilterResults, int totalJIRAs,
+                                                     String authorizationValue) throws PatchInformationException {
 
         ArrayList<JIRAIssue> jiraIssues = new ArrayList<>();
         for (int i = 0; i <= totalJIRAs / RESULTS_PER_PAGE; i++) { //paging the JIRAIssue response
@@ -129,13 +130,13 @@ public class JIRAAccessor {
     }
 
     /**
-     * Returns the response returned by a http call as a String
+     * Returns the response returned by a http call as a String.
      *
-     * @param url to which the http get request is sent
-     * @return http response as a String
-     * @throws EmailProcessException Failed to connect to JIRA and return the http response as a String
+     * @param url to which the http get request is sent.
+     * @return http response as a String.
+     * @throws PatchInformationException Failed to connect to JIRA and return the http response as a String.
      */
-    private String sendJIRARequest(URL url, String authorizationValue) throws EmailProcessException {
+    private String sendJIRARequest(URL url, String authorizationValue) throws PatchInformationException {
 
         HttpURLConnection connection = null;
         try {

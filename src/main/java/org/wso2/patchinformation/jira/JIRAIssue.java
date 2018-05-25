@@ -28,72 +28,45 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static org.wso2.patchinformation.constants.Constants.JIRA_URL_PREFIX;
-import static org.wso2.patchinformation.constants.Constants.NOT_SET;
 import static org.wso2.patchinformation.constants.Constants.NOT_SPECIFIED;
+import static org.wso2.patchinformation.constants.Constants.NO_ENTRY_IN_PMT;
 
 /**
- * Represents each of the unique JIRAs returned by the JIRAIssue Filter.
+ * Represents a JIRA Issue.
  */
 public class JIRAIssue implements HtmlTableRow {
 
     private String name;
-    private String assigneeName;
+    private String assignee;
     private String jiraCreateDate;
     private String jiraState;
     private ArrayList<OpenPatch> openPatches;
     private ArrayList<OpenPatch> releasedPatches;
     private ArrayList<InactivePatch> inactivePatches;
-
-    private String reportDate;
-    private String reportDateReleasedPatches;
-    private String jiralink;
+    private String reportDate; //oldest of all the patches associated with the JIRA
+    private String reportDateReleasedPatches; //oldest of all the released patches associated with the JIRA
+    private String jiraLink;
 
     JIRAIssue(String jiraName, String assignee, String jiraCreateDate, String jiraState) {
-
         this.name = jiraName;
-        this.assigneeName = assignee;
+        this.jiraLink = JIRA_URL_PREFIX + jiraName;
+        this.assignee = assignee;
         this.jiraCreateDate = stripDate(jiraCreateDate);
         this.jiraState = jiraState;
+        //patch details are set to empty ArrayLists
         this.openPatches = new ArrayList<>();
         this.releasedPatches = new ArrayList<>();
         this.inactivePatches = new ArrayList<>();
-        this.reportDate = NOT_SET;
-        this.reportDateReleasedPatches = NOT_SET;
+        this.reportDate = NO_ENTRY_IN_PMT;
+        this.reportDateReleasedPatches = NO_ENTRY_IN_PMT;
     }
 
-    /**
-     * Returns the oldest of two date
-     *
-     * @param currentDateStr the date val currently recorded
-     * @param newDateStr     new date
-     * @return the oldest date
-     */
-    private static String dateCompare(String currentDateStr, String newDateStr) {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date currentDate = sdf.parse(currentDateStr);
-            Date newDate = sdf.parse(newDateStr);
-            if (currentDate.before(newDate)) {
-                return currentDateStr;
-            } else {
-                return newDateStr;
-            }
-        } catch (ParseException e) {
-            return currentDateStr;
-        }
+    public String getJiraState() {
+        return jiraState;
     }
 
     public String getReportDate() {
         return reportDate;
-    }
-
-    public void setReportDate(String currentReportDate) {
-        if (NOT_SET.equals(reportDate)) {
-            reportDate = currentReportDate;
-        } else {
-            reportDate = dateCompare(reportDate, currentReportDate);
-        }
     }
 
     public String getReportDateReleasedPatches() {
@@ -102,15 +75,6 @@ public class JIRAIssue implements HtmlTableRow {
 
     public String getJiraCreateDate() {
         return jiraCreateDate;
-    }
-
-    private String stripDate(String dateTime) {
-        if (dateTime == null || !(dateTime.contains("T"))) {
-            return NOT_SPECIFIED;
-        } else {
-            String[] dateSplit = dateTime.split("T");
-            return dateSplit[0];
-        }
     }
 
     public ArrayList<OpenPatch> getReleasedPatches() {
@@ -129,45 +93,52 @@ public class JIRAIssue implements HtmlTableRow {
         return name;
     }
 
-    public String getAssigneeName() {
-        return this.assigneeName;
+    public String getAssignee() {
+        return this.assignee;
     }
 
-    public void setJiralink(String jiralink) {
-        this.jiralink = jiralink;
+    public void setReportDate(String currentReportDate) {
+        if (NO_ENTRY_IN_PMT.equals(reportDate)) {
+            reportDate = currentReportDate;
+        } else {
+            reportDate = dateCompare(reportDate, currentReportDate);
+        }
     }
 
-    public void addOpenPatchToJIRA(OpenPatch patch, String currentReportDate) {
+    public void addInactivePatch(InactivePatch patch) {
+        this.inactivePatches.add(patch);
+    }
+
+    public void addOpenPatch(OpenPatch patch, String currentReportDate) {
         this.openPatches.add(patch);
-        if (patch.getState().equals(Constants.State.REALEASED)) {
+        if (patch.getState().equals(Constants.State.RELEASED)) {
             addReleasedPatches(patch, currentReportDate);
         }
     }
 
-    public void addInactivePatchToJIRA(InactivePatch patch) {
-        this.inactivePatches.add(patch);
-        this.jiralink = JIRA_URL_PREFIX + name;
-    }
-
-
-
     private void addReleasedPatches(OpenPatch patch, String currentReportDate) {
         this.releasedPatches.add(patch);
-        if (NOT_SET.equals(reportDateReleasedPatches)) {
+        if (NO_ENTRY_IN_PMT.equals(reportDateReleasedPatches)) {
             reportDateReleasedPatches = currentReportDate;
         } else {
             reportDateReleasedPatches = dateCompare(reportDateReleasedPatches, currentReportDate);
         }
     }
 
+    /**
+     * Builds the JIRA data as a HTML table row.
+     *
+     * @param backgroundColor of table row.
+     * @return Returns the HTML code for a table row.
+     */
     public String objectToHTML(String backgroundColor) {
         return "<tr><td width=\"" + "30%" + "\" align=\"left\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight:" +
                 " 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +
-                jiralink + "<td width=\"" + "20%" + "\" align=\"center\" bgcolor=" + backgroundColor +
+                jiraLink + "<td width=\"" + "20%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight:" +
                 " 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +
-                assigneeName + "<td width=\"" + "15%" + "\" align=\"center\" bgcolor=" + backgroundColor +
+                assignee + "<td width=\"" + "15%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight:" +
                 " 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +
                 openPatches.size() + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
@@ -176,14 +147,20 @@ public class JIRAIssue implements HtmlTableRow {
                 reportDate;
     }
 
+    /**
+     * Builds the JIRA dev patches data as a HTML table row.
+     *
+     * @param backgroundColor of table row.
+     * @return Returns the HTML code for a table row.
+     */
     public String devPatchesToHTML(String backgroundColor) {
         return "<tr><td width=\"" + "30%" + "\" align=\"left\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight:" +
                 " 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +
-                jiralink + "<td width=\"" + "20%" + "\" align=\"center\" bgcolor=" + backgroundColor +
+                jiraLink + "<td width=\"" + "20%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight:" +
                 " 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +
-                assigneeName + "<td width=\"" + "15%" + "\" align=\"center\" bgcolor=" + backgroundColor +
+                assignee + "<td width=\"" + "15%" + "\" align=\"center\" bgcolor=" + backgroundColor +
                 " style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 14px; font-weight:" +
                 " 400; line-height: 20px; padding: 15px 10px 5px 10px;\">" +
                 releasedPatches.size() + "<td width=\"" + "10%" + "\" align=\"center\" bgcolor=" + backgroundColor +
@@ -192,8 +169,44 @@ public class JIRAIssue implements HtmlTableRow {
                 reportDateReleasedPatches;
     }
 
-    public String getJiraState() {
-        return jiraState;
+    /**
+     * Returns the oldest of two date.
+     *
+     * @param currentDateStr the date val currently recorded.
+     * @param newDateStr     new date.
+     * @return the oldest date.
+     */
+    private static String dateCompare(String currentDateStr, String newDateStr) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date currentDate = sdf.parse(currentDateStr);
+            Date newDate = sdf.parse(newDateStr);
+            if (currentDate.before(newDate)) {
+                return currentDateStr;
+            } else {
+                return newDateStr;
+            }
+        } catch (ParseException e) {
+            return currentDateStr;
+        }
     }
+
+    /**
+     * Returns the date from a "date time" value.
+     *
+     * @param dateTime date time value returned by JIRA.
+     * @return the date.
+     */
+    private String stripDate(String dateTime) {
+        if (dateTime == null || !(dateTime.contains("T"))) {
+            return NOT_SPECIFIED;
+        } else {
+            String[] dateSplit = dateTime.split("T");
+            return dateSplit[0];
+        }
+    }
+
+
 }
 

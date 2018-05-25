@@ -36,7 +36,7 @@ public final class EmailConstants {
     public static final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_SEND);
     public static final String CLIENT_SECRET_DIR = "/clientSecret.json";
 
-    public static final String EMAIL_HEADER_INTERNAL =
+    public static final String MAIN_HEADER_INTERNAL =
             "<html>\n" +
                     "   <head>\n" +
                     "      <title></title>\n" +
@@ -49,9 +49,9 @@ public final class EmailConstants {
                     " 18px;" +
                     " font-weight: 400; line-height: 15px; padding-top: 0px;\">\n" +
                     "            <p style=\"font-size: 24px; font-weight: 600; line-height: 26px; color: #000000;\">" +
-                    "Internal Patches as of " + LocalDate.now() + " : Ongoing - ";
+                    "Proactive Patches as of " + LocalDate.now() + " : Ongoing - ";
 
-    public static final String EMAIL_HEADER_CUSTOMER_RELATED =
+    public static final String MAIN_HEADER_CUSTOMER =
             "<html>\n" +
                     "   <head>\n" +
                     "      <title></title>\n" +
@@ -64,9 +64,9 @@ public final class EmailConstants {
                     "18px;" +
                     " font-weight: 400; line-height: 15px; padding-top: 0px;\">\n" +
                     "            <p style=\"font-size: 24px; font-weight: 600; line-height: 26px; color: #000000;\">" +
-                    "Customer Related Patches as of " + LocalDate.now() + " : Ongoing - ";
+                    "Customer Patches as of " + LocalDate.now() + " : Ongoing - ";
 
-    public static final String EMAIL_HEADER_END =  "</p>\n</td>\n" +
+    public static final String MAIN_HEADER_END =  "</p>\n</td>\n" +
             "      </tr>\n" +
             "      </table>";
 
@@ -217,20 +217,20 @@ public final class EmailConstants {
 
     public static final String EMAIL_SUBJECT_INTERNAL = "[Ongoing Patches][Proactive] Proactive Patch Information: " +
             LocalDate.now();
-    public static final String EMAIL_SUBJECT_CUSTOMER_RELATED = "[Ongoing Patches][Customer] Customer " +
+    public static final String EMAIL_SUBJECT_CUSTOMER = "[Ongoing Patches][Customer] Customer " +
             "Patch Information: " + LocalDate.now();
-    public static final String SUMMARY_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+    public static final String SECTION_HEADER_SUMMARY = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">Summary of Patch Related JIRAs</p>";
-    public static final String INACTIVE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+    public static final String SECTION_HEADER_INACTIVE = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">JIRAs Tagged with Patch Label Having No Ongoing " +
             "Patches</p>";
-    public static final String IN_QUEUE_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+    public static final String SECTION_HEADER_QUEUE = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">New Patches in Queue</p>";
-    public static final String DEV_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+    public static final String SECTION_HEADER_DEV = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\">Patches in Development</p>";
-    public static final String IN_SIGNING_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px;" +
+    public static final String SECTION_HEADER_SIGNING = "<br><p align=\"center\"style=\"font-size: 20px;" +
             " font-weight: 600; line-height: 26px; color: #000000;\">Patches Sent for Signing</p>";
-    public static final String RELEASED_SECTION_HEADER = "<br><p align=\"center\"style=\"font-size: 20px; " +
+    public static final String SECTION_HEADER_RELEASED = "<br><p align=\"center\"style=\"font-size: 20px; " +
             "font-weight: 600; line-height: 26px; color: #000000;\"> Released Patches with an Unresolved" +
             " JIRA Issue</p>";
     public static final String EMAIL_TYPE = "text/html";

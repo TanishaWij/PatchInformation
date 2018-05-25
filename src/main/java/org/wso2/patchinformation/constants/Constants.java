@@ -23,10 +23,10 @@ package org.wso2.patchinformation.constants;
  */
 public final class Constants {
 
-    public static final String BACKGROUND_COLOR_GRAY = "#efefef";
-    public static final String BACKGROUND_COLOR_WHITE = "#ffffff";
+    public static final String GRAY_BACKGROUND = "#efefef";
+    public static final String WHITE_BACKGROUND = "#ffffff";
     //SQL statements
-    public static final String QUERY_PER_PATCH = "SELECT *, \n" +
+    public static final String SELECT_PATCHES_FOR_JIRA = "SELECT *, \n" +
             "(5 * (DATEDIFF(CURDATE(), REPORT_DATE) DIV 7)+ MID('0123455401234434012332340122123401101234000123450'," +
             "7 * WEEKDAY((REPORT_DATE)) + WEEKDAY(CURDATE()) + 1, 1)) AS DAYS_SINCE_REPORT,\n" +
             "(5 *(DATEDIFF(CURDATE(),SIGN_REQUEST_SENT_ON) DIV 7)+" +
@@ -45,17 +45,17 @@ public final class Constants {
     public static final String OFF_QUEUE = "No";
     public static final String IN_QUEUE = "Yes";
     //LC States
-    public static final String LC_STATE_STAGING = "Staging";
-    public static final String LC_STATE_DEVELOPMENT = "Development";
-    public static final String LC_STATE_TESTING = "Testing";
-    public static final String LC_STATE_PREQA = "PreQADevelopment";
-    public static final String LC_STATE_READY_FOR_QA = "ReadyForQA";
-    public static final String LC_STATE_FAILED_QA = "FailedQA";
-    public static final String LC_STATE_ONHOLD = "OnHold";
-    public static final String LC_STATE_RELEASED = "Released";
-    public static final String LC_STATE_RELEASED_NOT_AUTOMATED = "ReleasedNotAutomated";
-    public static final String LC_STATE_RELEASED_NOT_IN_PUBLIC_SVN = "ReleasedNotInPublicSVN";
-    public static final String SUPPORT_JIRA_URL_FIELD = "SUPPORT_JIRA";
+    public static final String STAGING = "Staging";
+    public static final String DEVELOPMENT = "Development";
+    public static final String TESTING = "Testing";
+    public static final String PRE_QA = "PreQADevelopment";
+    public static final String READY_FOR_QA = "ReadyForQA";
+    public static final String FAILED_QA = "FailedQA";
+    public static final String ON_HOLD = "OnHold";
+    public static final String RELEASED_LC = "Released";
+    public static final String RELEASED_NOT_AUTOMATED = "ReleasedNotAutomated";
+    public static final String RELEASED_NOT_IN_PUBLIC_SVN = "ReleasedNotInPublicSVN";
+    public static final String SUPPORT_JIRA_URL = "SUPPORT_JIRA";
     //jira constants
     public static final int RESULTS_PER_PAGE = 50;
     public static final int OK = 200;
@@ -73,7 +73,6 @@ public final class Constants {
     public static final String JIRA_KEY = "key";
     public static final String EMAIL = "emailAddress";
     public static final String NAME = "name";
-    public static final String NOT_SET = "No Entry in PMT";
     public static final String NOT_SPECIFIED = "Not Specified";
 
     private Constants() {
@@ -81,9 +80,9 @@ public final class Constants {
     }
 
     /**
-     * States associated with tables in email
+     * States associated with tables in email.
      */
     public enum State {
-        IN_DEV, IN_PATCH_QUEUE, IN_SIGNING, REALEASED, INACTIVE
+        IN_DEV, IN_PATCH_QUEUE, IN_SIGNING, RELEASED, INACTIVE
     }
 }

@@ -15,9 +15,8 @@ public class Patch implements HtmlTableRow {
     private Constants.State state;
     private String patchLCState;
 
-    public Patch(String jiraLink, String name, String productName, String assignee, Constants.State state,
-                 String patchLCState) {
-
+    Patch(String jiraLink, String name, String productName, String assignee, Constants.State state,
+          String patchLCState) {
         this.jiraLink = jiraLink;
         this.name = name;
         this.productName = productName;

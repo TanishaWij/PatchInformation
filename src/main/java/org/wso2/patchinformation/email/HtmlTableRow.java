@@ -18,8 +18,8 @@
 package org.wso2.patchinformation.email;
 
 /**
- * Interface that ensures that objects that implement this have a method that returns its data as an html html
- * table row value
+ * Interface that ensures that objects that implement this have a method that returns the object's data as an HTML
+ * table row
  */
 public interface HtmlTableRow {
     String objectToHTML(String backgroundColor);

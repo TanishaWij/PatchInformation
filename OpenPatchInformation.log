@@ -105,7 +105,7 @@ Caused by: java.io.IOException: unable to create directory: /gmailCredentials
 	... 2 more
 2018-05-22 17:32:35 ERROR MainEmailSender:52 - Execution failed, process was not completed
 
-org.wso2.patchinformation.exceptions.EmailProcessException: Failed to send email.
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to send email.
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:126)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:49)
 Caused by: org.wso2.patchinformation.exceptions.ConnectionException: Failed to send email
@@ -139,7 +139,7 @@ Caused by: java.io.IOException: unable to create directory: /gmailCredentials
 	... 2 more
 2018-05-22 17:32:40 ERROR MainEmailSender:59 - Execution failed, process was not completed
 
-org.wso2.patchinformation.exceptions.EmailProcessException: Failed to send email.
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to send email.
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:126)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:56)
 Caused by: org.wso2.patchinformation.exceptions.ConnectionException: Failed to send email
@@ -709,7 +709,7 @@ Caused by: com.google.api.client.googleapis.json.GoogleJsonResponseException: 40
 	... 2 more
 2018-05-23 15:04:02 ERROR MainEmailSender:51 - Execution failed, process was not completed
 
-org.wso2.patchinformation.exceptions.EmailProcessException: Failed to send email.
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to send email.
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:126)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:48)
 Caused by: org.wso2.patchinformation.exceptions.ConnectionException: Failed to send email
@@ -766,7 +766,7 @@ Caused by: com.google.api.client.googleapis.json.GoogleJsonResponseException: 40
 	... 2 more
 2018-05-23 15:04:10 ERROR MainEmailSender:58 - Execution failed, process was not completed
 
-org.wso2.patchinformation.exceptions.EmailProcessException: Failed to send email.
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to send email.
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:126)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:55)
 Caused by: org.wso2.patchinformation.exceptions.ConnectionException: Failed to send email
@@ -1364,48 +1364,48 @@ Caused by: com.google.api.client.googleapis.json.GoogleJsonResponseException: 40
 2018-05-24 13:44:07 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
 2018-05-24 13:44:13 ERROR MainEmailSender:102 - Failed to extract JIRA issues from JIRA.
 org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at getIssuesFromFilter(JIRAAccessor.java:119)
 	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:49)
 Caused by: java.lang.NullPointerException
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	at getIssuesFromFilter(JIRAAccessor.java:117)
 	... 3 more
 2018-05-24 13:44:13 ERROR MainEmailSender:52 - Execution failed, process was not completed
 
-org.wso2.patchinformation.exceptions.EmailProcessException: Failed to extract JIRA issues from JIRA.
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to extract JIRA issues from JIRA.
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:103)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:49)
 Caused by: org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at getIssuesFromFilter(JIRAAccessor.java:119)
 	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
 	... 1 more
 Caused by: java.lang.NullPointerException
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	at getIssuesFromFilter(JIRAAccessor.java:117)
 	... 3 more
 2018-05-24 13:44:13 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
 2018-05-24 13:44:19 ERROR MainEmailSender:102 - Failed to extract JIRA issues from JIRA.
 org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at getIssuesFromFilter(JIRAAccessor.java:119)
 	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:56)
 Caused by: java.lang.NullPointerException
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	at getIssuesFromFilter(JIRAAccessor.java:117)
 	... 3 more
 2018-05-24 13:44:19 ERROR MainEmailSender:59 - Execution failed, process was not completed
 
-org.wso2.patchinformation.exceptions.EmailProcessException: Failed to extract JIRA issues from JIRA.
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to extract JIRA issues from JIRA.
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:103)
 	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:56)
 Caused by: org.wso2.patchinformation.exceptions.ContentException: Failed to extract JIRA issue's field data
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:119)
+	at getIssuesFromFilter(JIRAAccessor.java:119)
 	at org.wso2.patchinformation.jira.JIRAAccessor.getIssues(JIRAAccessor.java:79)
 	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:95)
 	... 1 more
 Caused by: java.lang.NullPointerException
-	at org.wso2.patchinformation.jira.JIRAAccessor.getJIRAsIssuesFromFilter(JIRAAccessor.java:117)
+	at getIssuesFromFilter(JIRAAccessor.java:117)
 	... 3 more
 2018-05-24 13:46:47 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
 2018-05-24 13:46:52 INFO  MainEmailSender:98 - Successfully extracted JIRA issue information from JIRA.
@@ -1735,3 +1735,177 @@ Caused by: java.lang.NullPointerException
 2018-05-24 17:18:09 INFO  MainEmailSender:126 - Successfully sent email with patch information.
 2018-05-24 17:18:09 INFO  MainEmailSender:57 - Execution completed successfully.
 
+2018-05-25 09:44:05 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 09:44:12 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:44:13 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:44:16 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:44:16 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 09:44:16 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 09:44:20 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:44:21 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:44:23 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:44:23 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 09:45:30 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 09:45:36 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:45:37 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:45:38 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:45:38 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 09:45:38 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 09:45:43 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:45:43 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:45:44 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:45:44 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 09:55:20 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 09:55:27 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:55:29 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:55:30 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:55:30 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 09:55:30 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 09:55:35 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:55:36 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:55:37 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:55:37 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 09:56:52 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 09:56:59 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:57:01 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:57:03 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:57:03 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 09:57:03 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 09:57:08 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:57:09 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:57:10 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:57:10 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 09:58:00 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 09:58:07 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:58:10 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:58:11 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:58:11 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 09:58:11 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 09:58:17 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 09:58:17 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 09:58:18 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 09:58:18 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 10:00:57 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 10:01:04 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:01:05 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:01:07 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:01:07 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 10:01:07 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 10:01:11 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:01:12 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:01:12 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:01:12 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 10:02:52 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 10:02:59 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:03:00 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:03:01 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:03:01 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 10:03:01 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 10:03:06 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:03:07 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:03:08 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:03:08 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 10:04:43 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 10:04:50 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:04:51 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:04:52 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:04:52 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 10:04:52 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 10:04:57 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:04:57 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:04:58 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:04:58 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 10:07:11 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 10:07:18 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:07:20 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:07:22 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:07:22 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 10:07:22 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 10:07:26 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:07:27 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:07:28 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:07:28 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 10:12:05 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 10:12:12 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:12:13 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:12:14 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:12:14 INFO  MainEmailSender:50 - Execution completed successfully.
+
+2018-05-25 10:12:14 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 10:12:20 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 10:12:20 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 10:12:21 INFO  MainEmailSender:126 - Successfully sent email with patch information.
+2018-05-25 10:12:21 INFO  MainEmailSender:57 - Execution completed successfully.
+
+2018-05-25 13:32:03 INFO  MainEmailSender:48 - Executing process to send email on Internal JIRA issues.
+2018-05-25 13:32:10 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 13:32:12 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 13:32:13 ERROR MainEmailSender:129 - Failed to send email.
+org.wso2.patchinformation.exceptions.ContentException: Failed to set up email
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:125)
+	at org.wso2.patchinformation.email.EmailSender.sendMessage(EmailSender.java:166)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:124)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:49)
+Caused by: javax.mail.internet.AddressException: Illegal address in string ``''
+	at javax.mail.internet.InternetAddress.<init>(InternetAddress.java:114)
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:113)
+	... 3 more
+2018-05-25 13:32:13 ERROR MainEmailSender:52 - Execution failed, process was not completed
+
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to send email.
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:130)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:49)
+Caused by: org.wso2.patchinformation.exceptions.ContentException: Failed to set up email
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:125)
+	at org.wso2.patchinformation.email.EmailSender.sendMessage(EmailSender.java:166)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:124)
+	... 1 more
+Caused by: javax.mail.internet.AddressException: Illegal address in string ``''
+	at javax.mail.internet.InternetAddress.<init>(InternetAddress.java:114)
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:113)
+	... 3 more
+2018-05-25 13:32:13 INFO  MainEmailSender:55 - Executing process to send email on Customer related JIRA issues.
+2018-05-25 13:32:17 INFO  MainEmailSender:97 - Successfully extracted JIRA issue information from JIRA.
+2018-05-25 13:32:18 INFO  MainEmailSender:114 - Successfully extracted patch information from the pmt.
+2018-05-25 13:32:18 ERROR MainEmailSender:129 - Failed to send email.
+org.wso2.patchinformation.exceptions.ContentException: Failed to set up email
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:125)
+	at org.wso2.patchinformation.email.EmailSender.sendMessage(EmailSender.java:166)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:124)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:56)
+Caused by: javax.mail.internet.AddressException: Illegal address in string ``''
+	at javax.mail.internet.InternetAddress.<init>(InternetAddress.java:114)
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:113)
+	... 3 more
+2018-05-25 13:32:18 ERROR MainEmailSender:59 - Execution failed, process was not completed
+
+org.wso2.patchinformation.exceptions.PatchInformationException: Failed to send email.
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:130)
+	at org.wso2.patchinformation.MainEmailSender.main(MainEmailSender.java:56)
+Caused by: org.wso2.patchinformation.exceptions.ContentException: Failed to set up email
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:125)
+	at org.wso2.patchinformation.email.EmailSender.sendMessage(EmailSender.java:166)
+	at org.wso2.patchinformation.MainEmailSender.executeEmailSendingProcess(MainEmailSender.java:124)
+	... 1 more
+Caused by: javax.mail.internet.AddressException: Illegal address in string ``''
+	at javax.mail.internet.InternetAddress.<init>(InternetAddress.java:114)
+	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:113)
+	... 3 more

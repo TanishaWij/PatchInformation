@@ -4,7 +4,8 @@ import org.wso2.patchinformation.constants.Constants;
 import org.wso2.patchinformation.email.HtmlTableRow;
 
 /**
- * A patch which is onhold, broken, in regression or has no entry in the pmt
+ * A patch which is onhold, broken, in regression, has no entry in the pmt, has an entry in PATCH_QUEUE table but not
+ * in PATCH_ETA (Patches with "state" set to [reason for not going forward with the Patch]
  */
 public class InactivePatch extends Patch implements HtmlTableRow {
 
@@ -23,6 +24,12 @@ public class InactivePatch extends Patch implements HtmlTableRow {
         return jiraCreateDate;
     }
 
+    /**
+     * Builds the patch data as a HTML table row.
+     *
+     * @param backgroundColor of table row.
+     * @return Returns the HTML code for a table row.
+     */
     @Override
     public String objectToHTML(String backgroundColor) {
         return "<tr><td width=\"" + "15%" + "\" align=\"left\" bgcolor=" + backgroundColor +

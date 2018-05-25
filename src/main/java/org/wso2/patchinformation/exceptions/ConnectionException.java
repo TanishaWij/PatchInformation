@@ -3,7 +3,7 @@ package org.wso2.patchinformation.exceptions;
 /**
  * Exceptions that occur while trying to make a connection
  */
-public class ConnectionException extends EmailProcessException {
+public class ConnectionException extends PatchInformationException {
 
     /**
      * Constructs an Exception with the specified detail message

@@ -3,7 +3,7 @@ package org.wso2.patchinformation.exceptions;
 /**
  * Exceptions that occur while dealing with content from either Jira, Pmt or email creation
  */
-public class ContentException extends EmailProcessException {
+public class ContentException extends PatchInformationException {
 
     /**
      * Constructs an Exception with the specified detail message

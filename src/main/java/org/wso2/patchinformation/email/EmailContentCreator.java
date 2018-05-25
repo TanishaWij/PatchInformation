@@ -36,29 +36,29 @@ import static org.wso2.patchinformation.constants.EmailConstants.COLUMN_NAMES_DE
 import static org.wso2.patchinformation.constants.EmailConstants.COLUMN_NAMES_INACTIVE;
 import static org.wso2.patchinformation.constants.EmailConstants.COLUMN_NAMES_RELEASED;
 import static org.wso2.patchinformation.constants.EmailConstants.COLUMN_NAMES_SUMMARY;
-import static org.wso2.patchinformation.constants.EmailConstants.DEV_SECTION_HEADER;
 import static org.wso2.patchinformation.constants.EmailConstants.EMAIL_FOOTER;
-import static org.wso2.patchinformation.constants.EmailConstants.INACTIVE_SECTION_HEADER;
-import static org.wso2.patchinformation.constants.EmailConstants.IN_QUEUE_SECTION_HEADER;
-import static org.wso2.patchinformation.constants.EmailConstants.IN_SIGNING_SECTION_HEADER;
-import static org.wso2.patchinformation.constants.EmailConstants.RELEASED_SECTION_HEADER;
-import static org.wso2.patchinformation.constants.EmailConstants.SUMMARY_SECTION_HEADER;
+import static org.wso2.patchinformation.constants.EmailConstants.SECTION_HEADER_DEV;
+import static org.wso2.patchinformation.constants.EmailConstants.SECTION_HEADER_INACTIVE;
+import static org.wso2.patchinformation.constants.EmailConstants.SECTION_HEADER_QUEUE;
+import static org.wso2.patchinformation.constants.EmailConstants.SECTION_HEADER_RELEASED;
+import static org.wso2.patchinformation.constants.EmailConstants.SECTION_HEADER_SIGNING;
+import static org.wso2.patchinformation.constants.EmailConstants.SECTION_HEADER_SUMMARY;
 
 /**
  * Creates and returns the body of the email.
  */
-public class EmailBodyCreator {
+public class EmailContentCreator {
 
-    private static EmailBodyCreator emailBodyCreator;
+    private static EmailContentCreator emailContentCreator;
 
-    private EmailBodyCreator() {
+    private EmailContentCreator() {
     }
 
-    public static EmailBodyCreator getEmailBodyCreator() {
-        if (emailBodyCreator == null) {
-            emailBodyCreator = new EmailBodyCreator();
+    public static EmailContentCreator getEmailContentCreator() {
+        if (emailContentCreator == null) {
+            emailContentCreator = new EmailContentCreator();
         }
-        return emailBodyCreator;
+        return emailContentCreator;
     }
 
     /**
@@ -73,19 +73,21 @@ public class EmailBodyCreator {
         String emailBody = emailHeader;
         emailBody += getSummeryTable(jiraIssues);
         ArrayList<Patch> inactivePatches = new ArrayList<>(getAllInactivePatches(jiraIssues));
-        emailBody += getStateTable(INACTIVE_SECTION_HEADER, COLUMN_NAMES_INACTIVE, "Jira Create Date",
+        emailBody += getStateTable(SECTION_HEADER_INACTIVE, COLUMN_NAMES_INACTIVE, "Jira Create Date",
                 inactivePatches);
+
         ArrayList<Patch> openPatches = new ArrayList<>(getAllOpenPatches(jiraIssues));
         ArrayList<Patch> patchesInQueue = new ArrayList<>();
         ArrayList<Patch> patchesInDev = new ArrayList<>();
         ArrayList<Patch> patchesInSigning = new ArrayList<>();
         assignPatchesToStates(openPatches, patchesInQueue, patchesInSigning, patchesInDev);
-        emailBody += getStateTable(IN_QUEUE_SECTION_HEADER, COLUMN_NAMES, "Work Days In Queue",
+        emailBody += getStateTable(SECTION_HEADER_QUEUE, COLUMN_NAMES, "Work Days In Queue",
                 patchesInQueue);
-        emailBody += getStateTable(DEV_SECTION_HEADER, COLUMN_NAMES_DEV, "Work Days In Dev",
+        emailBody += getStateTable(SECTION_HEADER_DEV, COLUMN_NAMES_DEV, "Work Days In Dev",
                 patchesInDev);
-        emailBody += getStateTable(IN_SIGNING_SECTION_HEADER, COLUMN_NAMES, "Work Days In Signing",
+        emailBody += getStateTable(SECTION_HEADER_SIGNING, COLUMN_NAMES, "Work Days In Signing",
                 patchesInSigning);
+
         emailBody += getReleasedTable(jiraIssues);
         emailBody += EMAIL_FOOTER;
         return emailBody;
@@ -99,7 +101,7 @@ public class EmailBodyCreator {
      */
     private String getSummeryTable(ArrayList<JIRAIssue> jiraIssues) {
 
-        String table = SUMMARY_SECTION_HEADER;
+        String table = SECTION_HEADER_SUMMARY;
         table += COLUMN_NAMES_SUMMARY;
         jiraIssues.sort(new ReportDateComparator());
         ArrayList<HtmlTableRow> jirasToHtml = new ArrayList<>(jiraIssues);
@@ -176,7 +178,7 @@ public class EmailBodyCreator {
     private String getStateTable(String header, String columnNames, String dateColumnName, ArrayList<Patch> patches) {
 
         String table = header + columnNames + dateColumnName + "</td></tr>";
-        if (!INACTIVE_SECTION_HEADER.equals(header)) {
+        if (!SECTION_HEADER_INACTIVE.equals(header)) {
             patches.sort(new PatchChainedComparator(new ProductNameComparator(), new StateNameComparator()));
         }
         ArrayList<HtmlTableRow> patchesToHtml = new ArrayList<>(patches);
@@ -199,10 +201,10 @@ public class EmailBodyCreator {
         //set background colour
         for (HtmlTableRow row : rows) {
             if (toggleFlag) {
-                backgroundColor = Constants.BACKGROUND_COLOR_WHITE;
+                backgroundColor = Constants.WHITE_BACKGROUND;
                 toggleFlag = false;
             } else {
-                backgroundColor = Constants.BACKGROUND_COLOR_GRAY;
+                backgroundColor = Constants.GRAY_BACKGROUND;
                 toggleFlag = true;
             }
             htmlRows.append(row.objectToHTML(backgroundColor));
@@ -218,7 +220,7 @@ public class EmailBodyCreator {
      */
     private String getReleasedTable(ArrayList<JIRAIssue> jiraIssues) {
 
-        String table = RELEASED_SECTION_HEADER;
+        String table = SECTION_HEADER_RELEASED;
         table += COLUMN_NAMES_RELEASED;
         ArrayList<JIRAIssue> releasedJiras = getJirasWithReleasedPatches(jiraIssues);
         releasedJiras.sort(new ReleasedReportDateComparator());
@@ -259,10 +261,10 @@ public class EmailBodyCreator {
         //set background colour
         for (JIRAIssue jiraIssue : jiraIssues) {
             if (toggleFlag) {
-                backgroundColor = Constants.BACKGROUND_COLOR_WHITE;
+                backgroundColor = Constants.WHITE_BACKGROUND;
                 toggleFlag = false;
             } else {
-                backgroundColor = Constants.BACKGROUND_COLOR_GRAY;
+                backgroundColor = Constants.GRAY_BACKGROUND;
                 toggleFlag = true;
             }
             htmlRows.append(jiraIssue.devPatchesToHTML(backgroundColor));
