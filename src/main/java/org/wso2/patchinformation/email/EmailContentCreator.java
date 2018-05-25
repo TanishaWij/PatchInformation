@@ -45,8 +45,7 @@ import static org.wso2.patchinformation.constants.EmailConstants.RELEASED_SECTIO
 import static org.wso2.patchinformation.constants.EmailConstants.SUMMARY_SECTION_HEADER;
 
 /**
- * Creates and returns the body of the email. The body is broken up into a summary table, and a table for each of
- * the four States.
+ * Creates and returns the body of the email.
  */
 public class EmailBodyCreator {
 
@@ -76,12 +75,11 @@ public class EmailBodyCreator {
         ArrayList<Patch> inactivePatches = new ArrayList<>(getAllInactivePatches(jiraIssues));
         emailBody += getStateTable(INACTIVE_SECTION_HEADER, COLUMN_NAMES_INACTIVE, "Jira Create Date",
                 inactivePatches);
-
-        ArrayList<Patch> patches = new ArrayList<>(getAllPatches(jiraIssues));
+        ArrayList<Patch> openPatches = new ArrayList<>(getAllOpenPatches(jiraIssues));
         ArrayList<Patch> patchesInQueue = new ArrayList<>();
         ArrayList<Patch> patchesInDev = new ArrayList<>();
         ArrayList<Patch> patchesInSigning = new ArrayList<>();
-        assignOpenPatchesToStates(patches, patchesInQueue, patchesInSigning, patchesInDev);
+        assignPatchesToStates(openPatches, patchesInQueue, patchesInSigning, patchesInDev);
         emailBody += getStateTable(IN_QUEUE_SECTION_HEADER, COLUMN_NAMES, "Work Days In Queue",
                 patchesInQueue);
         emailBody += getStateTable(DEV_SECTION_HEADER, COLUMN_NAMES_DEV, "Work Days In Dev",
@@ -94,10 +92,9 @@ public class EmailBodyCreator {
     }
 
     /**
-     * Builds the html string corresponding to the Summary table which holds information on all unique JIRA issues
-     * with open patches.
+     * Builds the html string for the Summary table.
      *
-     * @param jiraIssues arraylist of all JIRA issues
+     * @param jiraIssues ArrayList of all JIRA issues
      * @return the html code for the table
      */
     private String getSummeryTable(ArrayList<JIRAIssue> jiraIssues) {
@@ -113,9 +110,9 @@ public class EmailBodyCreator {
 
 
     /**
-     * returns an arraylist of all inactive patches
+     * Returns an ArrayList of all inactive patches.
      *
-     * @param jiraIssues arraylist of JIRA issues
+     * @param jiraIssues ArrayList of JIRA issues
      * @return all patches
      */
     private ArrayList<InactivePatch> getAllInactivePatches(ArrayList<JIRAIssue> jiraIssues) {
@@ -131,12 +128,12 @@ public class EmailBodyCreator {
     }
 
     /**
-     * returns an arraylist of all patches
+     * Returns an ArrayList of all open patches.
      *
-     * @param jiraIssues arraylist of JIRA issues
-     * @return all patches
+     * @param jiraIssues ArrayList of JIRA issues
+     * @return all open patches
      */
-    private ArrayList<OpenPatch> getAllPatches(ArrayList<JIRAIssue> jiraIssues) {
+    private ArrayList<OpenPatch> getAllOpenPatches(ArrayList<JIRAIssue> jiraIssues) {
 
         ArrayList<OpenPatch> openPatches = new ArrayList<>();
         for (JIRAIssue jiraIssue : jiraIssues) {
@@ -146,12 +143,12 @@ public class EmailBodyCreator {
     }
 
     /**
-     * Add the patches to an arraylist dependent on which state it is in.
+     * Assigns patches to States.
      *
-     * @param openPatches arraylist of all patches to be recorded.
+     * @param openPatches ArrayList of all patches to be recorded.
      */
-    private void assignOpenPatchesToStates(ArrayList<Patch> openPatches, ArrayList<Patch> patchesInQueue,
-                                           ArrayList<Patch> patchesInSigning, ArrayList<Patch> patchesInDevelopment) {
+    private void assignPatchesToStates(ArrayList<Patch> openPatches, ArrayList<Patch> patchesInQueue,
+                                       ArrayList<Patch> patchesInSigning, ArrayList<Patch> patchesInDevelopment) {
 
         for (Patch openPatch : openPatches) {
             switch (openPatch.getState()) {
@@ -169,12 +166,12 @@ public class EmailBodyCreator {
     }
 
     /**
-     * Builds the html string corresponding to each of the 4 states table and the corresponding JIRA issues.
+     * Builds the html table corresponding to a states information.
      *
-     * @param header         email header
-     * @param dateColumnName table attribute name for "date" coloumn on table
-     * @param patches        arraylist of patches
-     * @return html code showing the state data in a table
+     * @param header         email header.
+     * @param dateColumnName table attribute name for "date" column on table.
+     * @param patches        ArrayList of patches.
+     * @return html code showing the state data in a table.
      */
     private String getStateTable(String header, String columnNames, String dateColumnName, ArrayList<Patch> patches) {
 
@@ -189,10 +186,10 @@ public class EmailBodyCreator {
     }
 
     /**
-     * Builds the table body where each row corresponds to a unique patch.
+     * Builds the table body.
      *
-     * @param rows Arraylist of all issues or patches
-     * @return html code for row vaues of table
+     * @param rows ArrayList of all issues or patches.
+     * @return html code for row values of table.
      */
     private String getTableRows(ArrayList<HtmlTableRow> rows) {
 
@@ -213,6 +210,12 @@ public class EmailBodyCreator {
         return htmlRows.toString();
     }
 
+    /**
+     * Builds the html table for the released state.
+     *
+     * @param jiraIssues         all JIRA issues.
+     * @return html code showing the state data in a table.
+     */
     private String getReleasedTable(ArrayList<JIRAIssue> jiraIssues) {
 
         String table = RELEASED_SECTION_HEADER;
@@ -224,6 +227,12 @@ public class EmailBodyCreator {
         return table;
     }
 
+    /**
+     * Returns JIRAs that have released Patches associated with it.
+     *
+     * @param jiraIssues all JIRA issues.
+     * @return JIRAs with released Patches.
+     */
     private ArrayList<JIRAIssue> getJirasWithReleasedPatches(ArrayList<JIRAIssue> jiraIssues) {
 
         ArrayList<JIRAIssue> releasedJiras = new ArrayList<>();
@@ -237,10 +246,10 @@ public class EmailBodyCreator {
     }
 
     /**
-     * Builds the table body where each row corresponds to a unique patch.
+     * Builds the Released State table body.
      *
-     * @param jiraIssues Arraylist of all issues or patches
-     * @return html code for row vaues of table
+     * @param jiraIssues ArrayList of Jira issues.
+     * @return html code for row values of table.
      */
     private String getReleasedTableRows(ArrayList<JIRAIssue> jiraIssues) {
 
