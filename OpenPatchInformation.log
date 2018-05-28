@@ -1909,3 +1909,15 @@ Caused by: javax.mail.internet.AddressException: Illegal address in string ``''
 	at javax.mail.internet.InternetAddress.<init>(InternetAddress.java:114)
 	at org.wso2.patchinformation.email.EmailSender.createEmail(EmailSender.java:113)
 	... 3 more
+2018-05-28 09:01:31 INFO  MainEmailSender:47 - Executing process to send email on Internal JIRA issues.
+2018-05-28 09:01:38 INFO  MainEmailSender:96 - Successfully extracted JIRA issue information from JIRA.
+2018-05-28 09:01:41 INFO  MainEmailSender:113 - Successfully extracted patch information from the pmt.
+2018-05-28 09:01:43 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-28 09:01:43 INFO  MainEmailSender:49 - Execution completed successfully.
+
+2018-05-28 09:01:43 INFO  MainEmailSender:54 - Executing process to send email on Customer related JIRA issues.
+2018-05-28 09:01:47 INFO  MainEmailSender:96 - Successfully extracted JIRA issue information from JIRA.
+2018-05-28 09:01:47 INFO  MainEmailSender:113 - Successfully extracted patch information from the pmt.
+2018-05-28 09:01:48 INFO  MainEmailSender:125 - Successfully sent email with patch information.
+2018-05-28 09:01:48 INFO  MainEmailSender:56 - Execution completed successfully.
+
